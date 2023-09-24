@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>反转字符串中的单词</title>
+    <link href="/2023/09/24/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D/"/>
+    <url>/2023/09/24/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D/</url>
+    
+    <content type="html"><![CDATA[<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>整体思路为：整体的字符反转，字符中额外空格的删除，字符单词反转</p><p>字符反转很简单，使用双指针即可<br>删除字符中的额外空格有点麻烦，可以使用双指针（参考之前的数组移除元素），具体思路如下：定义快慢指针，用快指针遍历数组，当快指针指向非目标值时，将快指针的内容拷贝到慢指针处，然后fast++，slow++。主要留心中间空格以及两端空格的处理。<br>字符单词反转不麻烦但是得考虑全。</p><h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><pre><code class="java">class Solution &#123;  public String reverseWords(String s) &#123;      char[] sChars = s.toCharArray();      //字符串整体反转      reverse(sChars,0,sChars.length-1);      //去除额外空格      sChars = removeExtraSpace(sChars);      //单词内反转      reverseEachWord(sChars);      return new String(sChars);  &#125;  public void reverseEachWord(char[] chars)&#123;      int start = 0;      for (int end = 0; end &lt;= chars.length; end++) &#123;//便于让end总是指向每一个单词的末尾          if(end == chars.length || chars[end] == &#39; &#39;)&#123;              reverse(chars,start,end-1);              start = end + 1;          &#125;      &#125;  &#125;  public char[] removeExtraSpace(char[] chars)&#123;      int slow = 0;      for (int fast = 0; fast &lt; chars.length; fast++) &#123;          if (chars[fast] != &#39; &#39;)&#123;//整体为去除空格模板              if (slow != 0)&#123;//在非首位的每个单词后面添加一个空格                  chars[slow] = &#39; &#39;;                  slow ++;              &#125;              while(fast &lt; chars.length &amp;&amp; chars[fast] !=&#39; &#39;)&#123;                  //删除所有空格                  //将快指针的内容（非空格的字母）赋值给慢指针                  chars[slow] = chars[fast];                  slow++;                  fast++;              &#125;          &#125;      &#125;      //同时slow也就是到达了最后的有效位置，slow的大小就是处理完后的数组大小。      char[] newChar = new char[slow];      //数组拷贝，System.arraycopy(拷贝数组, 起始索引, 新数组, 起始索引, 拷贝长度);       System.arraycopy(chars, 0, newChar, 0, slow);       return newChar;  &#125;      public void reverse(char[] chars,int start ,int end)&#123;      char tmp;      while(start &lt; end)&#123;          tmp = chars[start];          chars[start] = chars[end];          chars[end] = tmp;          start ++;          end --;      &#125;  &#125;&#125;</code></pre>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2023/09/23/hello-world/"/>
     <url>/2023/09/23/hello-world/</url>
