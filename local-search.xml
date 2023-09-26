@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>2023-9-26记事</title>
+    <link href="/2023/09/26/2023-9-26%E8%AE%B0%E4%BA%8B/"/>
+    <url>/2023/09/26/2023-9-26%E8%AE%B0%E4%BA%8B/</url>
+    
+    <content type="html"><![CDATA[<p>前言：闲来无聊，本应该是记单词的时间，但是又想练习打字，于是开始用电脑码一下今天的日记吧</p><h3 id="学习状态总结"><a href="#学习状态总结" class="headerlink" title="学习状态总结"></a>学习状态总结</h3><p>总体可以给自己打分80吧，今天又没去上课，在宿舍学习，效率一般，任务完成度还行，但是吸收的并不多，也进行了运动，下面是今日的统计情况，累计时长接近9小时</p><h4 id="23年09月26日"><a href="#23年09月26日" class="headerlink" title="23年09月26日"></a>23年09月26日</h4><blockquote><p><strong>08:00至09:58 【redis学习】  1小时58分钟</strong></p></blockquote><p>&emsp;redisson 联锁，可重用锁，</p><blockquote><p><strong>10:20至11:31 【redis学习】  1小时11分钟</strong></p></blockquote><p>&emsp;秒杀优化 异步下单，阻塞队列</p><blockquote><p><strong>14:30至15:50 【redis学习】  1小时20分钟</strong></p></blockquote><p>&emsp;调傻逼bug，总算解决了，但是不知道原因</p><blockquote><p><strong>15:50至17:30 【leetcode刷题】  1小时40分钟</strong></p></blockquote><p>&emsp;一道半力扣，小颓废唉</p><blockquote><p><strong>19:15至20:42 【redis学习】  1小时27分钟</strong></p></blockquote><p>&emsp;redis消息队列看完，不过没咋吸收全是api，语法</p><blockquote><p><strong>20:42至20:55 【leetcode刷题】  13分钟</strong></p></blockquote><p>&emsp;三道sql</p><blockquote><p><strong>20:55至22:00 【运动健身】  1小时5分钟</strong></p></blockquote><p>&emsp;引体，弯举，划船，卷腹</p><h3 id="所思所感"><a href="#所思所感" class="headerlink" title="所思所感"></a>所思所感</h3><p>自己这段时间还是太焦虑和着急了，基于求成进度，想快速的学完java进行实习，这样使自己草草的看完视频，码一下代码就安慰自己是学完了，说实话这真的是致命毒药，因为做项目的关键在于去面试找工作，面试官拷打你的项目的时候就是直接根据项目的技术栈来进行询问的，如果你回答不上来那么等于是没做，所以我现在的改变我的心态，必须吃透项目，并且看完一章节后根据网上资料以及ppt进行总结归纳，不要急于求成，每天起码画两三个小时去总结。<br>关于自己实习的问题也不能着急，你现在如果去一个垃圾小厂实习的话，一是可能学不到东西，赚不到钱，还有挂科的风险，并且最主要的是浪费了时间，这学期应该好好静下心来，学习java（redis，mq，sprincloud等），学习计网，还有备战六级，并且反复刷leetcode，最后一两个月，差不读学习完springcloud课程之后再进行八股，准备面试以及期末考试。<br>好吧就这样吧，加油，睡觉了！</p><style>  /* 只设置 markdown 字体 */  .markdown-body {    font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;    font-size: 20px;  }</style>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>匹配下标-KMP算法</title>
     <link href="/2023/09/25/%E5%8C%B9%E9%85%8D%E4%B8%8B%E6%A0%87-KMP%E7%AE%97%E6%B3%95/"/>
     <url>/2023/09/25/%E5%8C%B9%E9%85%8D%E4%B8%8B%E6%A0%87-KMP%E7%AE%97%E6%B3%95/</url>
