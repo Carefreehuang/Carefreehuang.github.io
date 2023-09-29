@@ -16,21 +16,27 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言：闲来无聊，本应该是记单词的时间，但是又想练习打字，于是开始用电脑码一下今天的日记吧 学习状态总结总体可以给自己打分80吧，今天又没去上课，在宿舍学习，效率一般，任务完成度还行，但是吸收的并不多，也进行了运动，下面是今日的统计情况，累计时长接近9小时 23年09月26日 08:00至09:58 【redis学习】  1小时58分钟  &amp;emsp;redisson 联锁，可重用锁，  10:20">
+    <meta name="description" content="缓存的基本知识什么是缓存 缓存是数据交换的缓冲区，一般从数据库中获取，存储在本地。 redis缓存:由于其被static修饰，所以随着类的加载而加载到内存之中，作为本地缓存，由于其又被final修饰，所以其引用之间的关系是固定的，不能改变，因此不用担心复制导致缓存失败1static final Cache&lt;K,V&gt; USER_CACHE &#x3D; CacheBuilder.newBuilde">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023-9-26记事">
-<meta property="og:url" content="http://example.com/2023/09/26/2023-9-26%E8%AE%B0%E4%BA%8B/index.html">
+<meta property="og:title" content="黑马点评-商户缓存">
+<meta property="og:url" content="http://example.com/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E5%95%86%E6%88%B7%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="前言：闲来无聊，本应该是记单词的时间，但是又想练习打字，于是开始用电脑码一下今天的日记吧 学习状态总结总体可以给自己打分80吧，今天又没去上课，在宿舍学习，效率一般，任务完成度还行，但是吸收的并不多，也进行了运动，下面是今日的统计情况，累计时长接近9小时 23年09月26日 08:00至09:58 【redis学习】  1小时58分钟  &amp;emsp;redisson 联锁，可重用锁，  10:20">
+<meta property="og:description" content="缓存的基本知识什么是缓存 缓存是数据交换的缓冲区，一般从数据库中获取，存储在本地。 redis缓存:由于其被static修饰，所以随着类的加载而加载到内存之中，作为本地缓存，由于其又被final修饰，所以其引用之间的关系是固定的，不能改变，因此不用担心复制导致缓存失败1static final Cache&lt;K,V&gt; USER_CACHE &#x3D; CacheBuilder.newBuilde">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-26T15:24:31.440Z">
-<meta property="article:modified_time" content="2023-09-28T00:35:18.739Z">
+<meta property="og:image" content="http://example.com/img/%E7%BC%93%E5%AD%98%E4%BD%9C%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="http://example.com/img/%E5%85%88%E7%BC%93%E5%AD%98%E5%86%8D%E6%95%B0%E6%8D%AE%E5%BA%93.png">
+<meta property="og:image" content="http://example.com/img/%E5%85%88%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%8D%E7%BC%93%E5%AD%98.png">
+<meta property="og:image" content="http://example.com/img/%E4%BA%92%E6%96%A5%E9%94%81.png">
+<meta property="og:image" content="http://example.com/img/%E9%80%BB%E8%BE%91%E8%BF%87%E6%9C%9F.png">
+<meta property="article:published_time" content="2023-09-27T02:59:25.202Z">
+<meta property="article:modified_time" content="2023-09-27T09:06:27.178Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E7%BC%93%E5%AD%98%E4%BD%9C%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg">
   
   
   
-  <title>2023-9-26记事 - Carefreehaung的个人博客</title>
+  <title>黑马点评-商户缓存 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023-9-26记事"></span>
+            <span id="subtitle" data-typed-text="黑马点评-商户缓存"></span>
           
         </div>
 
@@ -207,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-26 23:24" pubdate>
-          2023年9月26日 晚上
+        <time datetime="2023-09-27 10:59" pubdate>
+          2023年9月27日 上午
         </time>
       </span>
     
@@ -219,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          975 字
+          3.5k 字
         
       </span>
     
@@ -230,7 +236,7 @@
         
         
         
-          9 分钟
+          29 分钟
         
       </span>
     
@@ -267,49 +273,108 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023-9-26记事</h1>
+            <h1 id="seo-header">黑马点评-商户缓存</h1>
             
             
               <div class="markdown-body">
                 
-                <p>前言：闲来无聊，本应该是记单词的时间，但是又想练习打字，于是开始用电脑码一下今天的日记吧</p>
-<h3 id="学习状态总结"><a href="#学习状态总结" class="headerlink" title="学习状态总结"></a>学习状态总结</h3><p>总体可以给自己打分80吧，今天又没去上课，在宿舍学习，效率一般，任务完成度还行，但是吸收的并不多，也进行了运动，下面是今日的统计情况，累计时长接近9小时</p>
-<h4 id="23年09月26日"><a href="#23年09月26日" class="headerlink" title="23年09月26日"></a>23年09月26日</h4><blockquote>
-<p><strong>08:00至09:58 【redis学习】  1小时58分钟</strong></p>
-</blockquote>
-<p>&emsp;redisson 联锁，可重用锁，</p>
-<blockquote>
-<p><strong>10:20至11:31 【redis学习】  1小时11分钟</strong></p>
-</blockquote>
-<p>&emsp;秒杀优化 异步下单，阻塞队列</p>
-<blockquote>
-<p><strong>14:30至15:50 【redis学习】  1小时20分钟</strong></p>
-</blockquote>
-<p>&emsp;调傻逼bug，总算解决了，但是不知道原因</p>
-<blockquote>
-<p><strong>15:50至17:30 【leetcode刷题】  1小时40分钟</strong></p>
-</blockquote>
-<p>&emsp;一道半力扣，小颓废唉</p>
-<blockquote>
-<p><strong>19:15至20:42 【redis学习】  1小时27分钟</strong></p>
-</blockquote>
-<p>&emsp;redis消息队列看完，不过没咋吸收全是api，语法</p>
-<blockquote>
-<p><strong>20:42至20:55 【leetcode刷题】  13分钟</strong></p>
-</blockquote>
-<p>&emsp;三道sql</p>
-<blockquote>
-<p><strong>20:55至22:00 【运动健身】  1小时5分钟</strong></p>
-</blockquote>
-<p>&emsp;引体，弯举，划船，卷腹</p>
-<h3 id="所思所感"><a href="#所思所感" class="headerlink" title="所思所感"></a>所思所感</h3><p>自己这段时间还是太焦虑和着急了，基于求成进度，想快速的学完java进行实习，这样使自己草草的看完视频，码一下代码就安慰自己是学完了，说实话这真的是致命毒药，因为做项目的关键在于去面试找工作，面试官拷打你的项目的时候就是直接根据项目的技术栈来进行询问的，如果你回答不上来那么等于是没做，所以我现在的改变我的心态，必须吃透项目，并且看完一章节后根据网上资料以及ppt进行总结归纳，不要急于求成，每天起码画两三个小时去总结。<br>关于自己实习的问题也不能着急，你现在如果去一个垃圾小厂实习的话，一是可能学不到东西，赚不到钱，还有挂科的风险，并且最主要的是浪费了时间，这学期应该好好静下心来，学习java（redis，mq，sprincloud等），学习计网，还有备战六级，并且反复刷leetcode，最后一两个月，差不读学习完springcloud课程之后再进行八股，准备面试以及期末考试。<br>好吧就这样吧，加油，睡觉了！</p>
-<style>
-  /* 只设置 markdown 字体 */
-  .markdown-body {
-    font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;
-    font-size: 20px;
-  }
-</style>
+                <h3 id="缓存的基本知识"><a href="#缓存的基本知识" class="headerlink" title="缓存的基本知识"></a>缓存的基本知识</h3><h4 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a>什么是缓存</h4><ol>
+<li>缓存是数据交换的缓冲区，一般从数据库中获取，存储在本地。</li>
+<li>redis缓存:由于其被static修饰，所以随着类的加载而加载到内存之中，作为本地缓存，由于其又被final修饰，所以其引用之间的关系是固定的，不能改变，因此不用担心复制导致缓存失败<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Cache&lt;K,V&gt; USER_CACHE = CacheBuilder.newBuilder().build();<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h4><ol>
+<li>速度快</li>
+<li>缓存数据存储在代码之中，而代码运行在内存中，内存的读写性能远高于磁盘，缓存可以大大降低用户并发访问给服务器带来的读写压力。</li>
+<li>实际开发之中，数据量往往很大，如果没有缓存作为“减震器”，系统很难支撑。</li>
+<li>缓存会增加代码复杂度和运营成本。</li>
+<li>降低后端负载，提高读写速度。</li>
+<li>数据一致性成本，代码维护成本，运维成本。</li>
+</ol>
+<h4 id="商户缓存的使用"><a href="#商户缓存的使用" class="headerlink" title="商户缓存的使用"></a>商户缓存的使用</h4><ol>
+<li>缓存作用模型：<br><img src="/../img/%E7%BC%93%E5%AD%98%E4%BD%9C%E7%94%A8%E6%A8%A1%E5%9E%8B.jpg" srcset="/img/loading.gif" lazyload alt="缓存作用模型"></li>
+</ol>
+<h3 id="缓存的更新策略"><a href="#缓存的更新策略" class="headerlink" title="缓存的更新策略"></a>缓存的更新策略</h3><ol>
+<li>什么是缓存更新<ul>
+<li>缓存更新就是为了节约内存而设计的，因为内存数据宝贵，当向redis插入太多数据时，可能会导致缓存中数据过多，所以需要对redis中的数据进行更新，或者淘汰。</li>
+<li>内存淘汰：当redis数据大过我们设定的max_memory时，会自动触发淘汰机制，淘汰不重要的数据（可以自己设置策略）。</li>
+<li>超时剔除：给redis数据设置ttl（time to live），redis会将超时的数据进行删除。</li>
+<li>主动更新：手动调用方法删除缓存，通常用来解决缓存和数据库不一致的问题。</li>
+</ul>
+</li>
+<li>业务场景<ul>
+<li>低一致需求：使用内存淘汰机制，如店铺类型的查询缓存。</li>
+<li>高一致需求：主动更新，以超时剔除兜底，如店铺详情查询。</li>
+</ul>
+</li>
+<li>缓存不一致的解决方案：<ol>
+<li>Cache Aside Pattern 人工编码方式：缓存调用者在更新完数据库之后再去更新缓存，也称之为双写方案</li>
+<li>Read&#x2F;Write Through Pattern：缓存与数据库整合为一个服务，由服务来维护一致性。调用者调用该服务，无需关心缓存一致性问题。但是维护这样一个服务很复杂，市面上也不容易找到这样的一个现成的服务，开发成本高</li>
+<li>Write Behind Caching Pattern：调用者只操作缓存，其他线程去异步处理数据库，最终实现一致性。但是维护这样的一个异步的任务很复杂，需要实时监控缓存中的数据更新，其他线程去异步更新数据库也可能不太及时，而且缓存服务器如果宕机，那么缓存的数据也就丢失了</li>
+<li>目前采用的方案：方案一<ol>
+<li>如果采用方案一，假设我们每次操作完数据库之后，都去更新一下缓存，但是如果中间并没有人查询数据，那么这个更新动作只有最后一次是有效的，中间的更新动作意义不大，所以我们可以把缓存直接删除，等到有人再次查询时，再将缓存中的数据加载出来</li>
+<li>因为更新缓存读写操作麻烦，所以直接删除缓存，等有新数据再直接写入缓存，完成更新。</li>
+</ol>
+</li>
+<li>保证数据库和缓存同时成功和失败：</li>
+</ol>
+<ul>
+<li>单体系统：将缓存和数据库操作放在一个事务之中。</li>
+<li>分布式系统：利用TCC等分布式事务方案</li>
+</ul>
+<ol start="6">
+<li>数据库 缓存：<ul>
+<li>出现问题的原因就在于，在数据库操作和缓存更新中间的时间里，可能会有其他线程进行操作。比如当线程1进行删除操作时，在更新数据库完成前，另一个线程2进来查询，发现此时缓存未命中，于是查询未更新完的数据库，写入缓存。然后线程1的更新完成了，但是此时缓存中已经被线程2以脏数据写入，此时的缓存等于并没有更新，所以此时数据库和缓存仍然不一致。<br> <img src="/../img/%E5%85%88%E7%BC%93%E5%AD%98%E5%86%8D%E6%95%B0%E6%8D%AE%E5%BA%93.png" srcset="/img/loading.gif" lazyload alt="先缓存再数据库"></li>
+<li>因为数据库操作时间长，所以先删除缓存再更新数据库，在数据操作和删除缓存之间的危险时间更长。</li>
+<li>先操作数据库，再删除缓存<br> 线程1在查询缓存的时候，缓存TTL刚好失效，需要查询数据库并写入缓存，这个操作耗时相对较短（相比较于上图来说），但是就在这么短的时间内，线程2进来了，更新数据库，删除缓存，但是线程1虽然查询完了数据（更新前的旧数据），但是还没来得及写入缓存，所以线程2的更新数据库与删除缓存，并没有影响到线程1的查询旧数据，写入缓存，造成线程安全问题。<br> <img src="/../img/%E5%85%88%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%8D%E7%BC%93%E5%AD%98.png" srcset="/img/loading.gif" lazyload alt="先数据库再缓存"></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="缓存的问题"><a href="#缓存的问题" class="headerlink" title="缓存的问题"></a>缓存的问题</h3><h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透： 缓存穿透是指客户请求的数据在缓存和数据库之中都不存在，这样的请求会导致频繁的访问数据库。</p>
+<pre><code class="hljs">1. 解决方案：缓存空对象
+  - 优点：实现简单，维护方便
+  - 缺点：额外的内存消耗，造成短期的不一致
+2. 布隆过滤
+  - 优点：内存占用少，没有多余key
+  - 实现复杂，可能误判
+</code></pre>
+<ul>
+<li><p>缓存空对象：当数据库和redis都没有该数据时，直接生成该数据&lt;key-“”&gt;存储到redis之中。所以有了额外的内存消耗，短期不一致是指在空对象的存活期间，我们更新了数据库，把这个空对象变成了正常的可以访问的数据，但由于空对象的TTL还没过（因为这是插入语句，一般来说插入语句就是直接插入到数据库，然后通过key查询缓存，发现没有缓存再查询数据库，将key-value保存到redis，此时因为又存在redis，所以并不会对redis进行更新，得等到ttl过才会更新），所以当用户来查询的时候，查询到的还是空对象，等TTL过了之后，才能访问到正确的数据，不过这种情况很少见罢了。</p>
+</li>
+<li><p>布隆过滤：布隆过滤器其实采用的是哈希思想来解决这个问题，通过一个庞大的二进制数组，根据哈希思想去判断当前这个要查询的数据是否存在，如果布隆过滤器判断存在，则放行，这个请求会去访问redis，哪怕此时redis中的数据过期了，但是数据库里一定会存在这个数据，从数据库中查询到数据之后，再将其放到redis中。如果布隆过滤器判断这个数据不存在，则直接返回。这种思想的优点在于节约内存空间，但存在误判，误判的原因在于：布隆过滤器使用的是哈希思想，只要是哈希思想，都可能存在哈希冲突</p>
+</li>
+</ul>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><ul>
+<li>缓存雪崩：是指在同一时间段，大量缓存的key同时失效，或者redis服务器宕机，导致大量的请求到达数据库，带来巨大的压力。</li>
+<li>解决方案<ul>
+<li>给不同的key添加不同的TTL，让其分批失效。</li>
+<li>使用熔断机制，给流量设置一定阈值。</li>
+<li>搭建redis集群（防止redis宕机）</li>
+</ul>
+</li>
+</ul>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><ul>
+<li>缓存击穿：与缓存雪崩类似，缓存雪崩是大规模的key失效，而缓存击穿是 一个 热点的Key（高并发访问，缓存业务重建业务复杂），有大并发集中对其进行访问，突然间这个Key失效了，导致大并发全部打在数据库上，导致数据库压力剧增。这种现象就叫做缓存击穿。例如：一件抢购中的商品的key失效。</li>
+<li>解决方案：<ul>
+<li>互斥锁</li>
+<li>逻辑过期</li>
+</ul>
+</li>
+<li>互斥锁：利用锁的互斥性，假设线程过来，只能一个人一个人的访问数据库，从而避免对数据库频繁访问产生过大压力，但这也会影响查询的性能，将查询的性能从并行变成了串行，我们可以采用tryLock方法+double check来解决这个问题，线程1在操作的时候，拿着锁把房门锁上了，那么线程2、3、4就不能都进来操作数据库，只有1操作完了，把房门打开了，此时缓存数据也重建好了，线程2、3、4直接从redis中就可以查询到数据。<br><img src="/../img/%E4%BA%92%E6%96%A5%E9%94%81.png" srcset="/img/loading.gif" lazyload alt="互斥锁"><ul>
+<li>逻辑过期：我们之所以会出现缓存击穿问题，主要原因是在于我们对key设置了TTL，如果我们不设置TTL，那么就不会有缓存击穿问题，但是不设置TTL，数据又会一直占用我们的内存，所以我们可以采用逻辑过期方案<br>我们之前是TTL设置在redis的value中，注意：这个过期时间并不会直接作用于Redis，而是我们后续通过逻辑去处理。假设线程1去查询缓存，然后从value中判断当前数据已经过期了，此时线程1去获得互斥锁，那么其他线程会进行阻塞，获得了锁的进程他会开启一个新线程去进行之前的重建缓存数据的逻辑，直到新开的线程完成者逻辑之后，才会释放锁，而线程1直接进行返回，假设现在线程3过来访问，由于线程2拿着锁，所以线程3无法获得锁，线程3也直接返回数据（但只能返回旧数据，牺牲了数据一致性，换取性能上的提高），只有等待线程2重建缓存数据之后，其他线程才能返回正确的数据<br>这种方案巧妙在于，异步构建缓存数据，缺点是在重建完缓存数据之前，返回的都是脏数据。<br><img src="/../img/%E9%80%BB%E8%BE%91%E8%BF%87%E6%9C%9F.png" srcset="/img/loading.gif" lazyload alt="逻辑过期"></li>
+</ul>
+</li>
+<li>互斥锁方案：由于保证了互斥性，所以数据一致，且实现简单，只是加了一把锁而已，也没有其他的事情需要操心，所以没有额外的内存消耗，缺点在于有锁的情况，就可能死锁，所以只能串行执行，性能会受到影响</li>
+<li>逻辑过期方案：线程读取过程中不需要等待，性能好，有一个额外的线程持有锁去进行重构缓存数据，但是在重构数据完成之前，其他线程只能返回脏数据，且实现起来比较麻烦。<style>
+/* 只设置 markdown 字体 */
+.markdown-body {
+  font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;
+  font-size: 20px;
+}
+</style></li>
+</ul>
+
                 
               </div>
             
@@ -326,8 +391,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023-9-26记事</div>
-      <div>http://example.com/2023/09/26/2023-9-26记事/</div>
+      <div>黑马点评-商户缓存</div>
+      <div>http://example.com/2023/09/27/黑马点评-商户缓存/</div>
     </div>
     <div class="license-meta">
       
@@ -339,7 +404,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月26日</div>
+          <div>2023年9月27日</div>
         </div>
       
       
@@ -371,9 +436,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0/" title="黑马点评-登录注册实现">
+                      <a href="/2023/09/27/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">黑马点评-登录注册实现</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -381,8 +446,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/25/%E5%8C%B9%E9%85%8D%E4%B8%8B%E6%A0%87-KMP%E7%AE%97%E6%B3%95/" title="匹配下标-KMP算法">
-                        <span class="hidden-mobile">匹配下标-KMP算法</span>
+                      <a href="/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0/" title="黑马点评-登录注册实现">
+                        <span class="hidden-mobile">黑马点评-登录注册实现</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
