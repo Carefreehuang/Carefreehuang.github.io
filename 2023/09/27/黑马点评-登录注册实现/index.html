@@ -16,19 +16,19 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基于Redis优化session来进行短信登陆基于session实现登录 发送验证码首先根据用户的手机号进行判断，是否合法，合法则可以进行发送验证码。通过session进行保存。 通过验证码进行登录，注册通过实体LoginFormDTO，封装手机号，验证码，密码（暂时只考虑手机号和验证码），先进行手机号合法性的判断，合法再判断手机号和验证码是否与session中存储的一致。    什么是cooki">
+    <meta name="description" content="基于Redis优化session来进行短信登陆基于session实现登录 发送验证码首先根据用户的手机号进行判断，是否合法，合法则可以进行发送验证码。通过session进行保存。 通过验证码进行登录，注册通过实体LoginFormDTO，封装手机号，验证码，密码（暂时只考虑手机号和验证码），先进行手机号合法性的判断，合法再判断手机号和验证码是否与session中存储的一致。    什么是cook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黑马点评-登录注册实现">
 <meta property="og:url" content="http://example.com/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="基于Redis优化session来进行短信登陆基于session实现登录 发送验证码首先根据用户的手机号进行判断，是否合法，合法则可以进行发送验证码。通过session进行保存。 通过验证码进行登录，注册通过实体LoginFormDTO，封装手机号，验证码，密码（暂时只考虑手机号和验证码），先进行手机号合法性的判断，合法再判断手机号和验证码是否与session中存储的一致。    什么是cooki">
+<meta property="og:description" content="基于Redis优化session来进行短信登陆基于session实现登录 发送验证码首先根据用户的手机号进行判断，是否合法，合法则可以进行发送验证码。通过session进行保存。 通过验证码进行登录，注册通过实体LoginFormDTO，封装手机号，验证码，密码（暂时只考虑手机号和验证码），先进行手机号合法性的判断，合法再判断手机号和验证码是否与session中存储的一致。    什么是cook">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/%E8%B7%A8%E5%9F%9F%E8%AE%BF%E9%97%AE.png">
 <meta property="og:image" content="http://example.com/img/session%E5%8E%9F%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="og:image" content="http://example.com/img/cookie%EF%BC%8Csession%EF%BC%8C%E4%BB%A4%E7%89%8C%E5%AF%B9%E6%AF%94.png">
 <meta property="og:image" content="http://example.com/img/%E6%8B%A6%E6%88%AA%E5%99%A8%E4%BC%98%E5%8C%96.png">
 <meta property="article:published_time" content="2023-09-27T00:57:23.186Z">
-<meta property="article:modified_time" content="2023-09-27T02:32:57.193Z">
+<meta property="article:modified_time" content="2023-09-29T09:34:05.225Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/%E8%B7%A8%E5%9F%9F%E8%AE%BF%E9%97%AE.png">
@@ -277,7 +277,8 @@
             
               <div class="markdown-body">
                 
-                <h3 id="基于Redis优化session来进行短信登陆"><a href="#基于Redis优化session来进行短信登陆" class="headerlink" title="基于Redis优化session来进行短信登陆"></a>基于Redis优化session来进行短信登陆</h3><h4 id="基于session实现登录"><a href="#基于session实现登录" class="headerlink" title="基于session实现登录"></a>基于session实现登录</h4><ol>
+                <hr>
+<h3 id="基于Redis优化session来进行短信登陆"><a href="#基于Redis优化session来进行短信登陆" class="headerlink" title="基于Redis优化session来进行短信登陆"></a>基于Redis优化session来进行短信登陆</h3><h4 id="基于session实现登录"><a href="#基于session实现登录" class="headerlink" title="基于session实现登录"></a>基于session实现登录</h4><ol>
 <li>发送验证码<br>首先根据用户的手机号进行判断，是否合法，合法则可以进行发送验证码。通过session进行保存。</li>
 <li>通过验证码进行登录，注册<br>通过实体LoginFormDTO，封装手机号，验证码，密码（暂时只考虑手机号和验证码），先进行手机号合法性的判断，合法再判断手机号和验证码是否与session中存储的一致。</li>
 </ol>
