@@ -224,6 +224,138 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" target="_self">
+          消息队列笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" target="_self">
+        <div>
+          什么是MQ 消息队列（Message Queue）是一种用于在应用程序之间传输异步消息的通信模式。它是一种在分布式系统中广泛应用的通信机制，用于解耦应用程序的组件，实现松耦合和可伸缩性。  同步和异步通讯  同步通讯：类似打电话，实时响应，但通讯期间无法干其他事情 缺点： 耦合度高，不便于修改 资源浪费，调用链中的每个服务都需要等待相关前置服务的响应，浪费资源 级联问题：一个服务出现问题，相关调
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-03 22:18" pubdate>
+              2023-10-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/03/docker%E7%AC%94%E8%AE%B0/" target="_self">
+          docker笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/docker%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          什么是docker docker是一个用go语言实现的开源项目，可以让我们方便的创建和使用容器，docker将程序以及程序所需要的依赖打包进docker container。 image： Docker镜像是容器的模板，它包含了应用程序和其依赖项的快照。镜像是只读的，可用于创建运行中的容器实例。   container： Docker容器是一个轻量级的可执行单元，包括应用程序及其运行时环境、依赖
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-03 21:39" pubdate>
+              2023-10-03
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/02/%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+          修剪二叉搜索树
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/02/%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+        <div>
+          Problem: 669. 修剪二叉搜索树   与删除结点思路不同  我们应该利用特性，来递归遍历 即当根结点值小于low，那么所有左子树可以抛弃，将右子树返回给上层接收即可，此操作删除了根节点也删除了根节点的左子树（大于high同理） 然后每次递归操作需要递归返回，以及递归完后需要         root.left &#x3D; trimBST(root.left,low,high); r
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-02 17:46" pubdate>
+              2023-10-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/02/%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%BB%93%E7%82%B9/" target="_self">
+          删除二叉搜索树的结点
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/02/%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%BB%93%E7%82%B9/" target="_self">
+        <div>
+          Problem: 450. 删除二叉搜索树中的节点   思路分析   整体思路： 依然使用二叉搜索树的性质来查找需要删除的节点 当找到时执行相应的删除逻辑   在二叉搜索树中删除节点比插入节点难，因为删除节点的时候涉及到了结构的调整。 所以我们在删除的时候得分情况来进行讨论 当找到的节点是叶子节点时，直接返回null，即代表删除（原理是返回null给上层的递归调用的节点来进行接受） 当只有单个
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-02 17:07" pubdate>
+              2023-10-02
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/10/01/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
           微服务学习笔记
         </a>
@@ -407,138 +539,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2023-09-29 15:03" pubdate>
               2023-09-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/28/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E4%BC%98%E6%83%A0%E5%88%B8%E7%A7%92%E6%9D%80/" target="_self">
-          黑马点评-优惠券秒杀
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/28/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E4%BC%98%E6%83%A0%E5%88%B8%E7%A7%92%E6%9D%80/" target="_self">
-        <div>
-          基本实现全局id 原因： 抢购商品时，订单保存到订单表之中，如果将订单id设置为数据库的自增id的话，规律性太明显，并且单表数据量有限制。   实现： 符号位 + 时间戳 + 序列号 1234567891011121314151617181920  @Componentpublic class RedisIdWorker &#123;    @Resource    private String
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-28 08:40" pubdate>
-              2023-09-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" target="_self">
-          二叉树的迭代遍历
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" target="_self">
-        <div>
-          在力扣中有许多层序遍历相关的题目，但基本都是以下面这题为基础进行修改的，所以记录一下，加强理解。  Problem: 102. 二叉树的层序遍历    [TOC] 解题思路 类似于图的广度优先遍历，利用队列的性质，每次先入队一个节点，然后对其进行出队，出队后判断其是否还有子节点，有子节点则再次入队，并且用for循环进行当前层级的遍历，因为当前每次进行节点出队前的deque的size就是当前层次的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-28 08:33" pubdate>
-              2023-09-28
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/27/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86/" target="_self">
-          二叉树的迭代遍历
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/27/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86/" target="_self">
-        <div>
-          Problem: 94. 二叉树的中序遍历  解题方法 描述你的解题方法   前后序遍历：前序遍历和后续遍历比较简单，类似于图的广度优先遍历。前序遍历利用栈来保存节点，当栈不为空，弹出节点，进行左右节点的判断，有的话将左右节点入栈。需要考虑一下的就是入栈和出栈的顺序问题，因为栈先进后出的特点，所以需要逆向存储，前序遍历中，本该是中左右，但是由于栈的特性，我们应该先中，右，左。而后续遍历考虑一下
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-27 17:05" pubdate>
-              2023-09-27
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E5%95%86%E6%88%B7%E7%BC%93%E5%AD%98/" target="_self">
-          黑马点评-商户缓存
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/27/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E5%95%86%E6%88%B7%E7%BC%93%E5%AD%98/" target="_self">
-        <div>
-          缓存的基本知识什么是缓存 缓存是数据交换的缓冲区，一般从数据库中获取，存储在本地。 redis缓存:由于其被static修饰，所以随着类的加载而加载到内存之中，作为本地缓存，由于其又被final修饰，所以其引用之间的关系是固定的，不能改变，因此不用担心复制导致缓存失败1static final Cache&lt;K,V&gt; USER_CACHE = CacheBuilder.newBuild
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-27 10:59" pubdate>
-              2023-09-27
             </time>
           </div>
         
