@@ -224,6 +224,72 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/10/05/%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" target="_self">
+          回溯问题笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/05/%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/" target="_self">
+        <div>
+          回溯问题 回溯算法可以解决如下问题： 组合问题 排列问题 切割问题 子集问题   回溯模板：123456789101112void backtracking(参数) &#123;    if (终止条件) &#123;        存放结果;        return;    &#125;    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-05 17:44" pubdate>
+              2023-10-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/04/%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%BB%93%E6%9E%9C%EF%BC%89%E7%9A%84%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/" target="_self">
+          重复元素组合（不能重复结果）的求和
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/04/%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%BB%93%E6%9E%9C%EF%BC%89%E7%9A%84%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          Problem: 40. 组合总和 II   难点：  因为本题中的输入可以有相同的元素，所以[1,1,2]是合理的，而本题又不允许重复的结果，所以尽管[1,3]和[1,3]中的1来自不同的元素，但也是不允许的 因此，我们画图可以得出在树层的添加的时候，是可以允许重复，树间的添加是不允许重复 参考下图：  Code[]12345678910111213141516171819202122232
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-04 17:37" pubdate>
+              2023-10-04
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" target="_self">
           消息队列笔记
         </a>
@@ -473,72 +539,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2023-09-30 10:34" pubdate>
               2023-09-30
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/29/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" target="_self">
-          完全二叉树的节点个数
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/29/%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0/" target="_self">
-        <div>
-          Problem: 222. 完全二叉树的节点个数   简单方法就是直接遍历 可以使用递归 可以是用迭代（利用队列）   难点在于根据题目条件进行优化，即使用完全二叉树性质。 完全二叉树：只有最底层的节点不是满的，并且最底层的节点从左到右必须是连续的。 一颗满二叉树（所有节点都是满的）的节点个数是2^deep - 1个，所以我们可以判断出满二叉树的个数，然后进行叠加计算。 完全二叉树是由许多的满
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-29 23:32" pubdate>
-              2023-09-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/29/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E8%BE%BE%E4%BA%BA%E6%8E%A2%E5%BA%97%EF%BC%8C%E5%A5%BD%E5%8F%8B%E5%85%B3%E6%B3%A8/" target="_self">
-          黑马点评-达人探店，好友关注
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/29/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E8%BE%BE%E4%BA%BA%E6%8E%A2%E5%BA%97%EF%BC%8C%E5%A5%BD%E5%8F%8B%E5%85%B3%E6%B3%A8/" target="_self">
-        <div>
-          达人探店点赞功能实现 基本功能实现  要求： 同一个用户只能对同一篇笔记点赞一次，再点赞即取消点赞 当前用户若点赞则显示高亮（前端页面会根据是否点赞决定是否高亮），根据isLike属性判断   实现： 使用redis中的set集合来进行判断是否点赞过（下文会具体介绍）。 点赞判断使用blog实体中的isliked进行判断，12345//注解通常用于实体类属性上，表示该属性不对应数据库表中的列。/
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-29 15:03" pubdate>
-              2023-09-29
             </time>
           </div>
         

@@ -16,23 +16,21 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是MQ 消息队列（Message Queue）是一种用于在应用程序之间传输异步消息的通信模式。它是一种在分布式系统中广泛应用的通信机制，用于解耦应用程序的组件，实现松耦合和可伸缩性。  同步和异步通讯  同步通讯：类似打电话，实时响应，但通讯期间无法干其他事情 缺点： 耦合度高，不便于修改 资源浪费，调用链中的每个服务都需要等待相关前置服务的响应，浪费资源 级联问题：一个服务出现问题，相关调">
+    <meta name="description" content="回溯问题 回溯算法可以解决如下问题： 组合问题 排列问题 切割问题 子集问题   回溯模板：123456789101112void backtracking(参数) &amp;#123;    if (终止条件) &amp;#123;        存放结果;        return;    &amp;#125;    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="消息队列笔记">
-<meta property="og:url" content="http://example.com/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:title" content="回溯问题笔记">
+<meta property="og:url" content="http://example.com/2023/10/05/%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="什么是MQ 消息队列（Message Queue）是一种用于在应用程序之间传输异步消息的通信模式。它是一种在分布式系统中广泛应用的通信机制，用于解耦应用程序的组件，实现松耦合和可伸缩性。  同步和异步通讯  同步通讯：类似打电话，实时响应，但通讯期间无法干其他事情 缺点： 耦合度高，不便于修改 资源浪费，调用链中的每个服务都需要等待相关前置服务的响应，浪费资源 级联问题：一个服务出现问题，相关调">
+<meta property="og:description" content="回溯问题 回溯算法可以解决如下问题： 组合问题 排列问题 切割问题 子集问题   回溯模板：123456789101112void backtracking(参数) &amp;#123;    if (终止条件) &amp;#123;        存放结果;        return;    &amp;#125;    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &amp;#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/%E5%B8%A6%E6%9C%89exchange%E7%9A%84mq.png">
-<meta property="article:published_time" content="2023-10-03T14:18:57.082Z">
-<meta property="article:modified_time" content="2023-10-03T14:57:01.118Z">
+<meta property="article:published_time" content="2023-10-05T09:44:33.985Z">
+<meta property="article:modified_time" content="2023-10-05T10:00:55.845Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E5%B8%A6%E6%9C%89exchange%E7%9A%84mq.png">
   
   
   
-  <title>消息队列笔记 - Carefreehaung的个人博客</title>
+  <title>回溯问题笔记 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="消息队列笔记"></span>
+            <span id="subtitle" data-typed-text="回溯问题笔记"></span>
           
         </div>
 
@@ -209,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 22:18" pubdate>
-          2023年10月3日 晚上
+        <time datetime="2023-10-05 17:44" pubdate>
+          2023年10月5日 下午
         </time>
       </span>
     
@@ -221,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          1.5k 字
         
       </span>
     
@@ -232,7 +230,7 @@
         
         
         
-          20 分钟
+          13 分钟
         
       </span>
     
@@ -269,169 +267,48 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">消息队列笔记</h1>
+            <h1 id="seo-header">回溯问题笔记</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
-<h3 id="什么是MQ"><a href="#什么是MQ" class="headerlink" title="什么是MQ"></a>什么是MQ</h3><ul>
-<li><p>消息队列（Message Queue）是一种用于在应用程序之间传输异步消息的通信模式。它是一种在分布式系统中广泛应用的通信机制，用于解耦应用程序的组件，实现松耦合和可伸缩性。</p>
+<h3 id="回溯问题"><a href="#回溯问题" class="headerlink" title="回溯问题"></a>回溯问题</h3><ul>
+<li>回溯算法可以解决如下问题：<ul>
+<li>组合问题</li>
+<li>排列问题</li>
+<li>切割问题</li>
+<li>子集问题</li>
+</ul>
 </li>
-<li><p>同步和异步通讯</p>
+<li>回溯模板：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">backtracking</span><span class="hljs-params">(参数)</span> &#123;<br>    <span class="hljs-keyword">if</span> (终止条件) &#123;<br>        存放结果;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;<br>        处理节点;<br>        backtracking(路径，选择列表); <span class="hljs-comment">// 递归</span><br>        回溯，撤销处理结果<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>注意事项：<ul>
+<li>去重问题<ul>
+<li><p>有重复元素情况的去重：此时元素的值可能重复，但是元素不能重复，答案也不能重复，例如[1,1,2] 中组合 [1,2],[1,2]，两个1来自不同元素，但是因为结果重复，所以需要去重</p>
 <ul>
-<li>同步通讯：类似打电话，实时响应，但通讯期间无法干其他事情<ul>
-<li>缺点：<ul>
-<li>耦合度高，不便于修改</li>
-<li>资源浪费，调用链中的每个服务都需要等待相关前置服务的响应，浪费资源</li>
-<li>级联问题：一个服务出现问题，相关调用服务都会出现问题</li>
+<li>对数组排序</li>
+<li>添加全局标识数组used[]</li>
+<li>进行条件判断<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex;i &lt; candidates.length; i++)&#123;<br><span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; candidates[i] == candidates[i-<span class="hljs-number">1</span>] &amp;&amp; used[i-<span class="hljs-number">1</span>]==<span class="hljs-literal">false</span>)&#123;<br>    <span class="hljs-comment">//注意是used[i-1]，进行当前元素处理的时候肯定是要判断是否之前有重复元素的访问。</span><br>    <span class="hljs-comment">//树枝可以使用，但是树层间不能使用</span><br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used[i] = <span class="hljs-literal">true</span>;<br>    path.add(candidates[i]);<br>    helper(candidates,target,currentSum+candidates[i],i+<span class="hljs-number">1</span>);<span class="hljs-comment">//不是startindex + 1，而是i + 1，因为每次遍历都是向自己身后的元素进行搜索</span><br>    used[i] = <span class="hljs-literal">false</span>;<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
-</ul>
-</li>
-<li>异步通讯：类似发短信，不是实时，但是可以支持多线程操作<ul>
-<li>优点：<ul>
-<li>耦合度低，服务双方并不是直接通信，而是由一个中间人来代理，发布者发布事件到中间人，订阅者从中间人接收事件。同时也便于修改更新</li>
-<li>增加吞吐量，快服务不会被慢服务耽误，发布事件后即可去继续执行自己的业务。如：一个支付服务只需要向Broker（中间人）发布一个支付成功的事件，剩下的就不用它管了</li>
-<li>故障隔离，无级联问题，服务之间都是去中间人接受事件，一个服务出故障和另一个服务之间并没有直接关系</li>
-<li>流量削峰：不管发布事件流量波动多大，都由中间人接收，进行缓冲，订阅者可以按照自己的速度处理事件</li>
-</ul>
-</li>
-<li>缺点：<ul>
-<li>依赖于Broker的可靠性、安全性、吞吐能力</li>
-<li>架构复杂时，业务没有明确的流程线，不好追踪管理（出了bug都不好找）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>常见MQ对比:</p>
+<li><p>树层去重：当前层for循环时进行去重</p>
 <ul>
-<li>ActiveMQ</li>
-<li>RabbitMQ</li>
-<li>RocketMQ</li>
-<li>Kafka</li>
-</ul>
-<p>几种常见MQ的对比：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th><strong>RabbitMQ</strong></th>
-<th><strong>ActiveMQ</strong></th>
-<th><strong>RocketMQ</strong></th>
-<th><strong>Kafka</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>公司&#x2F;社区</td>
-<td>Rabbit</td>
-<td>Apache</td>
-<td>阿里</td>
-<td>Apache</td>
-</tr>
-<tr>
-<td>开发语言</td>
-<td>Erlang</td>
-<td>Java</td>
-<td>Java</td>
-<td>Scala&amp;Java</td>
-</tr>
-<tr>
-<td>协议支持</td>
-<td>AMQP，XMPP，SMTP，STOMP</td>
-<td>OpenWire,STOMP，REST,XMPP,AMQP</td>
-<td>自定义协议</td>
-<td>自定义协议</td>
-</tr>
-<tr>
-<td>可用性</td>
-<td>高</td>
-<td>一般</td>
-<td>高</td>
-<td>高</td>
-</tr>
-<tr>
-<td>单机吞吐量</td>
-<td>一般</td>
-<td>差</td>
-<td>高</td>
-<td>非常高</td>
-</tr>
-<tr>
-<td>消息延迟</td>
-<td>微秒级</td>
-<td>毫秒级</td>
-<td>毫秒级</td>
-<td>毫秒以内</td>
-</tr>
-<tr>
-<td>消息可靠性</td>
-<td>高</td>
-<td>一般</td>
-<td>高</td>
-<td>一般</td>
-</tr>
-</tbody></table>
-<p>追求可用性：Kafka、 RocketMQ 、RabbitMQ</p>
-<p>追求可靠性：RabbitMQ、RocketMQ</p>
-<p>追求吞吐能力：RocketMQ、Kafka</p>
-<p>追求消息低延迟：RabbitMQ、Kafka</p>
-</li>
-</ul>
-<h3 id="MQ的基本使用"><a href="#MQ的基本使用" class="headerlink" title="MQ的基本使用"></a>MQ的基本使用</h3><ul>
-<li>SpringAMQP<ul>
-<li>它是基于RabbitMQ封装的一套模板，提供了模板来发送和接收消息。包含两部分，其中spring-amqp是基础抽象，spring-rabbit是底层的默认实现，并且利用SpringBoot对其实现了自动装配，使用起来十分方便</li>
-<li>SpringAMQP提供了三个功能：<ul>
-<li>自动声明队列、交换机及其绑定关系</li>
-<li>基于注解的监听器模式，异步接收消息</li>
-<li>封装了RabbitTemplate工具，用于发送消息</li>
+<li>在for循环之前定义一个set，存储此次for循环之前遍历过的元素<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">HashSet&lt;Integer&gt; used = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex; i &lt; nums.length; i++)&#123;<br>    <span class="hljs-keyword">if</span>(!path.isEmpty() &amp;&amp; path.get(path.size() - <span class="hljs-number">1</span>) &gt; nums[i] || used.contains(nums[i]))&#123;<span class="hljs-comment">//因为不能排序，所以无法像之前的used数组来进行标记</span><br>    <span class="hljs-comment">//这里使用集合来进行同层的判断</span><br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used.add(nums[i]);<br>    path.add(nums[i]);<br>    helper(nums,i+<span class="hljs-number">1</span>);<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>消息的发送 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><br><span class="hljs-meta">@RunWith(SpringRunner.class)</span><br><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringAmqpTest</span> &#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> RabbitTemplate rabbitTemplate;<span class="hljs-comment">//用于发送消息</span><br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testSimpleQueue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">queueName</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;simple.queue&quot;</span>;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello, SpringAMQP! &quot;</span>;<br>        rabbitTemplate.convertAndSend(queueName, message);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<li><p>树枝去重：向下递归时进行去重</p>
 <ul>
-<li>消息的接收<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SpringRabbitListener</span> &#123;<br>    <span class="hljs-meta">@RabbitListener(queues = &quot;simple.queue&quot;)</span><span class="hljs-comment">//注解要监听的队列</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listenSimpleQueueMessage</span><span class="hljs-params">(String msg)</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;Spring 消费者接收到消息：【&quot;</span> + msg + <span class="hljs-string">&quot;】&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li>发布订阅<br>  <img src="/../img/%E5%B8%A6%E6%9C%89exchange%E7%9A%84mq.png" srcset="/img/loading.gif" lazyload alt="exchangemq"><ul>
-<li>增加了exchange角色<ul>
-<li>Exchange：交换机。一方面，接收生产者发送的消息；另一方面，知道如何处理消息，例如递交给某个特别队列、递交给所有队列、或者是将消息对其。到底如何操作，取决于Exchange的类型。Exchange有以下三种类型<ul>
-<li>Fanout：广播，将消息交给所有绑定到交换机的队列</li>
-<li>Direct：定向，把消息交给符合指定routing key的队列</li>
-<li>Topic：通配符，把消息交给符合routing pattern(路由模式)的队列</li>
+<li>使用used数组进行全局的标识<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;i &lt; nums.length; i++)&#123;<br>    <span class="hljs-keyword">if</span>(used[i])&#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used[i] = <span class="hljs-literal">true</span>;<br>    path.add(nums[i]);<br>    helper(nums,i+<span class="hljs-number">1</span>);<br>    used[i] = <span class="hljs-literal">false</span>;<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>for遍历去重：递归函数添加starIndex参数，每次迭代时从自身后一个元素进行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex; i &lt;= n; i++)&#123;<span class="hljs-comment">//对根节点开始到最大结点进行组合</span><br>    path.add(i);<span class="hljs-comment">//组合</span><br>    traverse(n,k,i+<span class="hljs-number">1</span>);<span class="hljs-comment">//继续向下组合</span><br>    path.removeLast();<span class="hljs-comment">//回溯</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</li>
-<li>消息转换器<ul>
-<li>Spring会把发送的消息序列化为字节发送给MQ，接收消息的时候，会将字节反序列化为Java对象</li>
-<li>但是默认情况下，Spring采用的序列化方式是JDK序列化，众所周知，JDK序列化存在以下问题<ul>
-<li>数据体积过大</li>
-<li>有安全漏洞</li>
-<li>可读性差</li>
-</ul>
-</li>
-<li>使用jackson代替原来的jdk的序列化<ul>
-<li>引入依赖</li>
-<li>在publisher和comsumer启动类添加bean，对原来的序列化进行覆盖<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br>publis MessageConverter <span class="hljs-title function_">jsonMessageConverter</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jackson2JsonMessageConverter</span>();<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li>consumer和publisher的序列化器需保持一致，同时consumer中接收数据的类型，也需要和发送数据的类型保持一致</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<style>
-  /* 只设置 markdown 字体 */
-  .markdown-body {
-    font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;
-    font-size: 20px;
-  }
-</style>
+
                 
               </div>
             
@@ -448,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>消息队列笔记</div>
-      <div>http://example.com/2023/10/03/MQ消息队列/</div>
+      <div>回溯问题笔记</div>
+      <div>http://example.com/2023/10/05/回溯问题笔记总结/</div>
     </div>
     <div class="license-meta">
       
@@ -461,7 +338,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月3日</div>
+          <div>2023年10月5日</div>
         </div>
       
       
@@ -493,18 +370,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/04/%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%BB%93%E6%9E%9C%EF%BC%89%E7%9A%84%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/" title="重复元素组合（不能重复结果）的求和">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">重复元素组合（不能重复结果）的求和</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/03/docker%E7%AC%94%E8%AE%B0/" title="docker笔记">
-                        <span class="hidden-mobile">docker笔记</span>
+                      <a href="/2023/10/04/%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%BB%93%E6%9E%9C%EF%BC%89%E7%9A%84%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/" title="重复元素组合（不能重复结果）的求和">
+                        <span class="hidden-mobile">重复元素组合（不能重复结果）的求和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
