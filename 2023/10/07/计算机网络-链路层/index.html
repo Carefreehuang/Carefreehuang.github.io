@@ -16,21 +16,29 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="回溯问题 回溯算法可以解决如下问题： 组合问题 排列问题 切割问题 子集问题   回溯模板：123456789101112void backtracking(参数) &amp;#123;    if (终止条件) &amp;#123;        存放结果;        return;    &amp;#125;    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &amp;#123;">
+    <meta name="description" content="数据链路层概述 链路层 它的主要功能是在物理介质上可靠地传输数据帧，并提供一些基本的错误检测和纠正机制。 它负责在物理层提供的传输介质上实现可靠的数据传输，同时进行地址解析、错误检测和流量控制等操作，以确保数据正确、高效地传输。   与物理层的联动 物理层和链路层共同协同工作，以实现端到端的数据传输。 物理层提供了将比特从一台计算机传输到另一台计算机的物理手段，而链路层在这些物理媒体上创建了数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回溯问题笔记">
-<meta property="og:url" content="http://example.com/2023/10/05/%E5%9B%9E%E6%BA%AF%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="计算机网络-链路层">
+<meta property="og:url" content="http://example.com/2023/10/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="回溯问题 回溯算法可以解决如下问题： 组合问题 排列问题 切割问题 子集问题   回溯模板：123456789101112void backtracking(参数) &amp;#123;    if (终止条件) &amp;#123;        存放结果;        return;    &amp;#125;    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &amp;#123;">
+<meta property="og:description" content="数据链路层概述 链路层 它的主要功能是在物理介质上可靠地传输数据帧，并提供一些基本的错误检测和纠正机制。 它负责在物理层提供的传输介质上实现可靠的数据传输，同时进行地址解析、错误检测和流量控制等操作，以确保数据正确、高效地传输。   与物理层的联动 物理层和链路层共同协同工作，以实现端到端的数据传输。 物理层提供了将比特从一台计算机传输到另一台计算机的物理手段，而链路层在这些物理媒体上创建了数据">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-05T09:44:33.985Z">
-<meta property="article:modified_time" content="2023-10-05T10:00:55.845Z">
+<meta property="og:image" content="http://example.com/img/%E9%93%BE%E8%B7%AF%E5%B1%82%E5%B8%A7%E7%A4%BA%E6%84%8F.png">
+<meta property="og:image" content="http://example.com/img/%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7.png">
+<meta property="og:image" content="http://example.com/source/img/%E8%A7%A3%E5%86%B3%E5%B8%A7%E7%95%8C%E9%99%90%E9%97%AE%E9%A2%98.png">
+<meta property="og:image" content="http://example.com/img/%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE.png">
+<meta property="og:image" content="http://example.com/img/%E5%9B%9E%E9%80%80n%E5%B8%A7%E4%BC%98%E5%8C%96.png">
+<meta property="og:image" content="http://example.com/img/%E5%9B%9E%E9%80%80n%E5%B8%A7%E7%A4%BA%E6%84%8F.png">
+<meta property="og:image" content="http://example.com/img/%E9%80%89%E6%8B%A9%E6%80%A7%E9%87%8D%E4%BC%A0%E7%A4%BA%E6%84%8F.png">
+<meta property="article:published_time" content="2023-10-07T08:24:44.534Z">
+<meta property="article:modified_time" content="2023-10-08T00:35:42.457Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E9%93%BE%E8%B7%AF%E5%B1%82%E5%B8%A7%E7%A4%BA%E6%84%8F.png">
   
   
   
-  <title>回溯问题笔记 - Carefreehaung的个人博客</title>
+  <title>计算机网络-链路层 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="回溯问题笔记"></span>
+            <span id="subtitle" data-typed-text="计算机网络-链路层"></span>
           
         </div>
 
@@ -207,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-05 17:44" pubdate>
-          2023年10月5日 下午
+        <time datetime="2023-10-07 16:24" pubdate>
+          2023年10月7日 下午
         </time>
       </span>
     
@@ -219,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.5k 字
         
       </span>
     
@@ -230,7 +238,7 @@
         
         
         
-          13 分钟
+          21 分钟
         
       </span>
     
@@ -267,42 +275,184 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">回溯问题笔记</h1>
+            <h1 id="seo-header">计算机网络-链路层</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
-<h3 id="回溯问题"><a href="#回溯问题" class="headerlink" title="回溯问题"></a>回溯问题</h3><ul>
-<li>回溯算法可以解决如下问题：<ul>
-<li>组合问题</li>
-<li>排列问题</li>
-<li>切割问题</li>
-<li>子集问题</li>
+<h3 id="数据链路层概述"><a href="#数据链路层概述" class="headerlink" title="数据链路层概述"></a>数据链路层概述</h3><ul>
+<li>链路层<ul>
+<li>它的主要功能是在物理介质上<strong>可靠地传输数据帧</strong>，并提供一些基本的<strong>错误检测</strong>和<strong>纠正机制</strong>。</li>
+<li>它负责在物理层提供的传输介质上实现可靠的数据传输，同时进行地<strong>址解析</strong>、<strong>错误检测</strong>和<strong>流量控制</strong>等操作，以确保数据正确、高效地传输。</li>
 </ul>
 </li>
-<li>回溯模板：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">backtracking</span><span class="hljs-params">(参数)</span> &#123;<br>    <span class="hljs-keyword">if</span> (终止条件) &#123;<br>        存放结果;<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) &#123;<br>        处理节点;<br>        backtracking(路径，选择列表); <span class="hljs-comment">// 递归</span><br>        回溯，撤销处理结果<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li>注意事项：<ul>
-<li>去重问题<ul>
-<li><p>有重复元素情况的去重：此时元素的值可能重复，但是元素不能重复，答案也不能重复，例如[1,1,2] 中组合 [1,2],[1,2]，两个1来自不同元素，但是因为结果重复，所以需要去重</p>
+<li>与物理层的联动<ul>
+<li>物理层和链路层共同协同工作，以实现端到端的数据传输。</li>
+<li>物理层提供了将比特从一台计算机传输到另一台计算机的物理手段，而链路层在这些物理媒体上创建了数据帧，并确保这些数据帧能够准确无误地从一个节点传输到另一个节点。</li>
+</ul>
+</li>
+<li>链路，数据链路，帧<ul>
+<li>链路<ul>
+<li>链路（Link）是指从一个节点到相邻节点的一段物理线路（有线或无线），而中间没有任何其他的交换节点</li>
+</ul>
+</li>
+<li>数据链路<ul>
+<li>数据链路（Data Link）是基于链路的。当在一条链路上传送数据时，除需要链路本身，还需要一些必要的通信协议来控制这些数据的传输，把实现这些协议的硬件和软件加到链路上，就构成了数据链路。</li>
+</ul>
+</li>
+<li>帧<ul>
+<li>帧（Frame）是数据链路层对等实体之间在水平方向进行逻辑通信的协议数据单元PDU。<br><img src="/../img/%E9%93%BE%E8%B7%AF%E5%B1%82%E5%B8%A7%E7%A4%BA%E6%84%8F.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据链路层的三个重要问题"><a href="#数据链路层的三个重要问题" class="headerlink" title="数据链路层的三个重要问题"></a>数据链路层的三个重要问题</h3><ul>
+<li>封装成帧和透明传输<ul>
+<li>封装成帧<ul>
+<li>封装成帧是指数据链路层给上层交付下来的协议数据单元PDU添加一个首部和一个尾部，使之成为帧。</li>
+<li>帧是数据单元，那么传输的时候是以一连串的比特流进行传输，一次可能传输若干个帧，所以我们如何确定帧呢？<ul>
+<li>我们可以在帧的首部和尾部添加标识进行定界<br><img src="/../img/%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>此时会面临一些问题<ul>
+<li>当我们传输的数据里面有和定界标识符一样的数据怎么办呢？接收方如何确定该帧的界限呢？</li>
+</ul>
+</li>
+<li>透明传输<ul>
+<li>透明传输是指数据链路层对上层交付下来的协议数据单元PDU没有任何限制，就好像数据链路层不存在一样。<ul>
+<li>如何理解呢？<ul>
+<li>首先，我们为什么要使用帧呢？<ul>
+<li>前面已经说了，将数据封装成帧后，可以在链路层实现错误的检测，纠正以及地址的解析。</li>
+</ul>
+</li>
+<li>但是有了帧就会出现一些负面问题，如我们上面所说的，对帧的界限识别出现差错。<ul>
+<li>所以为了得到帧的好处消除帧的坏处，我们就要实现透明传输：实现链路层的功能，但是好像数据链路层不存在一样（消除副作用）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解决帧的界限问题<ul>
+<li>面向字节的物理链路使用字节填充的方法实现透明传输<ul>
+<li>我们发送时对数据进行扫描，在界限符前面，以及转义符前面添加转义符。</li>
+</ul>
+</li>
+<li>面向比特的物理链路使用比特填充的方法实现透明传输<ul>
+<li>即挑选比较特别的码作为帧的界限符（如0111110），我们发送时对数据进行扫描，每5个1就在其中插入一个0，由此实现了数据区不会出现帧的界限符的情况，在接收时，我们再按照指定的方法将数据区的0删除即可还原为原数据。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="/source/img/%E8%A7%A3%E5%86%B3%E5%B8%A7%E7%95%8C%E9%99%90%E9%97%AE%E9%A2%98.png" srcset="/img/loading.gif" lazyload> </p>
 <ul>
-<li>对数组排序</li>
-<li>添加全局标识数组used[]</li>
-<li>进行条件判断<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex;i &lt; candidates.length; i++)&#123;<br><span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; candidates[i] == candidates[i-<span class="hljs-number">1</span>] &amp;&amp; used[i-<span class="hljs-number">1</span>]==<span class="hljs-literal">false</span>)&#123;<br>    <span class="hljs-comment">//注意是used[i-1]，进行当前元素处理的时候肯定是要判断是否之前有重复元素的访问。</span><br>    <span class="hljs-comment">//树枝可以使用，但是树层间不能使用</span><br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used[i] = <span class="hljs-literal">true</span>;<br>    path.add(candidates[i]);<br>    helper(candidates,target,currentSum+candidates[i],i+<span class="hljs-number">1</span>);<span class="hljs-comment">//不是startindex + 1，而是i + 1，因为每次遍历都是向自己身后的元素进行搜索</span><br>    used[i] = <span class="hljs-literal">false</span>;<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>树层去重：当前层for循环时进行去重</p>
+<li><p>差错检测</p>
 <ul>
-<li>在for循环之前定义一个set，存储此次for循环之前遍历过的元素<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java">HashSet&lt;Integer&gt; used = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex; i &lt; nums.length; i++)&#123;<br>    <span class="hljs-keyword">if</span>(!path.isEmpty() &amp;&amp; path.get(path.size() - <span class="hljs-number">1</span>) &gt; nums[i] || used.contains(nums[i]))&#123;<span class="hljs-comment">//因为不能排序，所以无法像之前的used数组来进行标记</span><br>    <span class="hljs-comment">//这里使用集合来进行同层的判断</span><br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used.add(nums[i]);<br>    path.add(nums[i]);<br>    helper(nums,i+<span class="hljs-number">1</span>);<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>误码的相关概念<ul>
+<li>实际的通信链路都不是理想的，比特在传输过程中可能会产生差错（称为比特差错）。<ul>
+<li>比特0 -&gt; 比特1，比特1 -&gt; 比特0</li>
 </ul>
 </li>
-<li><p>树枝去重：向下递归时进行去重</p>
+<li>使用差错检测技术来检测数据在传输过程中是否产生了比特差错，是数据链路层所要解决的重要问题之一。</li>
+</ul>
+</li>
+<li>如何检验呢？<ul>
+<li>奇偶校验<ul>
+<li>奇校验是在待发送的数据后面添加1个校验位，使得添加该校验位后的整个数据中比特1的个数为奇数。</li>
+<li>偶校验是在待发送的数据后面添加1个校验位，使得添加该校验位后的整个数据中比特1的个数为偶数。</li>
+<li>但是此方法容易出现漏检。</li>
+</ul>
+</li>
+<li>循环冗余校验<ul>
+<li>数据链路层广泛使用漏检率极低的循环冗余校验（Cyclic Redundancy Check，CRC）检错技术。<ul>
+<li>收发双方约定好一个生成多项式G(X)。</li>
+<li>发送方基于待发送的数据和生成多项式G(X)，计算出差错检测码（冗余码），将冗余码添加到待发送数据的后面一起传输。</li>
+<li>接收方收到数据和冗余码后，通过生成多项式G(X)来计算收到的数据和冗余码是否产生了误码。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可靠传输</p>
 <ul>
-<li>使用used数组进行全局的标识<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;i &lt; nums.length; i++)&#123;<br>    <span class="hljs-keyword">if</span>(used[i])&#123;<br>        <span class="hljs-keyword">continue</span>;<br>    &#125;<br>    used[i] = <span class="hljs-literal">true</span>;<br>    path.add(nums[i]);<br>    helper(nums,i+<span class="hljs-number">1</span>);<br>    used[i] = <span class="hljs-literal">false</span>;<br>    path.removeLast();<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>可靠传输的相关概念<ul>
+<li>使用差错检测技术（例如循环冗余校验CRC），接收方的数据链路层就可检测出帧在传输过程中是否产生了误码（比特差错）。</li>
+<li>出现差错之后该怎么办呢？<ul>
+<li>数据链路层为上层提供服务有两种情况<ul>
+<li>不可靠传输服务：仅仅丢弃有误码的帧，其他什么也不做</li>
+<li>可靠传输服务：通过某种机制实现：发送方发送什么，接收方就接收什么。</li>
 </ul>
 </li>
-<li><p>for遍历去重：递归函数添加starIndex参数，每次迭代时从自身后一个元素进行。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> startIndex; i &lt;= n; i++)&#123;<span class="hljs-comment">//对根节点开始到最大结点进行组合</span><br>    path.add(i);<span class="hljs-comment">//组合</span><br>    traverse(n,k,i+<span class="hljs-number">1</span>);<span class="hljs-comment">//继续向下组合</span><br>    path.removeLast();<span class="hljs-comment">//回溯</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>传输差错<ul>
+<li>误码</li>
+<li>分组丢失</li>
+<li>分组失序</li>
+<li>分组重复</li>
+</ul>
+</li>
+<li>可靠传输服务并不局限于数据链路层，其他各层均可选择实现可靠传输。</li>
+<li>可靠传输的实现比较复杂，开销比较大，是否使用可靠传输取决于应用需求。</li>
+</ul>
+</li>
+<li>可靠传输的实现<ul>
+<li>停止-等待协议<ul>
+<li>发送方发送数据给接收方 -&gt; 接收方进行差错检测，无差错，则接收，并且返回确认接收了该分组。如果有误码，接收方则丢弃，并且返回否认接收了该分组。</li>
+<li>此时存在问题<ul>
+<li>接收方若未接到数据，会进行无限制的等待<ul>
+<li>所以在发送方添加超时计时器，每当发送一组数据后就启动计时器，长时间未返回结果，则重新发送</li>
+</ul>
+</li>
+<li>传输可能出现重复，接收返回请求也可能出现错乱<ul>
+<li>对发送方的数据分组进行编号</li>
+<li>对接收方返回的接收或者否认进行编号<br><img src="/../img/%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>回退N帧协议<ul>
+<li>是对停止等待协议的优化：回退N帧协议采用流水线传输方式，并且利用发送窗口来限制发送方连续发送数据分组的数量<br><img src="/../img/%E5%9B%9E%E9%80%80n%E5%B8%A7%E4%BC%98%E5%8C%96.png" srcset="/img/loading.gif" lazyload>  </li>
+<li>简单来说就是： 允许发送方连续发送多个数据包，而不需要等待每个数据包的确认。接收方使用一个窗口大小来指示可以接收的下一个期望的数据包序号。这种方法可以提高传输效率。</li>
+<li>具体见高军老师ppt<br><img src="/../img/%E5%9B%9E%E9%80%80n%E5%B8%A7%E7%A4%BA%E6%84%8F.png" srcset="/img/loading.gif" lazyload> </li>
+<li>回退N帧协议的接收方采用累积确认方式。<ul>
+<li>接收方不必对收到的每一个数据分组都发送一个确认分组，而是可以在收到几个序号连续的数据分组后，对按序到达的最后一个数据分组发送确认分组。</li>
+<li>接收方何时发送累积确认分组，由具体实现决定。</li>
+<li>确认分组ACKn表明序号为n及之前的所有数据分组都已正确接收。</li>
+<li>优点：<ul>
+<li>减少向网络中注入确认分组的数量。</li>
+<li>即使确认分组丢失，也可能不必重传数据分组。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>不能向发送方及时准确地反映出接收方已正确接收的所有数据分组的数量。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>发送窗口𝑾_𝑻的取值范围是𝟏&lt;𝑾_𝑻≤ 2的n次方 - 1 ，如果超出范围，可能会出现分清楚此时传输的比特是新传输的还是重新传输的</li>
+</ul>
+</li>
+<li>选择重传协议<ul>
+<li>是对回退N帧协议的优化</li>
+<li>为了使发送方仅重传出现差错的数据分组，接收方不再采用累积确认，而需要对每一个正确接收的数据分组进行逐一确认。<br><img src="/../img/%E9%80%89%E6%8B%A9%E6%80%A7%E9%87%8D%E4%BC%A0%E7%A4%BA%E6%84%8F.png" srcset="/img/loading.gif" lazyload>  </li>
+<li>发送窗口和接收窗口的最大值为：2的（n-1）次方，若故意取𝑾_𝑻&#x3D;𝟓，使得𝑾_𝑻+𝑾_𝑹≥𝟐^𝟑，接收方将无法分辨新旧数据分组</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -325,8 +475,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>回溯问题笔记</div>
-      <div>http://example.com/2023/10/05/回溯问题笔记总结/</div>
+      <div>计算机网络-链路层</div>
+      <div>http://example.com/2023/10/07/计算机网络-链路层/</div>
     </div>
     <div class="license-meta">
       
@@ -338,7 +488,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月5日</div>
+          <div>2023年10月7日</div>
         </div>
       
       
@@ -370,18 +520,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络-物理层">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计算机网络-物理层</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/04/%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E9%9B%86%E5%90%88%EF%BC%88%E4%B8%8D%E8%83%BD%E9%87%8D%E5%A4%8D%E7%BB%93%E6%9E%9C%EF%BC%89%E7%9A%84%E6%B1%82%E5%92%8C%E9%97%AE%E9%A2%98/" title="重复元素组合（不能重复结果）的求和">
-                        <span class="hidden-mobile">重复元素组合（不能重复结果）的求和</span>
+                      <a href="/2023/10/07/JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
