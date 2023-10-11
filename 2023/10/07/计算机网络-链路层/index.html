@@ -39,8 +39,9 @@
 <meta property="og:image" content="http://example.com/img/%E6%89%A9%E5%B1%95%E8%8C%83%E5%9B%B4%E7%9A%84%E7%A2%B0%E6%92%9E%E5%9F%9F.png">
 <meta property="og:image" content="http://example.com/img/%E7%BD%91%E6%A1%A5%E5%B7%A5%E4%BD%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.png">
 <meta property="og:image" content="http://example.com/img/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B7%A5%E4%BD%9C.png">
+<meta property="og:image" content="http://example.com/img/CSMACA%E9%80%80%E9%81%BF%E7%AE%97%E6%B3%95.png">
 <meta property="article:published_time" content="2023-10-07T08:24:44.534Z">
-<meta property="article:modified_time" content="2023-10-08T03:57:56.089Z">
+<meta property="article:modified_time" content="2023-10-09T10:36:14.308Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/%E9%93%BE%E8%B7%AF%E5%B1%82%E5%B8%A7%E7%A4%BA%E6%84%8F.png">
@@ -236,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          6.9k 字
         
       </span>
     
@@ -247,7 +248,7 @@
         
         
         
-          46 分钟
+          58 分钟
         
       </span>
     
@@ -619,6 +620,62 @@
 </ul>
 </li>
 </ul>
+<h4 id="虚拟局域网"><a href="#虚拟局域网" class="headerlink" title="虚拟局域网"></a>虚拟局域网</h4><ul>
+<li>诞生背景：<ul>
+<li>将多个站点通过一个或多个以太网交换机连接起来就构建出了交换式以太网。</li>
+<li>交换式以太网中的所有站点都属于同一个广播域。</li>
+<li>随着交换式以太网规模的扩大，广播域也相应扩大，<strong>巨大的广播域会带来一系列问题</strong><ul>
+<li>广播风暴：广播风暴会浪费网络资源和各主机的CPU资源</li>
+<li>难以管理和维护，带来潜在安全问题</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分割广播域可以解决广播域太大导致的问题<ul>
+<li>使用路由器可以隔离广播域（成本高）</li>
+<li>虚拟局域网技术</li>
+</ul>
+</li>
+<li>虚拟局域网（Virtual Local Area Network，VLAN）是一种将<strong>局域网内的站点划分成与物理位置无关的逻辑组的技术</strong>，一个逻辑组就是一个VLAN，VLAN中的各站点具有某些共同的应用需求。<ul>
+<li>属于同一VLAN的站点之间可以直接进行通信，而不同VLAN中的站点之间不能直接通信。</li>
+<li>连接在同一交换机上的多个站点可以属于不同的VLAN，而属于同一VLAN的多个站点可以连接在不同的交换机上。</li>
+</ul>
+</li>
+<li>实现机制<ul>
+<li>Access端口（默认）<ul>
+<li>给“未打标签”的MAC帧打标签（根据端口自己的PVID），将PVID存入帧的VID中</li>
+<li>若帧中的VID和接口的PVID值相同，则给帧去除标签，再进行转发，否则不转发</li>
+</ul>
+</li>
+<li>Trunk端口<ul>
+<li>既可以接收“未打标签”的MAC帧，也可以接收“已打标签”的802.1Q帧。若接收到普通以太网MAC帧时，根据接收帧的接口的PVID给帧“打标签”，这与Access接口的处理相同。</li>
+<li>对于帧的VID值等于接口的PVID值的802.1Q帧，将其“去标签”转发；对于<strong>帧的VID值不等于接口的PVID值802.1Q帧</strong>，将其<strong>直接转发</strong>。因此，从Trunk接口转发出的帧，可能是普通以太网MAC帧，也可能是802.1Q帧。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="无线局域网"><a href="#无线局域网" class="headerlink" title="无线局域网"></a>无线局域网</h4><ul>
+<li>802.11无线局域网使用CSMA&#x2F;CA协议的原因<ul>
+<li>对于802.11无线局域网，其使用无线信道传输数据，这与共享总线以太网使用有线传输介质不同。因此，802.11无线局域网<strong>不能简单照搬共享总线以太网使用的CSMA&#x2F;CD协议</strong>。<ul>
+<li>由于无线信道的<strong>传输环境复杂且信号强度的动态范围非常大</strong>，在802.11无线网卡上接收到的信号强度一般都<strong>远远小于发送信号的强度</strong>，信号强度甚至相差百万倍。因此，如果要在802.11无线网卡上实现碰撞检测，对硬件的要求非常高。</li>
+<li>即使能够在硬件上实现碰撞检测功能，但由于无线电波传播的特殊性（存在隐蔽站问题），还会<strong>出现无法检测到碰撞</strong>的情况，因此实现碰撞检测并没有意义。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>无线局域网不能简单照搬共享总线以太网（有线局域网）使用的CSMA&#x2F;CD协议，而是不再实现碰撞检测CD功能，但在<strong>CSMA的基础上增加碰撞避免CA功能</strong>，即使用CSMA&#x2F;CA协议。<ul>
+<li>CSMA&#x2F;CA协议<ul>
+<li>若站点最初有数据要发送(而不是发送不成功再进行重传)，且检测到信道空闲，在等待时间DIFS后，就发送整个数据帧。</li>
+<li>否则，站点执行CSMA&#x2F;CA协议的退避算法。一旦检测到信道忙，就冻结退避计时器。只要信道空闲，退避计时器就进行倒计时。</li>
+<li>当退避计时器时间减少到零时(这时信道只可能是空闲的)，站点就发送整个的帧并等待确认。</li>
+<li>发送站若收到确认，就知道已发送的帧被目的站正确收到了。这时如果要发送第二帧，就要从上面的步骤(2)开始，执行CSMA&#x2F;CA协议的退避算法，随机选定一段退避时间。</li>
+<li>若源站在规定时间内没有收到确认帧ACK(由重传计时器控制这段时间)，就必须重传此帧(再次使用CSMA&#x2F;CA协议争用接入信道)，直到收到确认为止，或者经过若干次的重传失败后放弃发送。<br><img src="/../img/CSMACA%E9%80%80%E9%81%BF%E7%AE%97%E6%B3%95.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -701,6 +758,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/09/JVM%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
