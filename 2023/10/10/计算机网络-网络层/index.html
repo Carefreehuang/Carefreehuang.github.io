@@ -18,7 +18,7 @@
   
     <meta name="description" content="网络层概述 网络层的作用： 网络层的主要任务就是将分组从源主机经过多个网络和多段链路传输到目的主机，可以将该任务划分为分组转发和路由选择两种重要的功能。 分组转发：根据转发表来确定向自己的哪个接口进行转发（转发表来自路由表） 路由选择：路由表来自路由选择协议     网络层向上提供的两种服务： 面向连接的虚电路服务   核心思想：可靠通信应由网络自身来保证 必须首先建立网络层连接，保证通信双方所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络-链路层">
+<meta property="og:title" content="计算机网络-网络层">
 <meta property="og:url" content="http://example.com/2023/10/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%BD%91%E7%BB%9C%E5%B1%82/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
 <meta property="og:description" content="网络层概述 网络层的作用： 网络层的主要任务就是将分组从源主机经过多个网络和多段链路传输到目的主机，可以将该任务划分为分组转发和路由选择两种重要的功能。 分组转发：根据转发表来确定向自己的哪个接口进行转发（转发表来自路由表） 路由选择：路由表来自路由选择协议     网络层向上提供的两种服务： 面向连接的虚电路服务   核心思想：可靠通信应由网络自身来保证 必须首先建立网络层连接，保证通信双方所">
@@ -45,15 +45,17 @@
 <meta property="og:image" content="http://example.com/img/%E8%B7%AF%E7%94%B1%E5%99%A8%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.png">
 <meta property="og:image" content="http://example.com/img/NAT%E8%BF%87%E7%A8%8B.png">
 <meta property="og:image" content="http://example.com/img/%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E4%B8%8E%E7%AB%AF%E5%8F%A3%E5%8F%B7%E8%BD%AC%E6%8D%A2.png">
+<meta property="og:image" content="http://example.com/img/ip%E5%A4%9A%E6%92%AD.png">
+<meta property="og:image" content="http://example.com/img/ipv4%E5%AF%B9%E6%AF%94ipv6.png">
 <meta property="article:published_time" content="2023-10-10T07:26:02.292Z">
-<meta property="article:modified_time" content="2023-10-11T03:49:54.453Z">
+<meta property="article:modified_time" content="2023-10-12T05:04:40.713Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%99%9A%E7%94%B5%E8%B7%AF%E6%9C%8D%E5%8A%A1.png">
   
   
   
-  <title>计算机网络-链路层 - Carefreehaung的个人博客</title>
+  <title>计算机网络-网络层 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +221,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算机网络-链路层"></span>
+            <span id="subtitle" data-typed-text="计算机网络-网络层"></span>
           
         </div>
 
@@ -242,7 +244,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          8.6k 字
         
       </span>
     
@@ -253,7 +255,7 @@
         
         
         
-          61 分钟
+          72 分钟
         
       </span>
     
@@ -290,7 +292,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计算机网络-链路层</h1>
+            <h1 id="seo-header">计算机网络-网络层</h1>
             
             
               <div class="markdown-body">
@@ -728,6 +730,112 @@
 </ul>
 </li>
 </ul>
+<h3 id="IP多播"><a href="#IP多播" class="headerlink" title="IP多播"></a>IP多播</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>多播（Multicast，也称为组播）是一种实现“一对多”通信的技术，与传统单播“一对一”通信相比，多播可以极大地节省网络资源。</li>
+<li>在因特网上进行的多播，称为IP多播。<br><img src="/../img/ip%E5%A4%9A%E6%92%AD.png" srcset="/img/loading.gif" lazyload></li>
+<li>可以减少网络中资源的消耗</li>
+</ul>
+<h4 id="IP多播地址和多播组"><a href="#IP多播地址和多播组" class="headerlink" title="IP多播地址和多播组"></a>IP多播地址和多播组</h4><ul>
+<li>在IPv4中，<strong>D类地址</strong>被作为多播地址。</li>
+<li><strong>多播地址只能用作目的地址</strong>，而不能用作源地址。</li>
+<li>一个多播地址确定一个多播组</li>
+</ul>
+<h4 id="局域网上进行硬件多播"><a href="#局域网上进行硬件多播" class="headerlink" title="局域网上进行硬件多播"></a>局域网上进行硬件多播</h4><ul>
+<li>硬件多播其实就是多播MAC地址，只需要把IPv4的多播地址转换为MAC地址即可</li>
+<li>由于IP多播地址可变化的28比特的前5个比特无法映射到MAC多播地址，<strong>这会造成IP多播地址与多播MAC地址的映射关系并不是唯一的</strong>。<ul>
+<li>所以在链路层判断MAC地址正确后，还会将数据上传至网络层，进行IP地址的判断，从而确定正确的传输</li>
+</ul>
+</li>
+</ul>
+<h4 id="因特网上进行IP多播需要的两种协议"><a href="#因特网上进行IP多播需要的两种协议" class="headerlink" title="因特网上进行IP多播需要的两种协议"></a>因特网上进行IP多播需要的两种协议</h4><ul>
+<li>引出<ul>
+<li>要在因特网上进行IP多播，<strong>要考虑IP多播数据报经过多个多播路由器进行转发的问题</strong>。<ul>
+<li>多播路由器必须根据IP多播数据报首部中的IP多播地址，将其转发到有该多播组成员的局域网。</li>
+</ul>
+</li>
+<li>那么路由器如何知道自己的接口所在局域网有哪些多播成员呢？<ul>
+<li>IGMP仅在本网络有效，使用IGMP并不能知道多播组所包含的成员数量，也不能知道多播组的成员都分布在哪些网络中。</li>
+<li>需要使用多播路由选择协议来解决</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多播路由选择协议<ul>
+<li>过程<ul>
+<li>主要任务是：在多播路由器之间为每个多播组建立一个多播转发树</li>
+<li>多播转发树连接多播源和所有拥有该多播组成员的路由器。</li>
+<li>IP多播数据报只要沿着多播转发树进行洪泛，就能被传送到所有拥有该多播组成员的多播路由器。</li>
+<li>之后，在多播路由器所直连的局域网内，多播路由器通过硬件多播，将IP多播数据报发送给该多播组的所有成员。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>网际组管理协议（IGMP）：维护多播组与其成员关系<ul>
+<li>报文类型<ul>
+<li>成员报告报文</li>
+<li>成员查询报文</li>
+<li>离开组报文</li>
+</ul>
+</li>
+<li>加入多播组<ul>
+<li>发送成员报告报文申请加入</li>
+</ul>
+</li>
+<li>监听多播组成员变化<ul>
+<li>多播路由器定时发送成员查询报文（广播）</li>
+<li>成功接收到报文的组员会延时随机时间后发送请求（成员报告报文），</li>
+<li>如果该组有一个成员（延时最短的）已经发送报告报文了，那么该组其他的成员就取消发送，这样可以减少资源浪费</li>
+<li>长时间未收到响应，会将该组从多播组中删除</li>
+</ul>
+</li>
+<li>退出多播组<ul>
+<li>当主机要退出某个多播组时，可<strong>主动发送</strong>一个离开组报文而不必等待多播路由器的查询。</li>
+<li>这样可使多播路由器能够更快地发现某个组有成员离开。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>背景<ul>
+<li>IPv4不够用</li>
+</ul>
+</li>
+<li>变化<ul>
+<li>IPv4 地址长度共 32 位，是以每 8 位作为一组，并用点分十进制的表示方式。</li>
+<li>IPv6 地址长度是 128 位，是以每 16 位作为一组，每组用冒号 「:」 隔开。</li>
+<li>更大的地址空间</li>
+<li>扩展的地址层次结构，灵活的首部等</li>
+<li>IPv6 的地址主要有以下类型地址：<ul>
+<li>单播地址，用于一对一的通信</li>
+<li>组播地址，用于一对多的通信</li>
+<li>任播地址，用于通信最近的节点，最近的节点是由路由协议决定</li>
+<li>没有广播地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="IPv6数据报的首部"><a href="#IPv6数据报的首部" class="headerlink" title="IPv6数据报的首部"></a>IPv6数据报的首部</h4><p><img src="/../img/ipv4%E5%AF%B9%E6%AF%94ipv6.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>取消了首部校验和字段。</li>
+<li>取消了分片&#x2F;重新组装相关字段。</li>
+<li>取消选项字段。</li>
+</ul>
+<h4 id="从IPv4向IPv6过渡"><a href="#从IPv4向IPv6过渡" class="headerlink" title="从IPv4向IPv6过渡"></a>从IPv4向IPv6过渡</h4><ul>
+<li>使用双协议栈<ul>
+<li>使一部分主机或路由器装有IPv4和IPv6两套协议栈。</li>
+<li>双协议栈主机或路由器既可以和IPv6系统通信，又可以和IPv4系统通信。</li>
+<li>根据需要进行转换</li>
+<li>会漏一些信息</li>
+</ul>
+</li>
+<li>使用隧道技术<ul>
+<li>当IPv6数据报要进入IPv4网络时，将IPv6数据报重新封装成IPv4数据报，即整个IPv6数据报成为IPv4数据报的数据载荷。</li>
+<li>封装有IPv6数据报的IPv4数据报在IPv4网络中传输。</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -766,7 +874,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算机网络-链路层</div>
+      <div>计算机网络-网络层</div>
       <div>http://example.com/2023/10/10/计算机网络-网络层/</div>
     </div>
     <div class="license-meta">
@@ -810,6 +918,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/11/Spring%E5%9B%9E%E9%A1%BE/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
