@@ -24,8 +24,10 @@
 <meta property="og:description" content="基本数据类型 Java中有8种基本数据类型 6种数字类型 4种整数类型：byte、short、int、long 2种浮点型：float、double   1种字符类型 char 妈的，原来了string不是基本数据类型，java中根本没有string这个关键词   一种布尔类型 boolean     一个字节(byte)对应八个二进制位(bit) 基本类型和包装类型的区别 用途：包装类可以定义">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/%E6%B7%B1%E6%B5%85%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="http://example.com/img/Class%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://example.com/img/Class%E4%B8%8E%E7%B1%BB%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE.png">
 <meta property="article:published_time" content="2023-10-14T09:52:51.145Z">
-<meta property="article:modified_time" content="2023-10-14T15:15:49.260Z">
+<meta property="article:modified_time" content="2023-10-16T11:30:00.420Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/%E6%B7%B1%E6%B5%85%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB.png">
@@ -221,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          13k 字
         
       </span>
     
@@ -232,7 +234,7 @@
         
         
         
-          82 分钟
+          113 分钟
         
       </span>
     
@@ -573,6 +575,56 @@
 </ul>
 <h4 id="String-“-”"><a href="#String-“-”" class="headerlink" title="String “+”"></a>String “+”</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//因为是常量字符串，jvm会在编译阶段就将其放入字符串常量池（str1，str2，str3）</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str3</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span> + <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-comment">//常量折叠：</span><br><span class="hljs-comment">//String str3 = &quot;str&quot; + &quot;ing&quot;; 编译器会给你优化成 String str3 = &quot;string&quot;;</span><br><span class="hljs-comment">//String str4 = new StringBuilder().append(str1).append(str2).toString(); 对于对象引用 + 的拼接其实是通过StringBuilder调用append()然后再调用toString()产生了一个新的String对象</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str4</span> <span class="hljs-operator">=</span> str1 + str2;<br><span class="hljs-type">String</span> <span class="hljs-variable">str5</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;string&quot;</span>;<br><span class="hljs-comment">//str3是一个新对象，由StringBuilder产生</span><br>System.out.println(str3 == str4);<span class="hljs-comment">//false</span><br>System.out.println(str3 == str5);<span class="hljs-comment">//true</span><br>System.out.println(str4 == str5);<span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="异常-浅层"><a href="#异常-浅层" class="headerlink" title="异常(浅层)"></a>异常(浅层)</h2><h4 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try-catch-finally"></a>try-catch-finally</h4><ul>
+<li><code>try</code>块：用于捕获异常。其后可接零个或多个 <code>catch</code> 块，如果没有 <code>catch</code> 块，则必须跟一个 <code>finally</code> 块。</li>
+<li><code>catch</code> 块：用于处理 <code>try</code> 捕获到的异常。</li>
+<li><code>finally</code> <code>块：无论是否捕获或处理异常，finally</code> 块里的语句都会被执行。当在 <code>try</code> 块或 <code>catch</code> 块中遇到 <code>return</code> <code>语句时，finally</code> 语句块将在方法返回之前被执行。<br>-**不要在 finally 语句块中使用 return!**当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句会被忽略。这是因为 try 语句中的 return 返回值会先被暂存在一个本地变量中，当执行到 finally 语句中的 return 之后，这个本地变量的值就变为了 finally 语句中的 return 返回值。</li>
+</ul>
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="什么是泛型，作用是什么？"><a href="#什么是泛型，作用是什么？" class="headerlink" title="什么是泛型，作用是什么？"></a>什么是泛型，作用是什么？</h4><ul>
+<li>使用泛型参数，可以增强代码的可读性以及稳定性。</li>
+<li>编译器可以对泛型参数进行检测，并且通过泛型参数可以指定传入的对象类型。比如 <code>ArrayList&lt;Person&gt; persons = new ArrayList&lt;Person&gt;()</code> 这行代码就指明了该 ArrayList 对象只能传入 Person 对象，如果传入其他类型的对象就会报错。</li>
+</ul>
+<h4 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h4><ul>
+<li>泛型类</li>
+<li>泛型接口</li>
+<li>泛型方法</li>
+</ul>
+<h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><h3 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h3><ul>
+<li>反射是一种在运行时检查和操作类、对象、方法等程序元素的能力。</li>
+<li>反射机制允许程序在运行期间借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性以及方法</li>
+</ul>
+<h3 id="反射的内部原理"><a href="#反射的内部原理" class="headerlink" title="反射的内部原理"></a>反射的内部原理</h3><ul>
+<li>加载完类后，堆内存的方法区中就会产生一个Class类型的对象（一个Class实例），这个对象会包含完整的类信息，我们可以通过这个Class实例来获取类的信息。<ul>
+<li>例如我有一个Person类，Person类加载完成后，堆内存方法区会产生一个Class的实例，不妨就叫personClass，personClass包含了原来Person的所有类信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="Class的理解"><a href="#Class的理解" class="headerlink" title="Class的理解"></a>Class的理解</h3><ul>
+<li><p>Class是一个类的类，所有的类都可以看作是Class类的一个实例来理解<br><img src="/../img/Class%E7%BB%93%E6%9E%84.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Class本身也是类</li>
+<li>Class对象只能由系统建立</li>
+<li>一个加载的类在JVM之中只会有一个Class实例</li>
+<li>一个Class对象对应的是一个加载到JVM中的一个.class文件</li>
+<li>每个类的实例都会记得自己是由哪个Class实例所生成</li>
+<li>通过Class可以完整得到一个类中的所有被加载的结构</li>
+<li>Class类是Reflection的根源，想要对某类进行反射的相关操作，必须先获取其相应的Class对象<br><img src="/../img/Class%E4%B8%8E%E7%B1%BB%E6%89%80%E5%9C%A8%E4%BD%8D%E7%BD%AE.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><p><strong>获取Class类的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//根据类型获取</span><br><span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> String.class;<br><br><span class="hljs-comment">//根据运行时的类获取（实例）</span><br><span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Hello World&quot;</span>.getClass();<br><br><span class="hljs-comment">//根据全类名获取</span><br><span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> Class.forName(<span class="hljs-string">&quot;java.lang.String&quot;</span>);<br><br><span class="hljs-comment">//根据类加载器获取</span><br><span class="hljs-type">ClassLoader</span> <span class="hljs-variable">cl</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.getClass().getClassLoader();<br><span class="hljs-type">Class</span> <span class="hljs-variable">clazz4</span> <span class="hljs-operator">=</span> cl.loadClass(<span class="hljs-string">&quot;类的全类名&quot;</span>);<br></code></pre></td></tr></table></figure></li>
+<li><p>哪些类型可以有Class对象</p>
+<ul>
+<li>基本所有类</li>
+<li>只要元素类型与维度一样，就是一个Class</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>];<br><span class="hljs-type">int</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">100</span>];<br><span class="hljs-type">int</span>[][] c = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">10</span>][<span class="hljs-number">10</span>];<br><span class="hljs-type">Class</span> <span class="hljs-variable">c10</span> <span class="hljs-operator">=</span> a.getClass();<br><span class="hljs-type">Class</span> <span class="hljs-variable">c11</span> <span class="hljs-operator">=</span> b.getClass();<br><span class="hljs-type">Class</span> <span class="hljs-variable">c12</span> <span class="hljs-operator">=</span> c.getClass();<br><span class="hljs-comment">// 只要元素类型与维度一样，就是同一个 Class</span><br>System.out.println(c10 == c11); <span class="hljs-comment">//true</span><br>System.out.printlin(c10 == c12); <span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="反射实现的功能"><a href="#反射实现的功能" class="headerlink" title="反射实现的功能"></a>反射实现的功能</h3><h3 id="反射的应用"><a href="#反射的应用" class="headerlink" title="反射的应用"></a>反射的应用</h3><ul>
+<li>相关API<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//1.实现的全部接口</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt;[] getInterfaces() <br><span class="hljs-comment">//确定此对象所表示的类或接口实现的接口。</span><br><span class="hljs-comment">//2.所继承的父类</span><br><span class="hljs-keyword">public</span> Class&lt;? Super T&gt; getSuperclass()<br><span class="hljs-comment">//返回表示此 Class 所表示的实体（类、接口、基本类型）的父类的 Class。</span><br><span class="hljs-comment">//3.全部的构造器</span><br><span class="hljs-keyword">public</span> Constructor&lt;T&gt;[] getConstructors()<br><span class="hljs-comment">//返回此 Class 对象所表示的类的所有 public 构造方法。</span><br><span class="hljs-keyword">public</span> Constructor&lt;T&gt;[] getDeclaredConstructors()<br><span class="hljs-comment">//返回此 Class 对象表示的类声明的所有构造方法。</span><br><span class="hljs-comment">//Constructor 类中：</span><br><span class="hljs-comment">//取得修饰符: </span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getModifiers</span><span class="hljs-params">()</span>;<br><span class="hljs-comment">//取得方法名称: </span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span>;<br><span class="hljs-comment">//取得参数的类型：</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt;[] getParameterTypes();<br><span class="hljs-comment">//4.全部的方法</span><br><span class="hljs-keyword">public</span> Method[] getDeclaredMethods()<br><span class="hljs-comment">//返回此 Class 对象所表示的类或接口的全部方法</span><br><span class="hljs-keyword">public</span> Method[] getMethods() <br><span class="hljs-comment">//返回此 Class 对象所表示的类或接口的 public 的方法</span><br><span class="hljs-comment">//Method 类中：</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt; getReturnType()<br><span class="hljs-comment">//取得全部的返回值</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt;[] getParameterTypes()<br><span class="hljs-comment">//取得全部的参数</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getModifiers</span><span class="hljs-params">()</span><br><span class="hljs-comment">//取得修饰符</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt;[] getExceptionTypes()<br><span class="hljs-comment">//取得异常信息</span><br><span class="hljs-comment">//5.全部的 Field</span><br><span class="hljs-keyword">public</span> Field[] getFields()<br><span class="hljs-comment">//返回此 Class 对象所表示的类或接口的 public 的 Field。</span><br><span class="hljs-keyword">public</span> Field[] getDeclaredFields()<br><span class="hljs-comment">//返回此 Class 对象所表示的类或接口的全部 Field。</span><br><span class="hljs-comment">//Field 方法中：</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getModifiers</span><span class="hljs-params">()</span><br><span class="hljs-comment">//以整数形式返回此 Field 的修饰符</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt; getType() <br><span class="hljs-comment">//得到 Field 的属性类型</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">getName</span><span class="hljs-params">()</span> <br><span class="hljs-comment">//返回 Field 的名称。</span><br><span class="hljs-comment">//6. Annotation 相关</span><br>get <span class="hljs-title function_">Annotation</span><span class="hljs-params">(Class&lt;T&gt; annotationClass)</span><br>getDeclaredAnnotations()<br><span class="hljs-comment">//7.泛型相关</span><br><span class="hljs-comment">//获取父类泛型类型：</span><br>Type <span class="hljs-title function_">getGenericSuperclass</span><span class="hljs-params">()</span><br><span class="hljs-comment">//泛型类型：ParameterizedType</span><br><span class="hljs-comment">//获取实际的泛型类型参数数组：</span><br>getActualTypeArguments()<br><span class="hljs-comment">//8.类所在的包</span><br>Package <span class="hljs-title function_">getPackage</span><span class="hljs-params">()</span><br></code></pre></td></tr></table></figure></li>
+<li>动态性案例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReflectionTest</span> &#123;<br> <span class="hljs-comment">//体会反射的动态性：动态的创建指定字符串对应类的对象，并调用指定的方法</span><br> <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">invoke</span><span class="hljs-params">(String className,String methodName)</span> <span class="hljs-keyword">throws</span><br>Exception &#123;<br>  <span class="hljs-comment">//根据全类名获取Class对象</span><br> <span class="hljs-type">Class</span> <span class="hljs-variable">clazz</span> <span class="hljs-operator">=</span> Class.forName(className);<br> <span class="hljs-comment">//获取构造器</span><br> <span class="hljs-type">Constructor</span> <span class="hljs-variable">constructor</span> <span class="hljs-operator">=</span> clazz.getDeclaredConstructor();<br> <span class="hljs-comment">//setAccessible ：让其可被访问</span><br> constructor.setAccessible(<span class="hljs-literal">true</span>);<br> <span class="hljs-comment">//动态的创建指定字符串对应类的对象</span><br> <span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> constructor.newInstance();<br> <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> clazz.getDeclaredMethod(methodName);<br> method.setAccessible(<span class="hljs-literal">true</span>);<br> <span class="hljs-keyword">return</span> method.invoke(obj);<br> &#125;<br> <span class="hljs-meta">@Test</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">test2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br> <span class="hljs-type">String</span> <span class="hljs-variable">info</span> <span class="hljs-operator">=</span> (String) invoke(<span class="hljs-string">&quot;com.atguigu.java1.Person&quot;</span>, <span class="hljs-string">&quot;sh</span><br><span class="hljs-string">ow&quot;</span>);<br> System.out.println(<span class="hljs-string">&quot;返回值为：&quot;</span> + info);<br> &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+
                 
               </div>
             
@@ -654,6 +706,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/15/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" title="完全背包问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">完全背包问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
