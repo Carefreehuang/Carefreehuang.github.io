@@ -16,21 +16,24 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是完全背包问题呢？就是每个物品能使用n次  模板 与之前的01背包类似，就是在一维dp数组的倒序遍历改为了正序遍历 并且 如果求组合数就是外层for循环遍历物品，内层for遍历背包。 如果求排列数就是外层for遍历背包，内层for循环遍历物品。 为什么呢？ 例如，当你对背包容量为3进行遍历，然后再内层遍历物品，此时遍历的是所有的满足条件的物品（weight[i]&lt;&#x3D;3），此">
+    <meta name="description" content="ListArrayList 创建过程：1234567891011&#x2F;&#x2F;jdk 1.7非靠后版本：底部直接new Object[10];&#x2F;&#x2F;jdk 1.8 :底部直接 new &amp;#123;&amp;#125;;List&lt;Integer&gt; list &#x3D; new ArrayList&lt;Integer&gt;();&#x2F;&#x2F; jdk 1.7 直接Object[0] &#x3D; 1;&#x2F;&#x2F; jdk 1.8 new">
 <meta property="og:type" content="article">
-<meta property="og:title" content="完全背包问题">
-<meta property="og:url" content="http://example.com/2023/10/15/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="Java集合">
+<meta property="og:url" content="http://example.com/2023/10/16/Java%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="什么是完全背包问题呢？就是每个物品能使用n次  模板 与之前的01背包类似，就是在一维dp数组的倒序遍历改为了正序遍历 并且 如果求组合数就是外层for循环遍历物品，内层for遍历背包。 如果求排列数就是外层for遍历背包，内层for循环遍历物品。 为什么呢？ 例如，当你对背包容量为3进行遍历，然后再内层遍历物品，此时遍历的是所有的满足条件的物品（weight[i]&lt;&#x3D;3），此">
+<meta property="og:description" content="ListArrayList 创建过程：1234567891011&#x2F;&#x2F;jdk 1.7非靠后版本：底部直接new Object[10];&#x2F;&#x2F;jdk 1.8 :底部直接 new &amp;#123;&amp;#125;;List&lt;Integer&gt; list &#x3D; new ArrayList&lt;Integer&gt;();&#x2F;&#x2F; jdk 1.7 直接Object[0] &#x3D; 1;&#x2F;&#x2F; jdk 1.8 new">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-15T03:00:11.887Z">
-<meta property="article:modified_time" content="2023-10-15T03:07:04.462Z">
+<meta property="og:image" content="http://example.com/img/java8hashmap.png">
+<meta property="og:image" content="http://example.com/img/map%E4%B8%ADkey%E7%9A%84%E5%8F%98%E5%8C%96.png">
+<meta property="article:published_time" content="2023-10-16T12:44:54.079Z">
+<meta property="article:modified_time" content="2023-10-17T07:47:10.182Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/java8hashmap.png">
   
   
   
-  <title>完全背包问题 - Carefreehaung的个人博客</title>
+  <title>Java集合 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="完全背包问题"></span>
+            <span id="subtitle" data-typed-text="Java集合"></span>
           
         </div>
 
@@ -207,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-15 11:00" pubdate>
-          2023年10月15日 上午
+        <time datetime="2023-10-16 20:44" pubdate>
+          2023年10月16日 晚上
         </time>
       </span>
     
@@ -219,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          273 字
+          3.2k 字
         
       </span>
     
@@ -230,7 +233,7 @@
         
         
         
-          3 分钟
+          27 分钟
         
       </span>
     
@@ -267,27 +270,84 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">完全背包问题</h1>
+            <h1 id="seo-header">Java集合</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
-<blockquote>
-<p>什么是完全背包问题呢？<br>就是每个物品能使用n次</p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><ul>
+<li>创建过程：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//jdk 1.7非靠后版本：底部直接new Object[10];</span><br><span class="hljs-comment">//jdk 1.8 :底部直接 new &#123;&#125;;</span><br>List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Integer&gt;();<br><span class="hljs-comment">// jdk 1.7 直接Object[0] = 1;</span><br><span class="hljs-comment">// jdk 1.8 new Object[10]; 然后Object[0] = 1;</span><br>list.add(<span class="hljs-number">1</span>);<br>...<br><span class="hljs-comment">//此时添加的时候容量已满，会对其进行扩容至当前容量的1.5倍</span><br><span class="hljs-comment">//扩容机制：创建一个当前容量1.5倍的数组，然后拷贝转移</span><br><span class="hljs-comment">//Arrays.copyOf(elementData, newCapacity);</span><br>list.add(<span class="hljs-number">11</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><blockquote>
+<p>HashMap 和 Hashtable 底层都是哈希表（也称散列表），其中维护了一个长度为 2 的幂次方的 Entry 类型的数组 table，数组的每一个索引位置被称为一个桶 (bucket)，你添加的映射关系(key,value)最终都被封装为一个 Map.Entry 类型的对象，放到某个 table[index]桶中。</p>
 </blockquote>
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><ul>
-<li>与之前的01背包类似，就是在一维dp数组的倒序遍历改为了正序遍历</li>
-<li>并且<ul>
-<li><strong>如果求组合数就是外层for循环遍历物品，内层for遍历背包。</strong></li>
-<li><strong>如果求排列数就是外层for遍历背包，内层for循环遍历物品。</strong></li>
-<li>为什么呢？<ul>
-<li>例如，当你对背包容量为3进行遍历，然后再内层遍历物品，此时遍历的是所有的满足条件的物品（weight[i]&lt;&#x3D;3），此时可能出现(1,2)，也可能出现(2,1)，所以是排列</li>
-<li>如果先遍历物品，那么只可能出现(1,2)不会出现(2,1)，因为总是先遍历1，然后逐个放1，再遍历2，再逐个放2</li>
+<blockquote>
+<p>使用数组的目的是查询和添加的效率高，可以根据索引直接定位到某个table[index]</p>
+</blockquote>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><img src="/../img/java8hashmap.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="HashMap中数据的添加"><a href="#HashMap中数据的添加" class="headerlink" title="HashMap中数据的添加"></a>HashMap中数据的添加</h4><ul>
+<li>JDK7</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">HashMap</span> <span class="hljs-variable">map</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>();<br><span class="hljs-comment">//在底层创建了一个长度为 16 的Entry[] table 数组</span><br>map.put(key,value);<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">1. 首先调用 key 所在类的 hashCode()方法，计算key的哈希值1</span><br><span class="hljs-comment">2. 然后哈希值1再经过 hash(哈希值1)得到哈希值2，哈希值2再经过indexFor(),确定该键值对在table数组中的位置 i</span><br><span class="hljs-comment">    （1）.如果table的i处数据为空，那么直接添加</span><br><span class="hljs-comment">    （2）.如果table的i处数据不为空，i处存在键值对(key2,value2) ,则需要进一步判断</span><br><span class="hljs-comment">        1.判断key的哈希值2 与 key2的哈希值是否相同</span><br><span class="hljs-comment">            1. 如果哈希值不同，则添加成功（添加到链表，7使用头插法，8使用尾插法（防止并行的时候出现循环链表））</span><br><span class="hljs-comment">            2. 如果哈希值相同，再进一步使用equals()判断</span><br><span class="hljs-comment">                1. 如果equals为true，那么value会覆盖原来的value2</span><br><span class="hljs-comment">                2. 如果equals为false，那么添加成功（添加到链表）</span><br><span class="hljs-comment">3. 在不断的添加的情况下，满足如下条件会进行扩容：</span><br><span class="hljs-comment">    （1）.if(size &gt;= threshold) &amp;&amp; (table[bucketIndex] != null)</span><br><span class="hljs-comment">    即如果当前个数大于临界值（数组长度 * loadFactory），并且将要放的这个元素的位置不为空（即需要插入到链表之中），则扩容</span><br><span class="hljs-comment">4. 在JDK8中，还有红黑树 单链表转换机制</span><br><span class="hljs-comment">    （作用在于：红黑树：查找速度更快，单链表：占用内存更少）</span><br><span class="hljs-comment">    （1）.当 某个索引 上的链表长度达到8，并且数组的长度超过64的时候，此索引位置的元素要从单链表形式转换为红黑树形式</span><br><span class="hljs-comment">    (2).当 某索引位置元素是红黑树形式，并且由于元素的删除，导致该索引位置元素数量少于6个时，该索引位置元素要从红黑树形式转换为单链表形式</span><br><span class="hljs-comment">*/</span><br><br>map.get(key);<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">计算hash，根据hash找到index，根据index遍历链表或者树，找到相同key的Entry。再返回value</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">计算key的hash值，hash(key)</span><br><span class="hljs-comment">找index = table.length - 1 &amp; hash;</span><br><span class="hljs-comment">如果table[index]不为空，挨个比较哪个Entry的key与它相同，返回value</span><br><span class="hljs-comment">*/</span><br><br>map.remove(key);<br><span class="hljs-comment">/*</span><br><span class="hljs-comment">计算hash，根据hash找到index，根据index遍历链表或者树，找到相同key的Entry。再删除该Entry</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>JDK8 相较于 JDK7 的不同之处<ul>
+<li>使用 HashMap()的构造器创建对象时，并没有在底层初始化长度为 16 的 table 数组</li>
+<li>jdk8 中添加的 key,value 封装到了 HashMap.Node 类的对象中。而非 jdk7 中的 HashMap.Entry。</li>
+<li>索引冲突的时候，jdk8使用的是尾插法，jdk7使用的是头插法。尾插法可以防止在并发处理的时候形成环形链表</li>
+<li>jdk7 时底层的数据结构是：数组+单向链表。 而 jdk8 时，底层的数据结构是：数组+单向链表+红黑树。<ul>
+<li>红黑树出现的时机：当某个索引位置 i 上的链表的长度达到 8，且数组的长度超过 64时，此索引位置上的元素要从单向链表改为红黑树。</li>
+<li>如果索引 i 位置是红黑树的结构，当不断删除元素的情况下，当前索引 i 位置上的元素的个数低于 6 时，要从红黑树改为单向链表。</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h4 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h4><ul>
+<li><p>解释java中的HashMap底层的table数组长度为什么是2的幂次方，有什么作用，是如何实现的?</p>
+<ul>
+<li>长度为2的幂次方的作用<ul>
+<li>快速计算哈希值的索引：当 table 的长度为2的幂次方时，可以通过使用与运算来加速计算哈希值对应的索引，比模运算提高了性能。</li>
+<li>由于数组长度是 2 的 n 次幂，当进行位运算时，哈希值的高位和低位都参与索引计算，这使得元素在数组中的分布更加均匀，减少了哈希冲突的可能性。</li>
+</ul>
+</li>
+<li>实现：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//可以输入自定义的长度，但是table也会初始化为最相近的2次幂大小</span><br><span class="hljs-comment">//计算得到 table 数组的长度（保证 capacity 是 2 的整次幂）</span><br><span class="hljs-type">int</span> <span class="hljs-variable">capacity</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span> (capacity &lt; initialCapacity)<br>capacity &lt;&lt;= <span class="hljs-number">1</span>;<br><br><span class="hljs-comment">//求索引的计算</span><br> <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> hash &amp; (table.length - <span class="hljs-number">1</span>); <br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>LinkedHashMap 和 HashMap的区别在哪里？</p>
+<ul>
+<li>LinkedHashMap使用了双向链表来保持元素的插入顺序</li>
+<li>LinkedHashMap保证了元素的迭代和插入顺序一致</li>
+</ul>
+</li>
+<li><p>说说你理解的哈希算法 </p>
+<ul>
+<li>哈希算法是一种将数据映射到固定长度的哈希值或哈希码的算法。</li>
+<li>hash 是具有唯一性且不可逆的<ul>
+<li>唯一性是指相同的“对象”产生的 hash code 永远是一样的。</li>
+</ul>
+</li>
+<li>比较出名的 hash 算法有 MD5、SHA。</li>
+</ul>
+</li>
+<li><p>Entry 中的 hash 属性为什么不直接使用 key 的 hashCode()返回值呢？<br><img src="/../img/map%E4%B8%ADkey%E7%9A%84%E5%8F%98%E5%8C%96.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>为了提高hash code 值与 (table.length-1)的按位与完的结果，尽量的均匀分布。</li>
+<li>使用扰动函数，可以将原始的哈希值进行进一步的混合和扰动，以减少碰撞的概率，并使元素在哈希表中更均匀地分布。扰动函数一般会对原始的哈希值进行一系列的位运算、移位和异或等操作，以增加哈希值的随机性，从而减少碰撞的可能性。</li>
+<li>思路都是将 hashCode 值的高位二进制与低位二进制值进行了异或，然高位二进制参与到 index 的计算中。</li>
+<li>为什么要 hashCode 值的二进制的高位参与到 index 计算呢?<ul>
+<li>因为一个 HashMap 的 table 数组一般不会特别大，至少在不断扩容前那么table.length-1 的大部分高位都是 0.</li>
+<li>直接用 hashCode 和 table.length-1 进行&amp;运算的话，就会导致总是只有最低的几位是有效的。</li>
+<li>那么就算你的 hashCode()实现的再好也难以避免发生碰撞，</li>
+<li>这时让高位参与进来的意义就体现出来了。它对 hashcode 的低位添加随机性并且混合了高位的部分特征，显著减少了碰撞冲突的发生。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><ul>
+<li>Set的底层是使用Map实现的，其中Set的元素作为Map的Key，而Key所对应的Value是一个静态的Object对象，防止出现空指针。</li>
+<li>HashSet 的内部实现是一个 HashMap，TreeSet 的内部实现是一个<br>TreeMap，LinkedHashSet 的内部实现是一个 LinkedHashMap。</li>
 </ul>
 
                 
@@ -307,7 +367,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
   
   
 
@@ -327,8 +387,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>完全背包问题</div>
-      <div>http://example.com/2023/10/15/完全背包问题/</div>
+      <div>Java集合</div>
+      <div>http://example.com/2023/10/16/Java集合/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +400,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月15日</div>
+          <div>2023年10月16日</div>
         </div>
       
       
@@ -372,9 +432,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/16/Java%E9%9B%86%E5%90%88/" title="Java集合">
+                      <a href="/2023/10/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BA%94%E7%94%A8%E5%B1%82/" title="计算机网络-应用层">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java集合</span>
+                        <span class="hidden-mobile">计算机网络-应用层</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -382,8 +442,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/14/Java%E5%9F%BA%E7%A1%80/" title="Java基础">
-                        <span class="hidden-mobile">Java基础</span>
+                      <a href="/2023/10/15/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" title="完全背包问题">
+                        <span class="hidden-mobile">完全背包问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
