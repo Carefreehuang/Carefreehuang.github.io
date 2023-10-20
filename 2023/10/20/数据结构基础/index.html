@@ -16,23 +16,26 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是docker docker是一个用go语言实现的开源项目，可以让我们方便的创建和使用容器，docker将程序以及程序所需要的依赖打包进docker container。 image： Docker镜像是容器的模板，它包含了应用程序和其依赖项的快照。镜像是只读的，可用于创建运行中的容器实例。   container： Docker容器是一个轻量级的可执行单元，包括应用程序及其运行时环境、依赖">
+    <meta name="description" content="线性表数组链表栈和队列散列表树二叉搜索树（BST）概念 是二叉树 对于其每一棵树：左孩子 &lt; 根节点 &lt; 右孩子 没有value相等的节点  平衡二叉树（AVL）概念 是二叉树 高度平衡：AVL树中任何节点的两个子树的高度最大差别为1。  红黑树（R-B Tree）概念 红黑树（Red Black Tree） 是一种自平衡二叉查找树 为什么需要红黑树？ 平衡二叉树的优点就在于其查找，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker笔记">
-<meta property="og:url" content="http://example.com/2023/10/03/docker%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="数据结构基础">
+<meta property="og:url" content="http://example.com/2023/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="什么是docker docker是一个用go语言实现的开源项目，可以让我们方便的创建和使用容器，docker将程序以及程序所需要的依赖打包进docker container。 image： Docker镜像是容器的模板，它包含了应用程序和其依赖项的快照。镜像是只读的，可用于创建运行中的容器实例。   container： Docker容器是一个轻量级的可执行单元，包括应用程序及其运行时环境、依赖">
+<meta property="og:description" content="线性表数组链表栈和队列散列表树二叉搜索树（BST）概念 是二叉树 对于其每一棵树：左孩子 &lt; 根节点 &lt; 右孩子 没有value相等的节点  平衡二叉树（AVL）概念 是二叉树 高度平衡：AVL树中任何节点的两个子树的高度最大差别为1。  红黑树（R-B Tree）概念 红黑树（Red Black Tree） 是一种自平衡二叉查找树 为什么需要红黑树？ 平衡二叉树的优点就在于其查找，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/docker%E6%9E%B6%E6%9E%84.jpg">
-<meta property="article:published_time" content="2023-10-03T13:39:06.125Z">
-<meta property="article:modified_time" content="2023-10-20T03:55:02.972Z">
+<meta property="og:image" content="http://example.com/img/bst.png">
+<meta property="og:image" content="http://example.com/img/avl.png">
+<meta property="og:image" content="http://example.com/img/b-%E6%A0%91.png">
+<meta property="og:image" content="http://example.com/img/b+%E6%A0%91.png">
+<meta property="article:published_time" content="2023-10-20T04:29:45.179Z">
+<meta property="article:modified_time" content="2023-10-20T05:05:06.183Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/docker%E6%9E%B6%E6%9E%84.jpg">
+<meta name="twitter:image" content="http://example.com/img/bst.png">
   
   
   
-  <title>docker笔记 - Carefreehaung的个人博客</title>
+  <title>数据结构基础 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="docker笔记"></span>
+            <span id="subtitle" data-typed-text="数据结构基础"></span>
           
         </div>
 
@@ -209,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-03 21:39" pubdate>
-          2023年10月3日 晚上
+        <time datetime="2023-10-20 12:29" pubdate>
+          2023年10月20日 中午
         </time>
       </span>
     
@@ -221,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          657 字
         
       </span>
     
@@ -232,7 +235,7 @@
         
         
         
-          10 分钟
+          6 分钟
         
       </span>
     
@@ -269,62 +272,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">docker笔记</h1>
+            <h1 id="seo-header">数据结构基础</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
-<h3 id="什么是docker"><a href="#什么是docker" class="headerlink" title="什么是docker"></a>什么是docker</h3><ul>
-<li>docker是一个用go语言实现的开源项目，可以让我们方便的创建和使用容器，docker将程序以及程序所需要的依赖打包进docker container。</li>
-<li>image：<ul>
-<li>Docker镜像是容器的模板，它包含了应用程序和其依赖项的快照。镜像是只读的，可用于创建运行中的容器实例。</li>
+<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="二叉搜索树（BST）"><a href="#二叉搜索树（BST）" class="headerlink" title="二叉搜索树（BST）"></a>二叉搜索树（BST）</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>是二叉树</li>
+<li>对于其每一棵树：<strong>左孩子 &lt; 根节点 &lt; 右孩子</strong></li>
+<li>没有value相等的节点<br><img src="/../img/bst.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
-</li>
-<li>container：<ul>
-<li>Docker容器是一个轻量级的可执行单元，包括应用程序及其运行时环境、依赖项和配置。容器隔离了应用程序和底层操作系统，确保容器在不同环境中具有一致的行为。</li>
+<h3 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>是二叉树</li>
+<li>高度平衡：<strong>AVL树中任何节点的两个子树的高度最大差别为1。</strong><br><img src="/../img/avl.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
-</li>
-<li>dockerhub：<ul>
-<li>类似于github，是官方的一个镜像托管平台，类似的平台有很多，如阿里云镜像库等，这样的平台统称为：docker registry</li>
-<li>我们可以将自己的镜像上传到dockerhub，也可以直接从dockerhub拉取镜像</li>
-</ul>
-</li>
-<li>docker架构：<ul>
-<li>服务端：负责处理docker命令，管理镜像，容器等</li>
-<li>客户端：通过api向docker服务端发送指令</li>
-<li><img src="/./../img/docker%E6%9E%B6%E6%9E%84.jpg" srcset="/img/loading.gif" lazyload alt="docker架构"></li>
+<h3 id="红黑树（R-B-Tree）"><a href="#红黑树（R-B-Tree）" class="headerlink" title="红黑树（R-B Tree）"></a>红黑树（R-B Tree）</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><ul>
+<li>红黑树（Red Black Tree） 是一种自平衡二叉查找树</li>
+<li>为什么需要红黑树？<ul>
+<li>平衡二叉树的优点就在于其查找，插入，删除的平均以及最坏情况都是O(logn)，这是因为平衡二叉树的高度之差的最大值始终都是1，但是如果对平衡二叉树进行删除和插入，平衡二叉树的平衡状态可能被破坏，为了维持平衡，会对其进行旋转处理。此时引入了红黑树。</li>
+<li>红黑树时间复杂度差于平衡二叉树，但是红黑树的插入和删除操作更加便于控制，并且红黑树整体性能略优于平衡二叉树（因为其旋转情况少于平衡二叉树）</li>
 </ul>
 </li>
 </ul>
-<h3 id="为什么要用docker"><a href="#为什么要用docker" class="headerlink" title="为什么要用docker"></a>为什么要用docker</h3><ul>
-<li>docker可以解决依赖兼容问题<ul>
-<li>docker打包应用的依赖，配置等，并且进行了隔离</li>
-</ul>
-</li>
-<li>docker可以解决操作系统环境的差异<ul>
-<li>docker不仅打包应用的依赖，也打包了系统的库函数</li>
-<li>所以docker可以解决不同的系统上的环境问题，但是必须底层都是一个系统（如都是linux的Ubuntu，Centos等）</li>
-</ul>
-</li>
-<li>docker和虚拟机的区别：<ul>
-<li>Docker容器非常轻量级，与传统虚拟机相比，它们更快速启动、占用更少的系统资源，并允许在同一物理主机上运行更多的容器。</li>
-<li>Docker便于移植</li>
+<blockquote>
+<p>: 红黑树是一棵二叉搜索树，它在每个节点增加了一个存储位记录节点的颜色，可以是RED,也可以是BLACK；通过任意一条从根到叶子简单路径上颜色的约束，红黑树保证最长路径不超过最短路径的二倍，因而近似平衡。</p>
+</blockquote>
+<ul>
+<li>性质<ul>
+<li>每个节点颜色不是黑色，就是红色</li>
+<li>根节点是黑色的</li>
+<li>如果一个节点是红色，那么它的两个子节点就是黑色的(没有连续的红节点)</li>
+<li>对于每个节点，从该节点到其后代叶节点的简单路径上，均包含相同数目的黑色节点</li>
 </ul>
 </li>
 </ul>
-<h3 id="docker的使用"><a href="#docker的使用" class="headerlink" title="docker的使用"></a>docker的使用</h3><ul>
-<li>建议自行查看docker文档，或者询问chatgpt</li>
-<li>推荐一篇文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/187505981">什么是docker</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">//使用docker前记得先开启docker<br>//拉取指定版本的镜像<br>docker pull mysql:8.0.26<br><br>//运行镜像，根据不同的镜像有不同的参数<br>docker run --name hmmysql -e MYSQL_ROOT_PASSWORD = 123 -d mysql:8.0.26<br><br>//使用镜像<br>docker <span class="hljs-built_in">exec</span> -it hmmysql mysql -uroot -p<br><br>//windows中连接linux的mysql<br>//获取mysql容器的ip地址<br>docker inspect -f <span class="hljs-string">&quot;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&quot;</span> hmmysql<br></code></pre></td></tr></table></figure>
-<style>
-/* 只设置 markdown 字体 */
-.markdown-body {
-  font-family: KaiTi,"Microsoft YaHei",Georgia, sans, serif;
-  font-size: 20px;
-}
-</style></li>
+<h3 id="哈夫曼树（Huffman-Tree）"><a href="#哈夫曼树（Huffman-Tree）" class="headerlink" title="哈夫曼树（Huffman Tree）"></a>哈夫曼树（Huffman Tree）</h3><h3 id="前缀树（Trie-Tree）"><a href="#前缀树（Trie-Tree）" class="headerlink" title="前缀树（Trie Tree）"></a>前缀树（Trie Tree）</h3><h3 id="B-树和B-树"><a href="#B-树和B-树" class="headerlink" title="B-树和B+树"></a>B-树和B+树</h3><h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><ul>
+<li>多路搜索树，每个节点可以拥有多个子节点</li>
+<li>非叶子节点可以存储数据<br><img src="/../img/b-%E6%A0%91.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
-
+<h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><ul>
+<li>对B-树的优化</li>
+<li>非叶子节点不存储数据<br><img src="/../img/b+%E6%A0%91.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="图的基础知识"><a href="#图的基础知识" class="headerlink" title="图的基础知识"></a>图的基础知识</h3><h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3>
                 
               </div>
             
@@ -342,7 +333,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AC%94%E8%AE%B0/" class="category-chain-item">微服务笔记</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
   
   
 
@@ -362,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>docker笔记</div>
-      <div>http://example.com/2023/10/03/docker笔记/</div>
+      <div>数据结构基础</div>
+      <div>http://example.com/2023/10/20/数据结构基础/</div>
     </div>
     <div class="license-meta">
       
@@ -375,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月3日</div>
+          <div>2023年10月20日</div>
         </div>
       
       
@@ -407,18 +398,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="消息队列笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">消息队列笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/02/%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" title="修剪二叉搜索树">
-                        <span class="hidden-mobile">修剪二叉搜索树</span>
+                      <a href="/2023/10/20/MySQL%E7%AC%94%E8%AE%B0/" title="MySQL笔记">
+                        <span class="hidden-mobile">MySQL笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

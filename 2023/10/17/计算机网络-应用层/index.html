@@ -23,10 +23,16 @@
 <meta property="og:site_name" content="Carefreehaung的个人博客">
 <meta property="og:description" content="应用层概述 应用层的作用： 解决通过应用进程的交互来实现特定网络应用的问题 我们电脑或手机使用的应用软件都是在应用层实现。那么，当两个不同设备的应用需要通信的时候，应用就把应用数据传给下一层，也就是运输层。 应用层只需要专注于为用户提供应用功能，比如 HTTP、FTP、Telnet、DNS、SMTP等。    HTTPHTTP基本概念 HTTP是什么 HTTP是超文本传输协议：Hyper Tex">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E9%95%BF%E7%9F%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB.png">
+<meta property="og:image" content="http://example.com/img/%E7%AE%A1%E9%81%93%E7%BD%91%E7%BB%9C%E8%BF%90%E8%BE%93.png">
+<meta property="og:image" content="http://example.com/img/%E9%98%9F%E5%A4%B4%E5%A0%B5%E5%A1%9E.png">
+<meta property="og:image" content="http://example.com/img/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E6%96%B9%E6%A1%88.png">
+<meta property="og:image" content="http://example.com/img/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%AE%E5%BF%99%E5%A4%84%E7%90%86%E9%87%8D%E5%AE%9A%E5%90%91.png">
 <meta property="article:published_time" content="2023-10-17T12:00:07.300Z">
-<meta property="article:modified_time" content="2023-10-17T14:48:02.147Z">
+<meta property="article:modified_time" content="2023-10-18T08:55:04.665Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/%E9%95%BF%E7%9F%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB.png">
   
   
   
@@ -219,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          4.3k 字
         
       </span>
     
@@ -230,7 +236,7 @@
         
         
         
-          15 分钟
+          36 分钟
         
       </span>
     
@@ -338,10 +344,6 @@
 </ul>
 </li>
 </ul>
-<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><ul>
-<li>HTTPS（Hypertext Transfer Protocol Secure）是HTTP协议的安全版本，通过使用SSL（Secure Sockets Layer）或TLS（Transport Layer Security）协议对HTTP通信进行加密和身份验证。</li>
-<li>HTTPS通过加密算法对数据进行加密，确保数据在传输过程中的机密性和完整性，同时也提供了对服务器身份的验证。</li>
-</ul>
 <h4 id="GET与POST"><a href="#GET与POST" class="headerlink" title="GET与POST"></a>GET与POST</h4><ul>
 <li>GET和POST的区别<ul>
 <li>GET 的语义是从服务器获取指定的资源，这个资源可以是静态的文本、页面、图片视频等。</li>
@@ -367,12 +369,162 @@
 </li>
 <li><p>强制缓存</p>
 <ul>
+<li>浏览器发现本地资源A后，根据与服务器的检验规则，<strong>浏览器给本地资源A进行检验</strong><ul>
+<li>如果符合要求，浏览器直接返回该本地资源</li>
+<li>如果不符合要求，浏览器会向服务器发送资源请求</li>
+</ul>
+</li>
 <li>强缓存指的是只要浏览器判断缓存没有过期，则直接使用浏览器的本地缓存，决定是否使用缓存的主动性在于浏览器这边。</li>
+<li>实现：<ul>
+<li>利用HTTP响应头部(Response Header)字段实现<ul>
+<li><code>Cache-Control</code>：相对时间，优先级更高</li>
+<li><code>Expires</code>：绝对时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>流程：<ul>
+<li>当浏览器第一次请求访问服务器资源时，服务器会在返回这个资源的同时，在Response头部添加Cache-Control，Cache-Control中设置了过期时间</li>
+<li>当浏览器再次访问该资源时，会根据Cache-Control来计算该资源是否过期，如果没过期则直接使用，否则重新发起请求，服务器收到请求后，会更新Response头部的Cache-Control</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>协商缓存</p>
 <ul>
+<li>浏览器发现本地资源A后，浏览器给服务器发送一个请求，将资源A的相关信息告诉服务器，<strong>服务器对其进行检验</strong><ul>
+<li>如果符合要求，浏览器直接返回该本地资源</li>
+<li>如果不符合要求，服务器会直接返回一份新的资源A</li>
+</ul>
+</li>
 <li>通过服务端告知客户端是否可以使用缓存的方式被称为协商缓存。</li>
+<li>实现：<ul>
+<li>请求头部中的 <code>If-Modified-Since</code> 字段与响应头部中的 <code>Last-Modified</code> 字段实现<ul>
+<li>客户端会在请求头中使用<code>If-Modified-Since</code>，将之前获取资源时服务器返回的<code>Last-Modified</code>值发给服务器</li>
+<li>服务器收到请求后，会将客户端返回的<code>If-Modified-Since</code>里的值（即本地缓存的最新修改时间），与服务器的最新修改时间对比</li>
+<li>如果本地缓存仍然是最新的，那么返回304 Not Modified，客户端收到后则知道仍然可以使用缓存中的副本</li>
+<li>如果缓存不是最新，服务器会返回新的资源，并且响应头中包含新的<code>Last-Modified</code>值</li>
+</ul>
+</li>
+<li>请求头部中的 <code>If-None-Match</code> 字段与响应头部中的 <code>ETag</code> 字段<ul>
+<li>响应头部中 <code>Etag</code>：唯一标识响应资源；</li>
+<li>请求头部中的 <code>If-None-Match</code>：当资源过期时，浏览器发现响应头里有 Etag，则再次向服务器发起请求时，会将请求头 If-None-Match 值设置为 Etag 的值。服务器收到请求后进行比对，如果资源没有变化返回 304，如果资源变化了返回 200。</li>
+</ul>
+</li>
+<li>第一种实现方式是基于时间实现的，第二种实现方式是基于一个唯一标识实现的，相对来说后者可以更加准确地判断文件内容是否被修改，避免由于时间篡改导致的不可靠问题。</li>
+<li>所以Etag的优先级更高</li>
+</ul>
+</li>
+<li>Etag实现过程：<ul>
+<li>当浏览器第一次请求访问服务器资源时，服务器会在返回这个资源的同时，在Response 头部加上 ETag 唯一标识，这个唯一标识的值是根据当前请求的资源生成的</li>
+<li>当浏览器再次请求访问服务器中的该资源时，首先会先检查强制缓存是否过期：<ul>
+<li>如果没有过期，则直接使用本地缓存</li>
+<li>如果缓存过期了，会在 Request 头部加上 If-None-Match 字段（存的Etag值），该字段的值就是 ETag 唯一标识</li>
+</ul>
+</li>
+<li>服务器再次收到请求后，会根据请求中的 If-None-Match 值与当前请求的资源生成的唯一标识进行比较：<ul>
+<li>如果值相等，则返回 304 Not Modified，不会返回资源</li>
+<li>如果不相等，则返回 200 状态码和返回资源，并在 Response 头部加上新的 ETag 唯一标识；</li>
+</ul>
+</li>
+<li>如果浏览器收到 304 的请求响应状态码，则会从本地缓存中加载资源，否则更新资源。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>协商缓存这两个字段都需要配合强制缓存中 Cache-Control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求。</p>
+<ul>
+<li>再次发起相同请求</li>
+<li>本地检验缓存（强制缓存），成功直接使用，未成功则进行协商缓存</li>
+<li>协商缓存进行检验，成功直接使用，未成功则重新返回并更新相关检验的字段</li>
+</ul>
+</li>
+</ul>
+<h4 id="HTTP-1-1-特性"><a href="#HTTP-1-1-特性" class="headerlink" title="HTTP&#x2F;1.1 特性"></a>HTTP&#x2F;1.1 特性</h4><ul>
+<li>优点<ul>
+<li>简单：报文形式：header + body，头部信息：key + value</li>
+<li>灵活易扩展：各类请求方法并未固定死，可以自定义和扩展</li>
+<li>应用广泛和跨平台</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>无状态：<ul>
+<li>好处：服务器无需存储HTTP状态，节省资源</li>
+<li>坏处：服务器没有记忆能力，完成有关联性的操作很麻烦，例如在网上购物时，每一步操作都需要知道用户身份，服务器不存储状态，因此每一步操作都需要验证身份信息（cookie技术和session技术解决）。</li>
+</ul>
+</li>
+<li>明文传输：<ul>
+<li>好处：方便阅读，方便调试</li>
+<li>坏处：信息不安全</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>性能分析<ul>
+<li>长连接<ul>
+<li>在早期的HTTP&#x2F;1.0中，每次发起一个请求都需要新建一次TCP连接，并且串行请求（一个请求的响应完全返回后，才能发起下一个请求）。</li>
+<li>为了解决上述连接问题，HTTP&#x2F;1.1提出了<strong>长连接</strong>（持久连接）的通信方式，只要任意一端没有明确提出断开连接，则保持TCP连接状态。（如果超过一定时间没有数据交互，服务器也会主动断开该连接）<br><img src="/../img/%E9%95%BF%E7%9F%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li>管道网络运输（并不默认开启该功能）<ul>
+<li>HTTP&#x2F;1.1采用了长连接的方式，使得管道网络传输成为了可能，即可在同一个TCP连接里，客户端发起多个请求，只要第一个请求发出去，不必等待其回来，就可以发送第二个请求，由此减少整体响应时间。<br><img src="/../img/%E7%AE%A1%E9%81%93%E7%BD%91%E7%BB%9C%E8%BF%90%E8%BE%93.png" srcset="/img/loading.gif" lazyload> </li>
+<li>请求必须有序。</li>
+<li>如果服务端在处理某个请求队列头部的请求时，耗时较长，那么后续的请求处理都会被阻塞，这被成为队头堵塞。</li>
+</ul>
+</li>
+<li>队头阻塞<br><img src="/../img/%E9%98%9F%E5%A4%B4%E5%A0%B5%E5%A1%9E.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h4 id="HTTP-1-1-如何优化"><a href="#HTTP-1-1-如何优化" class="headerlink" title="HTTP&#x2F;1.1 如何优化"></a>HTTP&#x2F;1.1 如何优化</h4><ol>
+<li>避免发送HTTP请求<ol>
+<li>使用缓存技术</li>
+</ol>
+</li>
+<li>减少HTTP请求发送次数<ol>
+<li>减少重定型请求<ul>
+<li>重定向就是一个服务器资源从url1迁移到url2后，但是客户端并不知情，仍然请求url1，此时服务器会通过302响应码和Location头部告诉客户端资源已经迁移至url2。 </li>
+<li>解决方案：<ul>
+<li>重定向的工作交由代理服务器完成，就能减少 HTTP 请求次数了<br><strong>旧</strong><br><img src="/../img/%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AF%B7%E6%B1%82%E6%96%B9%E6%A1%88.png" srcset="/img/loading.gif" lazyload><br><strong>新</strong><br><img src="/../img/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%AE%E5%BF%99%E5%A4%84%E7%90%86%E9%87%8D%E5%AE%9A%E5%90%91.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>合并求情<ul>
+<li>把多个访问小文件的请求合并成一个大的请求，虽然传输的总资源还是一样，但是减少请求，也就意味着减少了重复发送的 HTTP 头部。 </li>
+<li>这样也带来了问题，当大资源中的某个小资源发生了变化，客户端必须重新下载整个大资源，带来了额外的网络消耗</li>
+</ul>
+</li>
+<li>延迟发送请求<ul>
+<li>按需获取，例如请求网页的时候，没必要获取全部资源，而是仅仅获取当前用户所需要的资源即可</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>减少HTTP响应数据的大小<ul>
+<li>对响应的资源进行压缩</li>
+</ul>
+</li>
+</ol>
+<h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><ul>
+<li>HTTPS（Hypertext Transfer Protocol Secure）是HTTP协议的安全版本，通过使用SSL（Secure Sockets Layer）或TLS（Transport Layer Security）协议对HTTP通信进行加密和身份验证。</li>
+</ul>
+<h4 id="HTTPS-解决了HTTP的哪些问题？"><a href="#HTTPS-解决了HTTP的哪些问题？" class="headerlink" title="HTTPS 解决了HTTP的哪些问题？"></a>HTTPS 解决了HTTP的哪些问题？</h4><ul>
+<li>实现了<ul>
+<li>信息加密：交互信息无法被窃取。</li>
+<li>校验机制：无法篡改通信内容，篡改了就不能正常显示。</li>
+<li>身份证书：证明淘宝是真的淘宝网。</li>
+</ul>
+</li>
+<li>实现方案：<ul>
+<li>混合加密的方式实现信息的机密性，解决了窃听的风险。</li>
+<li>摘要算法的方式来实现完整性，它能够为数据生成独一无二的「指纹」，指纹用于校验数据的完整性，解决了篡改的风险。</li>
+<li>将服务器公钥放入到数字证书中，解决了冒充的风险。</li>
+</ul>
+</li>
+<li>混合加密<ul>
+<li>对称加密</li>
+<li>非对称加密</li>
 </ul>
 </li>
 </ul>
@@ -458,6 +610,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/20/MySQL%E7%AC%94%E8%AE%B0/" title="MySQL笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
