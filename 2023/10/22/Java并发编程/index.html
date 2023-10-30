@@ -16,26 +16,25 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="线性表数组链表栈和队列散列表树二叉搜索树（BST）概念 是二叉树 对于其每一棵树：左孩子 &lt; 根节点 &lt; 右孩子 没有value相等的节点  平衡二叉树（AVL）概念 是二叉树 高度平衡：AVL树中任何节点的两个子树的高度最大差别为1。  红黑树（R-B Tree）概念 红黑树（Red Black Tree） 是一种自平衡二叉查找树 为什么需要红黑树？ 平衡二叉树的优点就在于其查找，">
+    <meta name="description" content="Monitor monitor叫做监视器或者管程，辅助实现synchronized锁每个java对象底层实现会有一个Mark Word的字段如果使用synchronized给对象a上锁之后，该对象a的 Mark Word中就会设置为一个Monitor对象的指针（monitor对象来自操作系统），然后monitor对象的owner字段就会绑定为该线程（即加锁的线程），然后如果其他线程需要对相同对象">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构基础">
-<meta property="og:url" content="http://example.com/2023/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:title" content="Java并发编程笔记">
+<meta property="og:url" content="http://example.com/2023/10/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="线性表数组链表栈和队列散列表树二叉搜索树（BST）概念 是二叉树 对于其每一棵树：左孩子 &lt; 根节点 &lt; 右孩子 没有value相等的节点  平衡二叉树（AVL）概念 是二叉树 高度平衡：AVL树中任何节点的两个子树的高度最大差别为1。  红黑树（R-B Tree）概念 红黑树（Red Black Tree） 是一种自平衡二叉查找树 为什么需要红黑树？ 平衡二叉树的优点就在于其查找，">
+<meta property="og:description" content="Monitor monitor叫做监视器或者管程，辅助实现synchronized锁每个java对象底层实现会有一个Mark Word的字段如果使用synchronized给对象a上锁之后，该对象a的 Mark Word中就会设置为一个Monitor对象的指针（monitor对象来自操作系统），然后monitor对象的owner字段就会绑定为该线程（即加锁的线程），然后如果其他线程需要对相同对象">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/bst.png">
-<meta property="og:image" content="http://example.com/img/avl.png">
-<meta property="og:image" content="http://example.com/img/b-%E6%A0%91.png">
-<meta property="og:image" content="http://example.com/img/b+%E6%A0%91.png">
-<meta property="article:published_time" content="2023-10-20T04:29:45.179Z">
-<meta property="article:modified_time" content="2023-10-20T05:05:06.183Z">
+<meta property="og:image" content="http://example.com/img/java%E5%AF%B9%E8%B1%A1%E5%A4%B4%E6%A0%BC%E5%BC%8F.png">
+<meta property="og:image" content="http://example.com/img/monitor%E5%AE%9E%E7%8E%B0%E9%94%81.png">
+<meta property="og:image" content="http://example.com/img/%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81.png">
+<meta property="article:published_time" content="2023-10-22T11:07:58.754Z">
+<meta property="article:modified_time" content="2023-10-30T04:22:57.137Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/bst.png">
+<meta name="twitter:image" content="http://example.com/img/java%E5%AF%B9%E8%B1%A1%E5%A4%B4%E6%A0%BC%E5%BC%8F.png">
   
   
   
-  <title>数据结构基础 - Carefreehaung的个人博客</title>
+  <title>Java并发编程笔记 - Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构基础"></span>
+            <span id="subtitle" data-typed-text="Java并发编程笔记"></span>
           
         </div>
 
@@ -212,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-20 12:29" pubdate>
-          2023年10月20日 中午
+        <time datetime="2023-10-22 19:07" pubdate>
+          2023年10月22日 晚上
         </time>
       </span>
     
@@ -224,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          657 字
+          2.7k 字
         
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          6 分钟
+          23 分钟
         
       </span>
     
@@ -272,50 +271,155 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构基础</h1>
+            <h1 id="seo-header">Java并发编程笔记</h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
-<h2 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h2><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h3><h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="二叉搜索树（BST）"><a href="#二叉搜索树（BST）" class="headerlink" title="二叉搜索树（BST）"></a>二叉搜索树（BST）</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><ul>
-<li>是二叉树</li>
-<li>对于其每一棵树：<strong>左孩子 &lt; 根节点 &lt; 右孩子</strong></li>
-<li>没有value相等的节点<br><img src="/../img/bst.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<h3 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><ul>
-<li>是二叉树</li>
-<li>高度平衡：<strong>AVL树中任何节点的两个子树的高度最大差别为1。</strong><br><img src="/../img/avl.png" srcset="/img/loading.gif" lazyload></li>
-</ul>
-<h3 id="红黑树（R-B-Tree）"><a href="#红黑树（R-B-Tree）" class="headerlink" title="红黑树（R-B Tree）"></a>红黑树（R-B Tree）</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><ul>
-<li>红黑树（Red Black Tree） 是一种自平衡二叉查找树</li>
-<li>为什么需要红黑树？<ul>
-<li>平衡二叉树的优点就在于其查找，插入，删除的平均以及最坏情况都是O(logn)，这是因为平衡二叉树的高度之差的最大值始终都是1，但是如果对平衡二叉树进行删除和插入，平衡二叉树的平衡状态可能被破坏，为了维持平衡，会对其进行旋转处理。此时引入了红黑树。</li>
-<li>红黑树时间复杂度差于平衡二叉树，但是红黑树的插入和删除操作更加便于控制，并且红黑树整体性能略优于平衡二叉树（因为其旋转情况少于平衡二叉树）</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>: 红黑树是一棵二叉搜索树，它在每个节点增加了一个存储位记录节点的颜色，可以是RED,也可以是BLACK；通过任意一条从根到叶子简单路径上颜色的约束，红黑树保证最长路径不超过最短路径的二倍，因而近似平衡。</p>
+<h3 id="Monitor"><a href="#Monitor" class="headerlink" title="Monitor"></a>Monitor</h3><blockquote>
+<p>monitor叫做监视器或者管程，辅助实现synchronized锁<br><img src="/../img/java%E5%AF%B9%E8%B1%A1%E5%A4%B4%E6%A0%BC%E5%BC%8F.png" srcset="/img/loading.gif" lazyload><br>每个java对象底层实现会有一个Mark Word的字段<br>如果使用synchronized给对象a上锁之后，该对象a的 Mark Word中就会设置为一个Monitor对象的指针（monitor对象来自操作系统），然后monitor对象的owner字段就会绑定为该线程（即加锁的线程），然后如果其他线程需要对相同对象（对象a）加锁，则会对对象a绑定的monitor对象的owner字段进行判断，为空则直接绑定该线程（即没有加锁，或者锁被释放），不为空则添加到EntryList链表之中，进行排队，然后当owner为空后（原来加锁的对象释放了锁），再根据调度法则，选取一个排队对象设置为owner。<br><img src="/../img/monitor%E5%AE%9E%E7%8E%B0%E9%94%81.png" srcset="/img/loading.gif" lazyload></p>
 </blockquote>
 <ul>
-<li>性质<ul>
-<li>每个节点颜色不是黑色，就是红色</li>
-<li>根节点是黑色的</li>
-<li>如果一个节点是红色，那么它的两个子节点就是黑色的(没有连续的红节点)</li>
-<li>对于每个节点，从该节点到其后代叶节点的简单路径上，均包含相同数目的黑色节点</li>
+<li>轻量级锁的哈希码存在线程栈帧之中，解锁还原</li>
+<li>重量级锁的哈希码存在Monitor之中，解锁还原</li>
+<li>偏向锁和轻量级锁都是线程错开的，不会有线程竞争的情况，如果出现了竞争的情况，那么会膨胀为重量级锁</li>
+</ul>
+<h4 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h4><p>就是monitor，使用底层的互斥，成本非常的高</p>
+<ul>
+<li>自旋<ul>
+<li>内核态与用户态的切换上不容易优化。但通过自旋锁，可以减少线程阻塞造成的线程切换（包括挂起线程和恢复线程）。</li>
+<li>具体流程：<ul>
+<li>线程竞争锁失败，应该进行自我阻塞，但是自旋机制，减少状态的切换，减少开销</li>
+<li>不阻塞自己，自旋（循环等待，需要消耗cpu，但比状态切换好）</li>
+<li>自旋的同时一直请求锁</li>
+<li>自旋结束前获取到了，则获取到了，没获取到则阻塞自己。</li>
 </ul>
 </li>
 </ul>
-<h3 id="哈夫曼树（Huffman-Tree）"><a href="#哈夫曼树（Huffman-Tree）" class="headerlink" title="哈夫曼树（Huffman Tree）"></a>哈夫曼树（Huffman Tree）</h3><h3 id="前缀树（Trie-Tree）"><a href="#前缀树（Trie-Tree）" class="headerlink" title="前缀树（Trie Tree）"></a>前缀树（Trie Tree）</h3><h3 id="B-树和B-树"><a href="#B-树和B-树" class="headerlink" title="B-树和B+树"></a>B-树和B+树</h3><h4 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h4><ul>
-<li>多路搜索树，每个节点可以拥有多个子节点</li>
-<li>非叶子节点可以存储数据<br><img src="/../img/b-%E6%A0%91.png" srcset="/img/loading.gif" lazyload></li>
+</li>
 </ul>
-<h4 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h4><ul>
-<li>对B-树的优化</li>
-<li>非叶子节点不存储数据<br><img src="/../img/b+%E6%A0%91.png" srcset="/img/loading.gif" lazyload></li>
+<h4 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h4><p><img src="/../img/%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81.png" srcset="/img/loading.gif" lazyload></p>
+<p>轻量级锁的目标是，减少无实际竞争情况下，使用重量级锁产生的性能消耗。</p>
+<ul>
+<li>特点：<ul>
+<li>轻量级锁通过在对象头部的标志位和指针记录锁的状态和持有者线程的标识，尝试使用CAS（compare and swap）操作来获取锁。如果获取失败，线程会进行自旋等待，以避免阻塞和线程切换的开销。</li>
+<li>可重入：如果是同一个线程来获取同一个对象，那么会添加一个LockRecord作为重入计数</li>
+<li>如果被竞争了，那么膨胀为重量级锁</li>
 </ul>
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="图的基础知识"><a href="#图的基础知识" class="headerlink" title="图的基础知识"></a>图的基础知识</h3><h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3>
+</li>
+</ul>
+<h4 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h4><ul>
+<li>特点：<ul>
+<li>使用对象头的markword来记录获取该对象的线程id</li>
+</ul>
+</li>
+<li>应用场景：<ul>
+<li>适用于无竞争的情况</li>
+</ul>
+</li>
+<li>多个线程交错访问同一个加锁对象，那么会有如下变化<ul>
+<li>首先创建对象会进行偏向锁的标记</li>
+<li>第一个线程访问并获取锁时，会加偏向锁（让mark word标记该线程id）</li>
+<li>另一个线程又访问该对象并获取锁时（之前的锁已经释放），会升级为轻量锁</li>
+<li>释放轻量锁后，会变为无锁状态，并且取消偏向状态</li>
+</ul>
+</li>
+<li>如果重新偏向的次数太多（20）的话，那么会直接批量偏向新线程，而不会升级为轻量级锁。</li>
+<li>如果重新偏向更多（40），那么直接撤销</li>
+<li>偏向锁的失效：<ul>
+<li>哈希码只有在使用的时候才会产生比如 <code>d.hashCode()</code> ，并且存储在对象头的mark word中，如果没有产生哈希码，那么默认为0，在使用偏向锁的时候，会使用这些位（存储哈希码的位）来存储线程id。所以一旦使用哈希码，那么偏向锁会失效。</li>
+</ul>
+</li>
+</ul>
+<h3 id="wait-notify"><a href="#wait-notify" class="headerlink" title="wait notify"></a>wait notify</h3><ul>
+<li><p>wait：释放对象的锁，让线程进入等待队列中进行等待</p>
+</li>
+<li><p>notify：挑选一个等待队列中的线程进行唤醒（唤醒并不代表运行，还要看是否有运行条件等）</p>
+</li>
+<li><p>notifyAll：唤醒等待队列中的所有线程 </p>
+</li>
+<li><p>关于唤醒和notifyAll：</p>
+<ul>
+<li>唤醒不一定运行，唤醒的所有线程得按照自己的资源条件和调度策略再竞争，让自己运行，没有竞争过的就加入阻塞对列</li>
+</ul>
+</li>
+</ul>
+<h3 id="park-unpark"><a href="#park-unpark" class="headerlink" title="park unpark"></a>park unpark</h3><ul>
+<li><p>park：暂停当前线程</p>
+</li>
+<li><p>unpark：恢复某个线程</p>
+</li>
+<li><p>理解：</p>
+<ul>
+<li>类似于信号量</li>
+<li>park 可以类比于要吃东西然后前进，没有东西则暂停等待</li>
+<li>unpark 可以类比于放置一个东西</li>
+</ul>
+</li>
+<li><p>与wait notify对比：</p>
+<ul>
+<li>wait，notify 和 notifyAll 必须配合 Object Monitor 一起使用，而 park，unpark 不必，对象,wait()，线程.await();</li>
+<li>park &amp; unpark 是以线程为单位来【阻塞】和【唤醒】线程，而 notify 只能随机唤醒一个等待线程，notifyAll 是唤醒所有等待线程，就不那么【精确】</li>
+<li>park &amp; unpark 可以先 unpark，而 wait &amp; notify 不能先 notify</li>
+</ul>
+</li>
+</ul>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><p>基本语法：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取锁</span><br>reentrantLock.lock();<br><span class="hljs-keyword">try</span> &#123;<br><span class="hljs-comment">// 临界区</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br><span class="hljs-comment">// 释放锁</span><br>reentrantLock.unlock();<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<ul>
+<li>特点：<ul>
+<li>可重入<ul>
+<li>指同一个线程如果首次获得了这把锁，那么因为它是这把锁的拥有者，因此有权利再次获取这把锁</li>
+</ul>
+</li>
+<li>支持多个条件变量<ul>
+<li>在synchronized中，wait后都是统一加入到同一个等待队列之中，notify随机唤醒一个，notifyAll唤醒所有，可能导致虚假唤醒（即唤醒了根本不需要唤醒的线程）</li>
+<li>而在ReentrantLock中，可以设置条件变量，await之后将不同的线程加入到不同的阻塞队列之中，到时候再对相应的等待队列进行唤醒。</li>
+</ul>
+</li>
+<li>可中断</li>
+<li>可以设置超时时间</li>
+<li>可以设置为公平锁</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java内存模型-JMM"><a href="#Java内存模型-JMM" class="headerlink" title="Java内存模型 JMM"></a>Java内存模型 JMM</h3><blockquote>
+<p>JMM 即java memory model，定义了主存，工作内存等抽象概念，底层对应着CPU寄存器，缓存，硬件内存，CPU指令优化等</p>
+</blockquote>
+<p>JMM体现在以下几个方面：</p>
+<ul>
+<li>原子性：保证指令集不会受到线程上下文切换的影响</li>
+<li>可见性：保证指令不会受到CPU缓存的影响</li>
+<li>有序性：保证指令不会受到CPU指令重排的影响</li>
+</ul>
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><ul>
+<li>什么是可见性问题：<ul>
+<li>即一个线程对某共享变量修改后，另一个线程无法看到最新的变量值的情况</li>
+</ul>
+</li>
+<li>为什么会产生可见性问题：<ul>
+<li>因为不同线程之间的通信需要通过主存传递数据，当一个线程修改了共享变量，这个修改可能会存储在线程的本地缓存中，而不会立即同步到主内存中，因此其他线程可能无法立刻看到这个修改。</li>
+<li>也有一说是线程频繁读取主存中的值，JIT（just in time compiler）会直接将该值存入线程工作区（相当于线程的缓存），用来提高速度，所以此时即使其他线程修改了主内存中的值，此线程仍然读取自己的缓存，缓存没有得到即使更新。</li>
+</ul>
+</li>
+<li>解决办法：<ul>
+<li>volatile：它可以用来修饰成员变量和静态成员变量，线程对于被volatile修饰的变量的操作总是直接操作主存，实现最新的修改和查询。</li>
+</ul>
+</li>
+</ul>
+<h4 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h4><ul>
+<li>为什么会有有序性问题？<ul>
+<li>在不改变程序的语义的前提下，可能会对指令进行重排序以提高性能。</li>
+</ul>
+</li>
+<li>如何解决：<ul>
+<li><code>volatile</code>变量的读取和写入操作会引入内存屏障，阻止编译器和处理器对操作进行重排序。这确保了<code>volatile</code>变量的操作顺序不会被重排序。</li>
+<li>进行写时，会确保写之前的代码安排在写之前</li>
+<li>进行读时，会确保读之后的代码安排在读之后</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
@@ -333,7 +437,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
+  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="category-chain-item">Java并发编程</a>
   
   
 
@@ -353,8 +457,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构基础</div>
-      <div>http://example.com/2023/10/20/数据结构基础/</div>
+      <div>Java并发编程笔记</div>
+      <div>http://example.com/2023/10/22/Java并发编程/</div>
     </div>
     <div class="license-meta">
       
@@ -366,7 +470,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月20日</div>
+          <div>2023年10月22日</div>
         </div>
       
       
@@ -398,9 +502,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程笔记">
+                      <a href="/2023/10/25/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="01背包问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java并发编程笔记</span>
+                        <span class="hidden-mobile">01背包问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -408,8 +512,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/20/MySQL%E7%AC%94%E8%AE%B0/" title="MySQL笔记">
-                        <span class="hidden-mobile">MySQL笔记</span>
+                      <a href="/2023/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" title="数据结构基础">
+                        <span class="hidden-mobile">数据结构基础</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -224,6 +224,114 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
+        <a href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" target="_self">
+          消息队列笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" target="_self">
+        <div>
+          什么是MQ 消息队列（Message Queue）是一种用于在应用程序之间传输异步消息的通信模式。它是一种在分布式系统中广泛应用的通信机制，用于解耦应用程序的组件，实现松耦合和可伸缩性。  同步和异步通讯  同步通讯：类似打电话，实时响应，但通讯期间无法干其他事情 缺点： 耦合度高，不便于修改 资源浪费，调用链中的每个服务都需要等待相关前置服务的响应，浪费资源 级联问题：一个服务出现问题，相关调
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-03 22:18" pubdate>
+              2023-10-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AC%94%E8%AE%B0/" class="category-chain-item">微服务笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/03/docker%E7%AC%94%E8%AE%B0/" target="_self">
+          docker笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/03/docker%E7%AC%94%E8%AE%B0/" target="_self">
+        <div>
+          什么是docker docker是一个用go语言实现的开源项目，可以让我们方便的创建和使用容器，docker将程序以及程序所需要的依赖打包进docker container。 image： Docker镜像是容器的模板，它包含了应用程序和其依赖项的快照。镜像是只读的，可用于创建运行中的容器实例。   container： Docker容器是一个轻量级的可执行单元，包括应用程序及其运行时环境、依赖
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-03 21:39" pubdate>
+              2023-10-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AC%94%E8%AE%B0/" class="category-chain-item">微服务笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
         <a href="/2023/10/02/%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
           修剪二叉搜索树
         </a>
@@ -641,114 +749,6 @@
       <span class="category-chain">
         
   <a href="/categories/Redis%E7%AC%94%E8%AE%B0/" class="category-chain-item">Redis笔记</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/28/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E4%BC%98%E6%83%A0%E5%88%B8%E7%A7%92%E6%9D%80/" target="_self">
-          黑马点评-优惠券秒杀
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/28/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84-%E4%BC%98%E6%83%A0%E5%88%B8%E7%A7%92%E6%9D%80/" target="_self">
-        <div>
-          基本实现全局id 原因： 抢购商品时，订单保存到订单表之中，如果将订单id设置为数据库的自增id的话，规律性太明显，并且单表数据量有限制。   实现： 符号位 + 时间戳 + 序列号 1234567891011121314151617181920  @Componentpublic class RedisIdWorker &#123;    @Resource    private String
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-28 08:40" pubdate>
-              2023-09-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Redis%E7%AC%94%E8%AE%B0/" class="category-chain-item">Redis笔记</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2023/09/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" target="_self">
-          二叉树的迭代遍历
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/09/28/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86/" target="_self">
-        <div>
-          在力扣中有许多层序遍历相关的题目，但基本都是以下面这题为基础进行修改的，所以记录一下，加强理解。  Problem: 102. 二叉树的层序遍历    [TOC] 解题思路 类似于图的广度优先遍历，利用队列的性质，每次先入队一个节点，然后对其进行出队，出队后判断其是否还有子节点，有子节点则再次入队，并且用for循环进行当前层级的遍历，因为当前每次进行节点出队前的deque的size就是当前层次的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-09-28 08:33" pubdate>
-              2023-09-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
   
   
 
