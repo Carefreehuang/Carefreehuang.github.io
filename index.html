@@ -292,7 +292,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2023/10/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" target="_self">
         <div>
-          Monitor monitor叫做监视器或者管程，辅助实现synchronized锁每个java对象底层实现会有一个Mark Word的字段如果使用synchronized给对象a上锁之后，该对象a的 Mark Word中就会设置为一个Monitor对象的指针（monitor对象来自操作系统），然后monitor对象的owner字段就会绑定为该线程（即加锁的线程），然后如果其他线程需要对相同对象
+          进程和线程进程 进程是程序的一次执行过程，是系统运行程序的基本单位。 在java中，我们启动main函数就是启动了一个jvm进程，而main函数就是其中的一个线程  线程 线程是比进程更小的一个执行单位，一个进程在执行的过程中可以产生多个线程。 多个线程共享进程之间的堆和方法区资源，但是每个线程有自己的程序计数器、虚拟机栈、本地方法栈。所以在线程中切换时负担要小于进程，因此，线程又叫做轻量级进程
         </div>
       </a>
 
@@ -512,60 +512,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2023/10/16/Java%E9%9B%86%E5%90%88/" target="_self">
-          Java集合
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/10/16/Java%E9%9B%86%E5%90%88/" target="_self">
-        <div>
-          ListArrayList 创建过程：1234567891011//jdk 1.7非靠后版本：底部直接new Object[10];//jdk 1.8 :底部直接 new &#123;&#125;;List&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();// jdk 1.7 直接Object[0] = 1;// jdk 1.8 new
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-10-16 20:44" pubdate>
-              2023-10-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Java/" class="category-chain-item">Java</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
         <a href="/2023/10/15/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
           完全背包问题
         </a>
@@ -634,7 +580,7 @@
       
       <a class="index-excerpt " href="/2023/10/14/Java%E5%9F%BA%E7%A1%80/" target="_self">
         <div>
-          基本数据类型 Java中有8种基本数据类型 6种数字类型 4种整数类型：byte、short、int、long 2种浮点型：float、double   1种字符类型 char 妈的，原来了string不是基本数据类型，java中根本没有string这个关键词   一种布尔类型 boolean     一个字节(byte)对应八个二进制位(bit) 基本类型和包装类型的区别 用途：包装类可以定义
+          基础概念java语言的特点有哪些？ 简单易学，不像C++，有那么多复杂和难以理解的特性  跨平台性，一次编译，到处运行  依靠JVM，java代码编译成字节码后，可以在任何支持jvm的平台上运行 jvm起了一个翻译的作用   高性能，采用了即使编译技术（just-in-Time Compilation）将字节码转换为本地机器码，提高了程序的执行效率。  安全性，提供了内存管理机制以及异常处理机制
         </div>
       </a>
 
@@ -752,6 +698,66 @@
       <span class="category-chain">
         
   <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2023/10/13/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          <img src="/img/leetcode.png" srcset="/img/loading.gif" lazyload alt="01背包问题">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2023/10/13/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+          01背包问题
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2023/10/13/01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          什么是01背包问题呢？就是每个物品最多只能使用1次，故为01  思路 动规五部曲 确定dp数组以及下标的含义 确定递推公式 dp数组如何初始化 确定遍历顺序 举例实验    具体实现 二维实现 二维dp数组:dp[i][j]，其中i代表 0-i的物品中选取，j代表此时的最大容量，dp[i][j]则代表此情况下包的最大价值 递推公式：要是能放下，则 dp[i][j] = max(dp[i-1][
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-10-13 11:50" pubdate>
+              2023-10-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="category-chain-item">数据结构与算法</a>
   
   
 

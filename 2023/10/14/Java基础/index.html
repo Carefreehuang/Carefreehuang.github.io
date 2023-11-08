@@ -16,16 +16,16 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基本数据类型 Java中有8种基本数据类型 6种数字类型 4种整数类型：byte、short、int、long 2种浮点型：float、double   1种字符类型 char 妈的，原来了string不是基本数据类型，java中根本没有string这个关键词   一种布尔类型 boolean     一个字节(byte)对应八个二进制位(bit) 基本类型和包装类型的区别 用途：包装类可以定义">
+    <meta name="description" content="基础概念java语言的特点有哪些？ 简单易学，不像C++，有那么多复杂和难以理解的特性  跨平台性，一次编译，到处运行  依靠JVM，java代码编译成字节码后，可以在任何支持jvm的平台上运行 jvm起了一个翻译的作用   高性能，采用了即使编译技术（just-in-Time Compilation）将字节码转换为本地机器码，提高了程序的执行效率。  安全性，提供了内存管理机制以及异常处理机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础">
 <meta property="og:url" content="http://example.com/2023/10/14/Java%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="基本数据类型 Java中有8种基本数据类型 6种数字类型 4种整数类型：byte、short、int、long 2种浮点型：float、double   1种字符类型 char 妈的，原来了string不是基本数据类型，java中根本没有string这个关键词   一种布尔类型 boolean     一个字节(byte)对应八个二进制位(bit) 基本类型和包装类型的区别 用途：包装类可以定义">
+<meta property="og:description" content="基础概念java语言的特点有哪些？ 简单易学，不像C++，有那么多复杂和难以理解的特性  跨平台性，一次编译，到处运行  依靠JVM，java代码编译成字节码后，可以在任何支持jvm的平台上运行 jvm起了一个翻译的作用   高性能，采用了即使编译技术（just-in-Time Compilation）将字节码转换为本地机器码，提高了程序的执行效率。  安全性，提供了内存管理机制以及异常处理机制">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/java.png">
 <meta property="article:published_time" content="2023-10-14T09:52:51.145Z">
-<meta property="article:modified_time" content="2023-10-20T15:36:23.591Z">
+<meta property="article:modified_time" content="2023-11-03T14:57:46.655Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/java.png">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k 字
+          17k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          122 分钟
+          141 分钟
         
       </span>
     
@@ -274,7 +274,53 @@
             
               <div class="markdown-body">
                 
-                <hr>
+                <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h4 id="java语言的特点有哪些？"><a href="#java语言的特点有哪些？" class="headerlink" title="java语言的特点有哪些？"></a>java语言的特点有哪些？</h4><ul>
+<li><p>简单易学，不像C++，有那么多复杂和难以理解的特性</p>
+</li>
+<li><p>跨平台性，一次编译，到处运行</p>
+<ul>
+<li>依靠JVM，java代码编译成字节码后，可以在任何支持jvm的平台上运行</li>
+<li>jvm起了一个翻译的作用</li>
+</ul>
+</li>
+<li><p>高性能，采用了即使编译技术（just-in-Time Compilation）将字节码转换为本地机器码，提高了程序的执行效率。</p>
+</li>
+<li><p>安全性，提供了内存管理机制以及异常处理机制</p>
+</li>
+<li><p>支持多线程</p>
+</li>
+<li><p>有着丰富的类库，有着庞大的开源生态系统，有大量的优秀的开源框架和工具，可以提高开发效率</p>
+</li>
+<li><p>是一种面向对象的语言</p>
+<ul>
+<li>面向对象的三个重要特点：<ul>
+<li>封装：将数据和方法封装在一个对象之中，在对象外只提供有限的接口来访问对象中的数据，隐藏了实现细节，提高了代码的安全性和可维护性</li>
+<li>继承：通过定义一个新的类来继承已有的类的属性和方法，继承可以实现代码的重用和扩展</li>
+<li>多态：一个对象可以看作是多个实例对象，即父引用可以指向子类的实例，然后调用父类的方法会执行具体子类的方法（如果重写了或者重载了）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="JVM-vs-JDK-vs-JRE"><a href="#JVM-vs-JDK-vs-JRE" class="headerlink" title="JVM vs JDK vs JRE"></a>JVM vs JDK vs JRE</h4><ul>
+<li><p>JVM是java虚拟机，jvm根据不同的系统有其特定的实现，所以在java代码翻译为字节码后，将字节码交给jvm，jvm再根据自己的特定实现来翻译字节码，即翻译成当前系统可以运行的版本，因此实现了跨平台，一次编译，到处运行，<strong>JVM并不止一种，只要满足JVM规范，每个人都可以开发自己的专属JVM</strong></p>
+</li>
+<li><p>JDK是Java develope kit，包含了JRE，以及一些开发相关工具等</p>
+</li>
+<li><p>JRE是Java runtime enviroment，即java运行时环境，是<strong>运行以编译的java程序的所有内容集合</strong>，主要有java虚拟机，java基础类库</p>
+<p><img src="D:\Blog\source\img\JDK,JRE,JVM.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h4 id="什么是字节码，采用字节码的好处是什么？"><a href="#什么是字节码，采用字节码的好处是什么？" class="headerlink" title="什么是字节码，采用字节码的好处是什么？"></a>什么是字节码，采用字节码的好处是什么？</h4><p>在java中，JVM可以理解的 代码 就叫做字节码，.class结尾</p>
+<p>通过字节码，实现了跨平台，安全性（字节码执行前会由jvm进行验证）</p>
+<p>性能优化：<strong>JVM在解释执行字节码的同时，还会使用即时编译器（JIT）将热点代码（被频繁执行的代码）编译成本地机器码并进行保存（类似于缓存），下次直接使用，以提高执行效率（本地机器码运行效率高于java解释器）</strong>。即时编译器能够根据平台特性进行优化，从而获得更好的性能。</p>
+<p>所以又说<strong>java是编译和解释共存的语言</strong></p>
+<p><img src="D:\Blog\source\img\java程序运行过程.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Java和C-的区别"><a href="#Java和C-的区别" class="headerlink" title="Java和C++的区别"></a>Java和C++的区别</h4><ul>
+<li>java不提供指针直接访问内存，更安全</li>
+<li>java的类只能单继承</li>
+<li>java有自动内存管理垃圾回收机制</li>
+</ul>
 <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><ul>
 <li>Java中有8种基本数据类型<ul>
 <li>6种数字类型<ul>
@@ -321,6 +367,11 @@
 </ul>
 </li>
 <li>如果频繁拆装箱的话，也会严重影响系统的性能。我们应该尽量避免不必要的拆装箱操作。</li>
+<li><strong>装箱拆箱的作用</strong>：<ul>
+<li>方便基本数据类型和对象之间的转换，如List，Map等只能存储对象，通过装箱，就能方便的将基本数据类型进行存储。</li>
+<li>如果全用包装类型，会浪费空间</li>
+</ul>
+</li>
 </ul>
 <h4 id="浮点数精度丢失问题"><a href="#浮点数精度丢失问题" class="headerlink" title="浮点数精度丢失问题"></a>浮点数精度丢失问题</h4><ul>
 <li>为什么会产生？<ul>
@@ -341,7 +392,7 @@
 </ul>
 </li>
 <li><strong>存储方式</strong>：<ul>
-<li>如果成员变量使用<code>static</code>修饰，那么成员变量属于类，和实例一起存在堆之中，如果没有<code>static</code>修饰，那么是局部变量，存在栈之中</li>
+<li>如果成员变量使用<code>static</code>修饰，那么成员变量属于类，和实例一起存在堆之中</li>
 </ul>
 </li>
 <li>生存时间：<ul>
@@ -408,7 +459,7 @@
 <li>方法名、参数列表必须相同，子类方法返回值类型应比父类方法返回值类型更小或相等，抛出的异常范围小于等于父类，访问修饰符范围大于等于父类。</li>
 <li>如果父类方法访问修饰符为 private&#x2F;final&#x2F;static 则子类就不能重写该方法，但是被 static 修饰的方法能够被再次声明。</li>
 <li>构造方法无法被重写</li>
-<li><strong>重写就是子类堆父类的重新改造，外部样子不能变，内部逻辑可以变</strong></li>
+<li><strong>重写就是子类对父类的重新改造，外部样子不能变，内部逻辑可以变</strong></li>
 </ul>
 </li>
 </ul>
@@ -439,7 +490,7 @@
 <li>没有声明构造方法，也可以正确执行<ul>
 <li>因为一个类即使没有声明构造方法也会有默认的不带参数的构造方法。</li>
 <li>如果我们自己添加了类的构造方法（无论是否有参），Java 就不会添加默认的无参数的构造方法了。</li>
-<li>创建对象时的()就是在调用无参的构造方法</li>
+<li>创建对象时的<code>()</code>就是在调用无参的构造方法</li>
 </ul>
 </li>
 <li>特点：<ul>
@@ -452,7 +503,7 @@
 </ul>
 <h4 id="面向对象三大特征"><a href="#面向对象三大特征" class="headerlink" title="面向对象三大特征"></a>面向对象三大特征</h4><ul>
 <li>封装<ul>
-<li>不允许外部直接访问类的内部，而需要通过类所定义的方法来获取内部的数据</li>
+<li>将数据和方法封装在一个对象之中，在对象外只提供有限的接口来访问对象中的数据，隐藏了实现细节，提高了代码的安全性和可维护性</li>
 </ul>
 </li>
 <li>继承（extends）<ul>
@@ -460,10 +511,11 @@
 <li>子类拥有父类对象所有的属性和方法（包括私有属性和私有方法），但是父类中的私有属性和方法子类是无法访问，只是拥有</li>
 <li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展。</li>
 <li>子类可以用自己的方式实现父类的方法。</li>
+<li>提高了代码的复用性和扩展性</li>
 </ul>
 </li>
 <li>多态<ul>
-<li>表示一个对象具有多种的状态，具体表现为父类的引用指向子类的实例</li>
+<li>表示一个对象具有多种的状态，具体表现为父类的引用指向子类的实例，即父类可以是子类</li>
 <li>对象类型和引用类型之间具有继承（类）&#x2F;实现（接口）的关系</li>
 <li>引用类型变量发出的方法调用的到底是哪个类中的方法，必须在程序运行期间才能确定</li>
 <li>多态不能调用“只在子类存在但在父类不存在”的方法</li>
@@ -481,7 +533,7 @@
 <li>区别<ul>
 <li>接口主要用于对类的行为进行约束，你实现了某个接口就具有了对应的行为。抽象类主要用于代码复用，强调的是所属关系。</li>
 <li>一个类只能继承一个类，但是可以实现多个接口。</li>
-<li>接口中的成员变量只能是 public static final 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 default，可在子类中被重新定义，也可被重新赋值。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象类 Animal</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;<br>    String name;<br>    <span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>;<br>    <span class="hljs-comment">// 非抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sleep</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(name + <span class="hljs-string">&quot; is sleeping.&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 接口 Swimmable</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Swimmable</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">swim</span><span class="hljs-params">()</span>;<br>&#125;<br><span class="hljs-comment">// 具体类 Dog 继承自 Animal，并实现 Swimmable 接口</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Swimmable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;The dog barks.&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swim</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;The dog is swimming.&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Dog</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br>        dog.name = <span class="hljs-string">&quot;Bobby&quot;</span>;<br>        dog.makeSound();  <span class="hljs-comment">// 输出: The dog barks.</span><br>        dog.sleep();      <span class="hljs-comment">// 输出: Bobby is sleeping.</span><br>        dog.swim();       <span class="hljs-comment">// 输出: The dog is swimming.</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>接口中的成员变量只能是 <code>public</code> <code>static</code> <code>final</code> 类型的，不能被修改且必须有初始值，而抽象类的成员变量默认 <code>default</code>，可在子类中被重新定义，也可被重新赋值。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象类 Animal</span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> &#123;<br>    String name;<br>    <span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>;<br>    <span class="hljs-comment">// 非抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sleep</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(name + <span class="hljs-string">&quot; is sleeping.&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-comment">// 接口 Swimmable</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Swimmable</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">swim</span><span class="hljs-params">()</span>;<br>&#125;<br><span class="hljs-comment">// 具体类 Dog 继承自 Animal，并实现 Swimmable 接口</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Swimmable</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;The dog barks.&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swim</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;The dog is swimming.&quot;</span>);<br>    &#125;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Dog</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br>        dog.name = <span class="hljs-string">&quot;Bobby&quot;</span>;<br>        dog.makeSound();  <span class="hljs-comment">// 输出: The dog barks.</span><br>        dog.sleep();      <span class="hljs-comment">// 输出: Bobby is sleeping.</span><br>        dog.swim();       <span class="hljs-comment">// 输出: The dog is swimming.</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -491,6 +543,25 @@
 <li><strong>深拷贝</strong>：深拷贝会完全复制整个对象，包括这个对象所包含的内部对象。</li>
 <li><strong>引用拷贝</strong>：引用拷贝就是两个不同的引用指向同一个对象。<br><img src="/../img/%E6%B7%B1%E6%B5%85%E5%BC%95%E7%94%A8%E6%8B%B7%E8%B4%9D%E5%8C%BA%E5%88%AB.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
+</li>
+</ul>
+<h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><ul>
+<li><p><strong>public</strong>：类成员和构造函数在任何地方都可以被访问。即公共访问级别，没有访问限制。</p>
+</li>
+<li><p><strong>protected</strong>：</p>
+<ul>
+<li>使用protected修饰的类成员和构造函数可以在同一个包内的其他类中访问。</li>
+<li>以及在不同包的子类中访问。</li>
+<li>对于不同包中的非子类，访问受限制。</li>
+</ul>
+</li>
+<li><p><strong>default</strong>：</p>
+<ul>
+<li>如果没有使用任何访问修饰符，默认访问修饰符将被应用。</li>
+<li>使用默认修饰符修饰的类、类成员和构造函数可以在同一个包内被访问，但对于不同包中的类是不可见的。</li>
+</ul>
+</li>
+<li><p><strong>private</strong>：使用private修饰的类成员和构造函数只能在同一个类中访问，对于其他类（包括同一个包中的类和子类）都是不可见的。</p>
 </li>
 </ul>
 <h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><h4 id="Object类的常见方法"><a href="#Object类的常见方法" class="headerlink" title="Object类的常见方法"></a>Object类的常见方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回当前运行时对象的 Class 对象，使用了 final 关键字修饰，故不允许子类重写。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回对象的哈希码，主要使用在哈希表中，比如 JDK 中的HashMap。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用于比较 2 个对象的内存地址是否相等，String 类对该方法进行了重写以用于比较字符串的值是否相等。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于创建并返回当前对象的一份拷贝。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> Object <span class="hljs-title function_">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 返回类的名字实例的哈希码的 16 进制的字符串。建议 Object 所有的子类都重写这个方法。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notify</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。跟 notify 一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notifyAll</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native方法，并且不能重写。暂停线程的执行。注意：sleep 方法没有释放锁，而 wait 方法释放了锁 ，timeout 是等待时间。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 多了 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout, <span class="hljs-type">int</span> nanos)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 实例被垃圾回收器回收的时候触发的操作</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable &#123; &#125;<br></code></pre></td></tr></table></figure>
@@ -528,7 +599,32 @@
 </li>
 <li>因为hashCode()在查找定位有特殊的作用，所以需要，而hashCode()又不能完全代替equals()所以，也需要equals()</li>
 </ul>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h4 id="String、StringBuffer、StringBuilder的区别"><a href="#String、StringBuffer、StringBuilder的区别" class="headerlink" title="String、StringBuffer、StringBuilder的区别"></a>String、StringBuffer、StringBuilder的区别</h4><ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><h4 id="使用new-和-字符串常量创建String类的区别"><a href="#使用new-和-字符串常量创建String类的区别" class="headerlink" title="使用new 和 字符串常量创建String类的区别"></a>使用new 和 字符串常量创建String类的区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//方式一</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br><span class="hljs-comment">//方式二</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>在内存中的存储：<ul>
+<li><code>String str1 = new String(&quot;abc&quot;);</code>：<ul>
+<li>使用 <code>new</code> 关键字创建了一个新的字符串对象，即使字符串常量池中已经存在 “abc”，也会在堆内存中创建一个新的字符串对象，因为使用 <code>new</code> 强制要求创建新对象。</li>
+</ul>
+</li>
+<li><code>String str2 = &quot;abc&quot;;</code>：<ul>
+<li>直接将字符串常量 “abc” 存储在字符串常量池中。如果字符串常量池中已经存在相同内容的字符串，它会被重用，不会创建新的对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引用：<ul>
+<li><code>String str1 = new String(&quot;abc&quot;);</code> 中的 <code>str1</code> 引用指向在堆内存中创建的新字符串对象。</li>
+<li><code>String str2 = &quot;abc&quot;;</code> 中的 <code>str2</code> 引用指向字符串常量池中的 “abc” 对象。</li>
+</ul>
+</li>
+<li>比较：<ul>
+<li><code>str1</code> 和 <code>str2</code> 是两个不同的字符串对象，它们的引用不相等，即 <code>str1 != str2</code>。</li>
+<li>但是，由于字符串常量池的存在，它们的内容是相同的，即 <code>str1.equals(str2)</code> 会返回 <code>true</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="String、StringBuffer、StringBuilder的区别"><a href="#String、StringBuffer、StringBuilder的区别" class="headerlink" title="String、StringBuffer、StringBuilder的区别"></a>String、StringBuffer、StringBuilder的区别</h4><ul>
 <li><p><code>String</code>是不可变化的</p>
 </li>
 <li><p><code>StringBuilder</code> 与 <code>StringBuffer</code> 是可变的，并且有一些方法</p>
@@ -571,16 +667,37 @@
 </ul>
 </li>
 </ul>
-<h4 id="String-“-”"><a href="#String-“-”" class="headerlink" title="String “+”"></a>String “+”</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//因为是常量字符串，jvm会在编译阶段就将其放入字符串常量池（str1，str2，str3）</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str3</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span> + <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-comment">//常量折叠：</span><br><span class="hljs-comment">//String str3 = &quot;str&quot; + &quot;ing&quot;; 编译器会给你优化成 String str3 = &quot;string&quot;;</span><br><span class="hljs-comment">//String str4 = new StringBuilder().append(str1).append(str2).toString(); 对于对象引用 + 的拼接其实是通过StringBuilder调用append()然后再调用toString()产生了一个新的String对象</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str4</span> <span class="hljs-operator">=</span> str1 + str2;<br><span class="hljs-type">String</span> <span class="hljs-variable">str5</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;string&quot;</span>;<br><span class="hljs-comment">//str3是一个新对象，由StringBuilder产生</span><br>System.out.println(str3 == str4);<span class="hljs-comment">//false</span><br>System.out.println(str3 == str5);<span class="hljs-comment">//true</span><br>System.out.println(str4 == str5);<span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
+<h4 id="String-类和常量做-“-”-运算"><a href="#String-类和常量做-“-”-运算" class="headerlink" title="String 类和常量做 “+” 运算"></a>String 类和常量做 “+” 运算</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//因为是常量字符串，jvm会在编译阶段就将其放入字符串常量池（str1，str2，str3）</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-type">String</span> <span class="hljs-variable">str3</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;str&quot;</span> + <span class="hljs-string">&quot;ing&quot;</span>;<br><span class="hljs-comment">//常量折叠：</span><br><span class="hljs-comment">//String str3 = &quot;str&quot; + &quot;ing&quot;; </span><br><span class="hljs-comment">//因为是常量编译器会给你优化成 String str3 = &quot;string&quot;;</span><br><span class="hljs-comment">//String str4 = new StringBuilder().append(str1).append(str2).toString(); 对于对象引用 + 的拼接其实是通过StringBuilder调用append()然后再调用toString()产生了一个新的String对象</span><br><span class="hljs-type">String</span> <span class="hljs-variable">str4</span> <span class="hljs-operator">=</span> str1 + str2;<br><span class="hljs-type">String</span> <span class="hljs-variable">str5</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;string&quot;</span>;<br><span class="hljs-comment">//str3是一个新对象，由StringBuilder产生</span><br>System.out.println(str3 == str4);<span class="hljs-comment">//false</span><br>System.out.println(str3 == str5);<span class="hljs-comment">//true</span><br>System.out.println(str4 == str5);<span class="hljs-comment">//false</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="异常-浅层"><a href="#异常-浅层" class="headerlink" title="异常(浅层)"></a>异常(浅层)</h2><h4 id="try-catch-finally"><a href="#try-catch-finally" class="headerlink" title="try-catch-finally"></a>try-catch-finally</h4><ul>
 <li><code>try</code>块：用于捕获异常。其后可接零个或多个 <code>catch</code> 块，如果没有 <code>catch</code> 块，则必须跟一个 <code>finally</code> 块。</li>
 <li><code>catch</code> 块：用于处理 <code>try</code> 捕获到的异常。</li>
-<li><code>finally</code> <code>块：无论是否捕获或处理异常，finally</code> 块里的语句都会被执行。当在 <code>try</code> 块或 <code>catch</code> 块中遇到 <code>return</code> <code>语句时，finally</code> 语句块将在方法返回之前被执行。<br>-**不要在 finally 语句块中使用 return!**当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句会被忽略。这是因为 try 语句中的 return 返回值会先被暂存在一个本地变量中，当执行到 finally 语句中的 return 之后，这个本地变量的值就变为了 finally 语句中的 return 返回值。</li>
+<li><code>finally</code> <code>块：无论是否捕获或处理异常，finally</code> 块里的语句都会被执行。当在 <code>try</code> 块或 <code>catch</code> 块中遇到 <code>return</code> <code>语句时，finally</code> 语句块将在方法返回之前被执行。<br>-<strong>不要在 finally 语句块中使用 return!</strong>  当 try 语句和 finally 语句中都有 return 语句时，try 语句块中的 return 语句会被忽略。这是因为 try 语句中的 return 返回值会先被暂存在一个本地变量中，当执行到 finally 语句中的 return 之后，这个本地变量的值就变为了 finally 语句中的 return 返回值。</li>
 </ul>
 <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h4 id="什么是泛型，作用是什么？"><a href="#什么是泛型，作用是什么？" class="headerlink" title="什么是泛型，作用是什么？"></a>什么是泛型，作用是什么？</h4><ul>
-<li>使用泛型参数，可以增强代码的可读性以及稳定性。</li>
-<li>编译器可以对泛型参数进行检测，并且通过泛型参数可以指定传入的对象类型。比如 <code>ArrayList&lt;Person&gt; persons = new ArrayList&lt;Person&gt;()</code> 这行代码就指明了该 ArrayList 对象只能传入 Person 对象，如果传入其他类型的对象就会报错。</li>
+<li><p>泛型允许我们在类或方法的定义中使用类型参数，以便在使用时指定具体的类型。</p>
+</li>
+<li><p>使用泛型参数，可以增强代码的可读性以及稳定性。</p>
+</li>
+<li><p>编译器可以对泛型参数进行检测，并且通过泛型参数可以指定传入的对象类型。比如 <code>ArrayList&lt;Person&gt; persons = new ArrayList&lt;Person&gt;()</code> 这行代码就指明了该 ArrayList 对象只能传入 Person 对象，如果传入其他类型的对象就会报错。</p>
+</li>
+</ul>
+<h4 id="泛型擦除"><a href="#泛型擦除" class="headerlink" title="泛型擦除"></a>泛型擦除</h4><ul>
+<li><p>在Java中，泛型的类型信息<strong>在编译时会被擦除掉</strong>，转换为原始类型。这是为了保持与旧版本Java的兼容性（让泛型代码在不支持泛型的老版本环境中正常运行），并且在运行时<strong>没有泛型类型的开销</strong>。</p>
+</li>
+<li><p>为什么需要？</p>
+<ul>
+<li>向后兼容</li>
+<li>减少虚拟机复杂性，使虚拟机可以新老版本（有无泛型）都正常运行，无需额外修改</li>
+</ul>
+</li>
+<li><p><strong>过程</strong>：</p>
+<ul>
+<li><strong>类型参数擦除</strong>：泛型类、接口或方法中的类型参数会被擦除为它们的上限或默认类型。例如，<code>List&lt;T&gt;</code> 中的 <code>T</code> 会被擦除为 <code>Object</code> 类型。</li>
+<li><strong>替换类型变量</strong>：在泛型类或接口中，类型变量会被替换为它们的上限类型或默认类型。例如，<code>List&lt;T extends Number&gt;</code> 中的 <code>T</code> 会被替换为 <code>Number</code>。</li>
+<li><strong>插入类型转换</strong>：在需要确保类型安全的地方，编译器会自动生成插入类型转换的代码，以保证正确的类型操作。这是为了在擦除类型后恢复类型安全性。</li>
+</ul>
+</li>
 </ul>
 <h4 id="泛型的使用"><a href="#泛型的使用" class="headerlink" title="泛型的使用"></a>泛型的使用</h4><ul>
 <li>泛型类</li>
@@ -588,7 +705,7 @@
 <li>泛型方法</li>
 </ul>
 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><h3 id="什么是反射"><a href="#什么是反射" class="headerlink" title="什么是反射"></a>什么是反射</h3><ul>
-<li>反射是一种在运行时检查和操作类、对象、方法等程序元素的能力。</li>
+<li>反射是一种在运行时获取、检查和操作类、对象、方法和属性等信息的能力。</li>
 <li>反射机制允许程序在运行期间借助于Reflection API取得任何类的内部信息，并能直接操作任意对象的内部属性以及方法</li>
 </ul>
 <h3 id="反射的内部原理"><a href="#反射的内部原理" class="headerlink" title="反射的内部原理"></a>反射的内部原理</h3><ul>
