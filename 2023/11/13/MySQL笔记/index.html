@@ -16,23 +16,23 @@
   <meta name="author" content="Carefreehuang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="基本语法进阶存储引擎 作用： MySQL中的存储引擎是负责管理和操作底层数据存储的组件。存储引擎定义了如何存储、检索、更新和处理MySQL数据库中的数据。    索引 作用：构造适合查询的数据结构，实现高效的查找 优点 提高检索效率 降低排序成本（索引本身就需要排序（树形））   缺点 占用空间 降低了更新表的速度（insert,update,delete）    实现结构 B+Tree 所有数">
+    <meta name="description" content="基础知识MySQL基础什么是关系型数据库？关系型数据库就是一种建立在关系模型的基础上的数据库  在关系模型之中，数据被组织成表，而表又由行列组成，行代表一个记录，列代表一个属性。  MySQL 字段类型mysql字段可以分成三大类：  数值类型、字符类型、日期时间类型   VARCHAR(10) 和VARCHAR(100)区别？ varchar(100)能存100个字符，varchar(10)只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL笔记">
-<meta property="og:url" content="http://example.com/2023/10/20/MySQL%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Carefreehaung的个人博客">
+<meta property="og:url" content="http://example.com/2023/11/13/MySQL%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Carefreehaung的个人博客">
-<meta property="og:description" content="基本语法进阶存储引擎 作用： MySQL中的存储引擎是负责管理和操作底层数据存储的组件。存储引擎定义了如何存储、检索、更新和处理MySQL数据库中的数据。    索引 作用：构造适合查询的数据结构，实现高效的查找 优点 提高检索效率 降低排序成本（索引本身就需要排序（树形））   缺点 占用空间 降低了更新表的速度（insert,update,delete）    实现结构 B+Tree 所有数">
+<meta property="og:description" content="基础知识MySQL基础什么是关系型数据库？关系型数据库就是一种建立在关系模型的基础上的数据库  在关系模型之中，数据被组织成表，而表又由行列组成，行代表一个记录，列代表一个属性。  MySQL 字段类型mysql字段可以分成三大类：  数值类型、字符类型、日期时间类型   VARCHAR(10) 和VARCHAR(100)区别？ varchar(100)能存100个字符，varchar(10)只">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/mysql.png">
-<meta property="article:published_time" content="2023-10-20T02:27:08.649Z">
-<meta property="article:modified_time" content="2023-10-22T05:10:03.714Z">
+<meta property="article:published_time" content="2023-11-13T14:24:13.276Z">
+<meta property="article:modified_time" content="2023-11-15T08:23:30.580Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/mysql.png">
   
   
   
-  <title>MySQL笔记 - Carefreehaung的个人博客</title>
+  <title>Carefreehaung的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MySQL笔记"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -209,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-20 10:27" pubdate>
-          2023年10月20日 上午
+        <time datetime="2023-11-13 22:24" pubdate>
+          2023年11月13日 晚上
         </time>
       </span>
     
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.3k 字
+          16k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          78 分钟
+          131 分钟
         
       </span>
     
@@ -269,16 +269,104 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">MySQL笔记</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
                 <hr>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><h3 id="MySQL基础"><a href="#MySQL基础" class="headerlink" title="MySQL基础"></a>MySQL基础</h3><h4 id="什么是关系型数据库？"><a href="#什么是关系型数据库？" class="headerlink" title="什么是关系型数据库？"></a>什么是关系型数据库？</h4><p>关系型数据库就是一种建立在关系模型的基础上的数据库</p>
+<ul>
+<li>在关系模型之中，数据被组织成表，而表又由行列组成，行代表一个记录，列代表一个属性。</li>
+</ul>
+<h3 id="MySQL-字段类型"><a href="#MySQL-字段类型" class="headerlink" title="MySQL 字段类型"></a>MySQL 字段类型</h3><p>mysql字段可以分成三大类：</p>
+<ul>
+<li>数值类型、字符类型、日期时间类型</li>
+<li><img src="D:\Blog\source\img\sql字段类型.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="VARCHAR-10-和VARCHAR-100-区别？"><a href="#VARCHAR-10-和VARCHAR-100-区别？" class="headerlink" title="VARCHAR(10) 和VARCHAR(100)区别？"></a>VARCHAR(10) 和VARCHAR(100)区别？</h4><ul>
+<li>varchar(100)能存100个字符，varchar(10)只能存10个字符</li>
+<li>但是二者所占用的存储空间一样</li>
+<li>但是varchar(100)消耗的内存更大，因为varchar类型在内存中操作时，会被分配内存块来传递值，内存块大小与字符定义长度相关</li>
+</ul>
+<h4 id="DECIMAL可以存更高精度的小数"><a href="#DECIMAL可以存更高精度的小数" class="headerlink" title="DECIMAL可以存更高精度的小数"></a>DECIMAL可以存更高精度的小数</h4><h4 id="DATETIME-和-TIMESTAMP-的区别是什么？"><a href="#DATETIME-和-TIMESTAMP-的区别是什么？" class="headerlink" title="DATETIME 和 TIMESTAMP 的区别是什么？"></a>DATETIME 和 TIMESTAMP 的区别是什么？</h4><p>DATETIME 类型没有时区信息，TIMESTAMP 和时区有关。</p>
+<p>TIMESTAMP 只需要使用 4 个字节的存储空间，但是 DATETIME 需要耗费 8 个字节的存储空间。但是，这样同样造成了一个问题，Timestamp 表示的时间范围更小。</p>
+<ul>
+<li>DATETIME：1000-01-01 00:00:00 ~ 9999-12-31 23:59:59</li>
+<li>Timestamp：1970-01-01 00:00:01 ~ 2037-12-31 23:59:59</li>
+</ul>
+<h4 id="NULL-和-‘’-的区别？"><a href="#NULL-和-‘’-的区别？" class="headerlink" title="NULL 和 ‘’ 的区别？"></a>NULL 和 ‘’ 的区别？</h4><p><code>NULL</code> 跟 <code>&#39;&#39;</code>(空字符串)是两个完全不一样的值，区别如下：</p>
+<ul>
+<li><code>NULL</code> 代表一个不确定的值,就算是两个 <code>NULL</code>,它俩也不一定相等。例如，<code>SELECT NULL=NULL</code>的结果为 false，但是在我们使用<code>DISTINCT</code>,<code>GROUP BY</code>,<code>ORDER BY</code>时,<code>NULL</code>又被认为是相等的。</li>
+<li><code>&#39;&#39;</code>的长度是 0，是不占用空间的，而<code>NULL</code> 是需要占用空间的。</li>
+<li><code>NULL</code> 会影响聚合函数的结果。例如，<code>SUM</code>、<code>AVG</code>、<code>MIN</code>、<code>MAX</code> 等聚合函数会忽略 <code>NULL</code> 值。 <code>COUNT</code> 的处理方式取决于参数的类型。如果参数是 <code>*</code>(<code>COUNT(*)</code>)，则会统计所有的记录数，包括 <code>NULL</code> 值；如果参数是某个字段名(<code>COUNT(列名)</code>)，则会忽略 <code>NULL</code> 值，只统计非空值的个数。</li>
+<li>查询 <code>NULL</code> 值时，必须使用 <code>IS NULL</code> 或 <code>IS NOT NULL</code> 来判断，而不能使用 &#x3D;、!&#x3D;、 &lt;、&gt; 之类的比较运算符。而<code>&#39;&#39;</code>是可以使用这些比较运算符的。</li>
+</ul>
+<h4 id="为什么-MySQL-不建议使用-NULL-作为列默认值？"><a href="#为什么-MySQL-不建议使用-NULL-作为列默认值？" class="headerlink" title="为什么 MySQL 不建议使用 NULL 作为列默认值？"></a>为什么 MySQL 不建议使用 <code>NULL</code> 作为列默认值？</h4><p><strong>语义模糊：</strong> <code>NULL</code> 的语义是未知或缺失的值，因此在某些情况下，使用 <code>NULL</code> 作为默认值可能使列的语义变得模糊。默认值应该是具有明确定义含义的常规值，而不是表示未知的 <code>NULL</code>。</p>
+<h4 id="Boolean类型如何表示？"><a href="#Boolean类型如何表示？" class="headerlink" title="Boolean类型如何表示？"></a>Boolean类型如何表示？</h4><p>MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布尔值。TINYINT(1) 类型可以存储 0 或 1，分别对应 false 或 true</p>
+<h3 id="SQL语句在MySQL中的执行过程"><a href="#SQL语句在MySQL中的执行过程" class="headerlink" title="SQL语句在MySQL中的执行过程"></a>SQL语句在MySQL中的执行过程</h3><h5 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h5><p><img src="D:\Blog\source\img\mysql基础架构.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> tb_student  A <span class="hljs-keyword">where</span> A.age<span class="hljs-operator">=</span><span class="hljs-string">&#x27;18&#x27;</span> <span class="hljs-keyword">and</span> A.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27; 张三 &#x27;</span>;<br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>先连接器检查该语句是否有权限，没有权限直接返回错误信息，在8.0前 有权限则去缓存中查询，如果有则返回，否则执行分析器步骤</li>
+<li>通过分析器进行词法分析，并且检查语法问题，没有问题就继续执行下一步</li>
+<li>通过优化器进行语句优化，如：先判断年纪、先判断名字，确认好方案后再进行下一步</li>
+<li>执行器执行前还会再进行一次权限校验，判断使用的一些接口是否能行</li>
+</ul>
+<p>第一次的校验是：判断该用户是否有足够权限</p>
+<p>第二次的校验是：判断执行计划的具体操作是否有足够权限：尽管用户在执行语句前有足够的权限，但在具体的执行计划中可能涉及多个表、索引，每个表可能有不同的权限要求。</p>
+<h5 id="更新语句"><a href="#更新语句" class="headerlink" title="更新语句"></a>更新语句</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> tb_student A <span class="hljs-keyword">set</span> A.age<span class="hljs-operator">=</span><span class="hljs-string">&#x27;19&#x27;</span> <span class="hljs-keyword">where</span> A.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27; 张三 &#x27;</span>;<br><br></code></pre></td></tr></table></figure>
+
+<p>更新时需要记录日志，MySQL 自带的日志模块是 <strong>binlog（归档日志）</strong> ，所有的存储引擎都可以使用，我们常用的 InnoDB 引擎还自带了一个日志模块 <strong>redo log（重做日志）</strong>，我们就以 InnoDB 模式下来探讨这个语句的执行流程。流程如下：</p>
+<ul>
+<li>先查询到数据</li>
+<li>根据查询语句进行更新，本例中就是将age设为19，然后写入数据，InnoDB 引擎把数据保存在内存中，同时记录 redo log，此时 redo log 进入 prepare 状态，然后告诉执行器，执行完成了，随时可以提交。</li>
+<li>执行器收到通知后记录 binlog，然后调用引擎接口，提交 redo log 为提交状态。</li>
+<li>更新完成。</li>
+</ul>
+<h5 id="为什么要使用两个日志模块？"><a href="#为什么要使用两个日志模块？" class="headerlink" title="为什么要使用两个日志模块？"></a>为什么要使用两个日志模块？</h5><ol>
+<li><strong>redo log（重做日志）：</strong><ul>
+<li><strong>目的：</strong> redo log的主要目的是确保事务的持久性，即使在数据库发生故障时也能够恢复数据。</li>
+<li><strong>使用场景：</strong> redo log是针对存储引擎的日志，在事务进行更新时，它会首先将修改操作记录到redo log中，然后再将数据修改写入磁盘。这种方式可以提高性能，因为磁盘写入是相对较慢的操作，而redo log的写入速度更快。如果数据库在写入数据到磁盘之前崩溃，可以通过重放redo log来恢复数据。</li>
+</ul>
+</li>
+<li><strong>binlog（归档日志）：</strong><ul>
+<li><strong>目的：</strong> binlog的主要目的是记录数据库的逻辑变更，而不是物理变更。它用于实现数据备份、主从复制等高级功能。</li>
+<li><strong>使用场景：</strong> binlog记录了对数据库执行的高级语句，例如INSERT、UPDATE、DELETE等。这样的记录可以用于还原数据、进行数据备份、以及在主从复制中用于将变更传播到其他MySQL服务器。通过分发binlog，可以实现主从复制，其中一个服务器（主服务器）上的更新操作会被传递到其他服务器（从服务器）上。</li>
+</ul>
+</li>
+</ol>
+<p>简单来说：redolog实现数据库出现问题的数据恢复，而binlog实现数据库的备份和复制</p>
+<ul>
+<li><strong>先写 redo log 直接提交，然后写 binlog</strong>，假设写完 redo log 后，机器挂了，binlog 日志没有被写入，那么机器重启后，这台机器会通过 redo log 恢复数据，但是这个时候 binlog 并没有记录该数据，后续进行机器备份的时候，就会丢失这一条数据，同时主从同步也会丢失这一条数据。</li>
+<li><strong>先写 binlog，然后写 redo log</strong>，假设写完了 binlog，机器异常重启了，由于没有 redo log，本机是无法恢复这一条记录的，但是 binlog 又有记录，那么和上面同样的道理，就会产生数据不一致的情况。</li>
+</ul>
+<p>如果采用 redo log 两阶段提交的方式就不一样了，写完 binlog 后，然后再提交 redo log 就会防止出现上述的问题，从而保证了数据的一致性。那么问题来了，有没有一个极端的情况呢？假设 redo log 处于预提交状态，binlog 也已经写完了，这个时候发生了异常重启会怎么样呢？ 这个就要依赖于 MySQL 的处理机制了，MySQL 的处理过程如下：</p>
+<ul>
+<li>判断 redo log 是否完整，如果判断是完整的，就立即提交。</li>
+<li>如果 redo log 只是预提交但不是 commit 状态，这个时候就会去判断 binlog 是否完整，如果完整就提交 redo log, 不完整就回滚事务。</li>
+</ul>
+<p>这样就解决了数据一致性的问题</p>
 <h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><ul>
 <li>作用：<ul>
 <li>MySQL中的存储引擎是负责管理和操作底层数据存储的组件。存储引擎定义了如何存储、检索、更新和处理MySQL数据库中的数据。</li>
 </ul>
+</li>
+</ul>
+<h4 id="MyISAM-和-InnoDB的区别？"><a href="#MyISAM-和-InnoDB的区别？" class="headerlink" title="MyISAM 和 InnoDB的区别？"></a>MyISAM 和 InnoDB的区别？</h4><ul>
+<li><p>InnoDB 支持行级别的锁粒度，MyISAM 不支持，只支持表级别的锁粒度。</p>
+</li>
+<li><p>MyISAM 不提供事务支持。InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别。</p>
+</li>
+<li><p>MyISAM 不支持外键，而 InnoDB 支持。</p>
+</li>
+<li><p>MyISAM 不支持 MVCC，而 InnoDB 支持。</p>
+</li>
+<li><p>虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。</p>
+</li>
+<li><p>MyISAM 不支持数据库异常崩溃后的安全恢复，而 InnoDB 支持。</p>
+</li>
+<li><p>InnoDB 的性能比 MyISAM 更强大</p>
 </li>
 </ul>
 <h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
@@ -290,18 +378,33 @@
 </li>
 <li>缺点<ul>
 <li>占用空间</li>
-<li>降低了更新表的速度（<code>insert</code>,<code>update</code>,<code>delete</code>）</li>
+<li>降低了更新表的速度（<code>insert</code>,<code>update</code>,<code>delete</code>）<ul>
+<li>因为更新数据的时候也要对索引进行更新</li>
 </ul>
 </li>
 </ul>
-<h4 id="实现结构"><a href="#实现结构" class="headerlink" title="实现结构"></a>实现结构</h4><ul>
-<li>B+Tree<br><img src="/../img/b+%E6%A0%91.png" srcset="/img/loading.gif" lazyload><ul>
+</li>
+</ul>
+<h4 id="实现结构"><a href="#实现结构" class="headerlink" title="实现结构"></a>实现结构</h4><p><strong>B-树和B+树</strong></p>
+<p><img src="D:\Blog\source\img\b-树和b+树.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>B 树的所有节点既存放键(key) 也存放数据(data)，而 B+树只有叶子节点存放 key 和 data，其他内节点只存放 key。</p>
+</li>
+<li><p>B 树的叶子节点都是独立的;B+树的叶子节点有一条引用链指向与它相邻的叶子节点。</p>
+</li>
+<li><p>B 树的检索的过程相当于对范围内的每个节点的关键字做二分查找，可能还没有到达叶子节点，检索就结束了。而 B+树的检索效率就很稳定了，任何查找都是从根节点到叶子节点的过程，叶子节点的顺序检索很明显。</p>
+</li>
+<li><p>在 B 树中进行范围查询时，首先找到要查找的下限，然后对 B 树进行中序遍历，直到找到查找的上限；而 B+树的范围查询，只需要对链表进行遍历即可。</p>
+</li>
+<li><p>B+Tree</p>
+<ul>
 <li>所有数据存放在叶子节点</li>
 <li>叶子节点形成单链表（mysql中的B+Tree进行了优化，实现了双向链表）</li>
 <li>非叶子节点仅仅起到索引数据的作用</li>
 </ul>
 </li>
-<li>Hash<ul>
+<li><p>Hash</p>
+<ul>
 <li>使用hashTable实现</li>
 <li>只能实现精确查找</li>
 <li>无法利用索引进行排序</li>
@@ -309,6 +412,11 @@
 </ul>
 </li>
 </ul>
+<h4 id="为什么MySQL使用B-树结构作为索引呢？"><a href="#为什么MySQL使用B-树结构作为索引呢？" class="headerlink" title="为什么MySQL使用B+树结构作为索引呢？"></a>为什么MySQL使用B+树结构作为索引呢？</h4><ol>
+<li><strong>有序性：</strong> 在B+树中，相邻的节点之间有顺序关系，使得范围查询可以通过按顺序遍历叶子节点链表来实现，而不需要进行额外的排序操作。</li>
+<li><strong>顺序遍历效率高：</strong> 由于B+树的叶子节点形成有序链表，这使得顺序遍历的效率非常高。例如，在执行范围查询或执行<code>ORDER BY</code>语句时，B+树的结构使得查询引擎能够更有效地遍历索引。</li>
+<li><strong>范围查询效率高：</strong> B+树的有序性也使得范围查询非常高效。数据库引擎可以通过在叶子节点链表上进行顺序查找，快速找到满足查询条件的数据。</li>
+</ol>
 <h4 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h4><ul>
 <li>按数据结构维度划分<ul>
 <li>BTree索引</li>
@@ -387,18 +495,36 @@
 <li><p>联合索引 ：使用表中的多个字段创建索引，就是 联合索引</p>
 <ul>
 <li><strong>最左前缀匹配原则</strong>：最左前缀法则指的是查询从索引的最左列开始，并且不跳过索引中的列。如果跳跃某一列，索引将会部分失效(后面的字段索引失效)。<ul>
-<li>其实只要查找时联合索引（创建时）的最左边字段存在，索引就会生效，中间跳过了某个字段，那么后面的字段索引就会失效<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 建立联合索引，此时的最左侧索引就是column1，是指的创建时的索引</span><br><span class="hljs-keyword">create</span> index index_name <span class="hljs-keyword">on</span> table_name(column1,column2)<br></code></pre></td></tr></table></figure></li>
+<li>其实只要查找时联合索引（创建时）的最左边字段存在，索引就会生效，中间跳过了某个字段，那么后面的字段索引就会失效</li>
 </ul>
 </li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 建立联合索引，此时的最左侧索引就是column1，是指的创建时的索引</span><br><span class="hljs-keyword">create</span> index index_name <span class="hljs-keyword">on</span> table_name(column1,column2)<br></code></pre></td></tr></table></figure>
+<ul>
 <li>范围查询：联合索引中，出现范围查询(&gt;,&lt;)，范围查询右侧的列索引失效。</li>
 </ul>
 </li>
 </ul>
+<p><img src="D:\Blog\source\img\联合索引.png" srcset="/img/loading.gif" lazyload>	</p>
+<blockquote>
+<p>如图所示他们是按照a来进行排序，在a相等的情况下，才按b来排序。</p>
+<p>因此，我们可以看到a是有序的1，1，2，2，3，3。而b是一种全局无序，局部相对有序状态! <em>什么意思呢？</em></p>
+<p>从全局来看，b的值为1，2，1，4，1，2，是无序的，因此直接执行<code>b = 2</code>这种查询条件没有办法利用索引。</p>
+<p>从局部来看，当a的值确定的时候，b是有序的。例如a &#x3D; 1时，b值为1，2是有序的状态。当a&#x3D;2时候，b的值为1,4也是有序状态。 因此，你执行<code>a = 1 and b = 2</code>是a,b字段能用到索引的。而你执行<code>a &gt; 1 and b = 2</code>时，a字段能用到索引，b字段用不到索引。因为a的值此时是一个范围，不是固定的，在这个范围内b值不是有序的，因此b字段用不上索引。</p>
+<p>综上所示，最左匹配原则，在遇到范围查询的时候，就会停止匹配</p>
+</blockquote>
 <h5 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h5><ul>
 <li>不要在索引列上进行运算操作， 索引将失效</li>
 <li>字符串类型字段使用时，不加引号，索引将失效。</li>
 <li>如果仅仅是尾部模糊匹配，索引不会失效。如果是头部模糊匹配，索引失效</li>
 <li>用or分割开的条件， 如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会<br>被用到。</li>
+</ul>
+<h4 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h4><ul>
+<li><strong>不为 NULL 的字段</strong>：索引字段的数据应该尽量不为 NULL，因为对于数据为 NULL 的字段，数据库较难优化。如果字段频繁被查询，但又避免不了为 NULL，建议使用 0,1,true,false 这样语义较为清晰的短值或短字符作为替代。</li>
+<li><strong>被频繁查询的字段</strong>：我们创建索引的字段应该是查询操作非常频繁的字段。</li>
+<li><strong>被作为条件查询的字段</strong>：被作为 WHERE 条件查询的字段，应该被考虑建立索引。</li>
+<li><strong>频繁需要排序的字段</strong>：索引已经排序，这样查询可以利用索引的排序，加快排序查询时间。</li>
+<li><strong>被经常频繁用于连接的字段</strong>：经常用于连接的字段可能是一些外键列，对于外键列并不一定要建立外键，只是说该列涉及到表与表的关系。对于频繁被连接查询的字段，可以考虑建立索引，提高多表连接查询的效率</li>
 </ul>
 <h4 id="SQL提示"><a href="#SQL提示" class="headerlink" title="SQL提示"></a>SQL提示</h4><ul>
 <li>如果出现既有联合索引又有单列索引等这种索引重复的情况的话，MySQL会根据自己底部的优化器进行自行分析，选择使用哪种索引更优。</li>
@@ -456,15 +582,8 @@
 </li>
 <li><p>大批量插入数据</p>
 <ul>
-<li>如果一次性需要插入大批量数据(比如: 几百万的记录)，使用insert语句插入性能较低，此时可以使用MySQL数据库提供的load指令进行插入。</li>
+<li>如果一次性需要插入大批量数据(比如: 几百万的记录)，使用insert语句插入性能较低，此时可以使用MySQL数据库提供的load指令进行插入。<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">  <span class="hljs-comment">-- 客户端连接服务端时，加上参数 -–local-infile</span><br>mysql –<span class="hljs-operator">-</span><span class="hljs-keyword">local</span><span class="hljs-operator">-</span>infile <span class="hljs-operator">-</span>u root <span class="hljs-operator">-</span>p<br><span class="hljs-comment">-- 设置全局参数local_infile为1，开启从本地加载文件导入数据的开关</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> local_infile <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br><span class="hljs-comment">-- 执行load指令将准备好的数据，加载到表结构中</span><br>load data <span class="hljs-keyword">local</span> infile <span class="hljs-string">&#x27;/root/sql1.log&#x27;</span> <span class="hljs-keyword">into</span> <span class="hljs-keyword">table</span> tb_user fields terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;,&#x27;</span> lines terminated <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;\n&#x27;</span> ;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<pre><code class="sql">  -- 客户端连接服务端时，加上参数 -–local-infile
-mysql –-local-infile -u root -p
--- 设置全局参数local_infile为1，开启从本地加载文件导入数据的开关
-set global local_infile = 1;
--- 执行load指令将准备好的数据，加载到表结构中
-load data local infile &#39;/root/sql1.log&#39; into table tb_user fields terminated by &#39;,&#39; lines terminated by &#39;\n&#39; ;
-</code></pre>
 </li>
 </ul>
 <h4 id="count优化"><a href="#count优化" class="headerlink" title="count优化"></a>count优化</h4><ul>
@@ -591,7 +710,7 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
 <li>段：<ul>
 <li>分为数据段，索引段，回滚段</li>
 <li>InnoDB是索引组织表，数据段就是B+树的 叶子节点，索引段就是B+树的非叶子节点</li>
-<li>一个短里面管理了多个区</li>
+<li>一个段里面管理了多个区</li>
 </ul>
 </li>
 <li>区：<ul>
@@ -728,32 +847,53 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
 </ul>
 </li>
 </ul>
-<h4 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h4><blockquote>
-<p>全称 Multi-Version Concurrency Control，多版本并发控制。指维护一个数据的多个版本，使得读写操作没有冲突，快照读为MySQL实现MVCC提供了一个非阻塞读功能。</p>
+<h3 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h3><blockquote>
+<p>全称 Multi-Version Concurrency Control，多版本并发控制。用于在多个并发事务同时读写数据库时保持数据的一致性和隔离性。它是通过在每个数据行上维护多个版本的数据来实现的。当一个事务要对数据库中的数据进行修改时，MVCC 会为该事务创建一个数据快照，而不是直接修改实际的数据行。</p>
 </blockquote>
-<ul>
-<li><p>当前读</p>
-<ul>
+<h4 id="当前读（锁定读）"><a href="#当前读（锁定读）" class="headerlink" title="当前读（锁定读）"></a>当前读（锁定读）</h4><ul>
 <li>读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</li>
 <li>如：select … lock in share mode(共享锁)，select …for update、update、insert、delete(排他锁)都是一种当前读。</li>
+<li>在实现<code>Repeatable Read</code> 时，如果执行的是当前读，则会对读取的记录使用 <code>Next-key Lock</code> ，来防止其它事务在间隙间插入数据</li>
 </ul>
-</li>
-<li><p>快照读</p>
+<h4 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h4><ul>
+<li><p>当一个事务执行读操作时，它会使用快照读取。快照读取是基于事务开始时数据库中的状态创建的，因此事务不会读取其他事务尚未提交的修改。具体工作情况如下：</p>
 <ul>
-<li>简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，不加锁，是非阻塞读。</li>
-<li>Read Committed：每次select，都生成一个快照读。</li>
-<li>Repeatable Read：开启事务后第一个select语句才是快照读的地方。</li>
-<li>Serializable：快照读会退化为当前读。</li>
+<li><p>对于读取操作，事务会查找符合条件的数据行，并选择符合其事务开始时间的数据版本进行读取。</p>
+</li>
+<li><p>如果某个数据行有多个版本，事务会选择<strong>不晚于其开始时间</strong>的最新版本，确保事务只读取在它开始之前已经存在的数据。</p>
+</li>
+<li><p>事务读取的是快照数据，因此其他并发事务对数据行的修改不会影响当前事务的读取操作。</p>
+</li>
+<li><p>简单的select（不加锁）就是快照读，快照读，读取的是记录数据的可见版本，有可能是历史数据，不加锁，是非阻塞读。</p>
+</li>
 </ul>
 </li>
-<li><p>版本链：即数据的历时记录<br><img src="/../img/%E7%89%88%E6%9C%AC%E9%93%BE%E4%BE%8B%E5%AD%90.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>每次读取从快照进行读</p>
 </li>
-<li><p>readview</p>
-<blockquote>
+<li><p>Read Committed：每次select，都生成一个快照读。</p>
+</li>
+<li><p>Repeatable Read：开启事务后第一个select语句才是快照读的地方。</p>
+</li>
+<li><p>Serializable：快照读会退化为当前读。</p>
+</li>
+</ul>
+<h4 id="版本链："><a href="#版本链：" class="headerlink" title="版本链："></a>版本链：</h4><p><img src="D:\Blog\source\img\记录隐藏字段.png" srcset="/img/loading.gif" lazyload></p>
+<p> 即数据的历时记录</p>
+<p><img src="/../img/%E7%89%88%E6%9C%AC%E9%93%BE%E4%BE%8B%E5%AD%90.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="readview"><a href="#readview" class="headerlink" title="readview"></a>readview</h4><blockquote>
 <p>ReadView（读视图）是 快照读 SQL执行时MVCC提取数据的依据，记录并维护系统当前活跃的事务（未提交的）id。</p>
+<p>先确认readview，rr和rc的readview有不同</p>
+<ul>
+<li>rr是会更新的每次都需要计算</li>
+<li>rc是会复用该事务的第一个readview</li>
+<li>然后根据访问规则以及对应的readview就能知道应该访问哪个版本数据</li>
+</ul>
 </blockquote>
 <ul>
-<li>核心字段：<br><img src="/../img/readview%E6%A0%B8%E5%BF%83%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload></li>
+<li>核心字段：<br><img src="/../img/readview%E6%A0%B8%E5%BF%83%E5%AD%97%E6%AE%B5.png" srcset="/img/loading.gif" lazyload> <ul>
+<li>未提交的事务就是活跃事务</li>
+</ul>
+</li>
 </ul>
 <blockquote>
 <p>RR（Read-Repeatable）和 RC（Read-Committed）是数据库中的两个事务隔离级别。不同的隔离级别在性能和数据一致性之间存在权衡，需要综合考虑应用程序的具体场景和要求。</p>
@@ -767,6 +907,84 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
 <li>在RR隔离级别下，只是在事务中第一次快照读时生成ReadView，后续都是复用该ReadView，那么既然ReadView都一样， ReadView的版本链匹配规则也一样， 那么最终快照读返回的结果也是一样的。</li>
 </ul>
 </li>
+</ul>
+<h3 id="三大日志"><a href="#三大日志" class="headerlink" title="三大日志"></a>三大日志</h3><h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><ul>
+<li>作用：<ul>
+<li>主要实现数据库数据的恢复，比如在操作数据库的时候，数据库突然宕机了，重启之后，redolog可以帮助数据库复原</li>
+</ul>
+</li>
+<li>实现恢复的基本流程<ul>
+<li>当一个事务对数据库进行修改时，innoDB首先会将修改记录记录到redolog缓冲池中</li>
+<li>redolog缓冲池中的数据会根据刷盘策略刷到redolog文件之中，redolog文件保存在磁盘上<ul>
+<li>0：每一秒刷一次</li>
+<li>1：事务提交就刷一次，后台每一秒也刷一次</li>
+<li>2：事务提交就刷到page cache</li>
+<li>日志区满等情况也会刷盘</li>
+</ul>
+</li>
+<li>redolog采用的是顺序写，效率优于一般的数据页写入，从而保证在重启时redolog先于数据页写入磁盘，确保使用redolog文件的数据来恢复<ul>
+<li>顺序写就可以直接将数据一条一条的写入磁盘，无需寻找数据，减少磁盘寻道时间</li>
+</ul>
+</li>
+<li>当数据库非正常关闭，在重启时，innoDB会先检查redolog文件，将其中的数据恢复到数据库，以此来实现宕机的数据恢复</li>
+</ul>
+</li>
+<li>为什么不在每次修改后直接将修改过的数据页刷盘（将数据页直接更新到磁盘）呢？<ul>
+<li>因为数据页大小为16k，每次可能就修改了数据页中的几个byte的信息，这样也刷盘浪费资源</li>
+<li>数据页刷盘是随机写，速度慢<ul>
+<li>比如两次修改，第一次修改页的第一块，第二次修改了页的第十个块，第三次修改了页的第五个块，这样会有磁盘的寻道，写入慢，redolog就是依次记录每次的修改</li>
+<li>redolog只包含表空间号、数据页号、磁盘文件偏移 量、更新值，再加上是顺序写，所以刷盘速度很快。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="bin-log"><a href="#bin-log" class="headerlink" title="bin log"></a>bin log</h4><ul>
+<li><p>作用：</p>
+<ul>
+<li><p>逻辑日志，记录语句的逻辑，任何存储引擎都有，只要表数据有更新，都会产生binlog日志</p>
+</li>
+<li><p>实现数据库的数据备份、主从复制、主从同步等</p>
+<p><img src="D:\Blog\source\img\binlog作用.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+<li><p>存储形式：</p>
+<ul>
+<li>statement：光记录sql，如在updade_time &#x3D; now()时就没有实现记录的有用，会导致与原库数据不一致</li>
+<li>row：记录信息，占用空间大</li>
+<li>mix：<code>MySQL</code>会判断这条<code>SQL</code>语句是否可能引起数据不一致，如果是，就用<code>row</code>格式，否则就用<code>statement</code>格式。</li>
+</ul>
+</li>
+<li><p>写入时机：</p>
+<ul>
+<li>事务执行先写入binlog_cache，事务提交时，写入binlog文件（磁盘中）</li>
+</ul>
+</li>
+</ul>
+<h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><p>执行更新语句过程，会记录<code>redo log</code>与<code>binlog</code>两块日志，以基本的事务为单位，<code>redo log</code>在事务执行过程中可以不断写入，而<code>binlog</code>只有在提交事务时才写入，所以<code>redo log</code>与<code>binlog</code>的写入时机不一样。</p>
+<ul>
+<li>如果写完redolog后，binlog写出现了异常，那么：<ul>
+<li>binlog里面没有对应修改记录，如果将主数据库数据复制到从数据库，会使用binlog来实现，但是binlog此时没有修改记录，那么此时主从数据库不一致了</li>
+</ul>
+</li>
+<li>所以使用两阶段提交：将<code>redo log</code>的写入拆成了两个步骤<code>prepare</code>和<code>commit</code></li>
+<li><img src="D:\Blog\source\img\两阶段提交.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<p>使用<strong>两阶段提交</strong>后，写入<code>binlog</code>时发生异常也不会有影响，因为<code>MySQL</code>根据<code>redo log</code>日志恢复数据时，发现<code>redo log</code>还处于<code>prepare</code>阶段，并且没有对应<code>binlog</code>日志，就会回滚该事务。</p>
+<p><img src="D:\Blog\source\img\两阶段提交binlog问题.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="D:\Blog\source\img\两阶段提交relogcommit问题.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><code>redo log</code>设置<code>commit</code>阶段发生异常，那会不会回滚事务呢？<ul>
+<li>不会回滚事务，它会执行上图框住的逻辑，虽然<code>redo log</code>是处于<code>prepare</code>阶段，但是能通过事务<code>id</code>找到对应的<code>binlog</code>日志，所以<code>MySQL</code>认为是完整的，就会提交事务恢复数据。</li>
+</ul>
+</li>
+</ul>
+<h4 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h4><p>回滚日志，用于记录数据被修改前的信息 , 作用包含两个 : 提供回滚(保证事务的原子性) 和MVCC(多版本并发控制)</p>
+<ul>
+<li>undo log和redo log记录物理日志不一样，它是<strong>逻辑日志</strong>。可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，当update一条记录时，它记录一条对应相反的update记录。当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。</li>
+<li>Undo log销毁：<ul>
+<li>undo log在事务执行时产生，事务提交时，并不会立即删除undo log，因为这些日志可能还用于MVCC</li>
 </ul>
 </li>
 </ul>
@@ -808,8 +1026,8 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MySQL笔记</div>
-      <div>http://example.com/2023/10/20/MySQL笔记/</div>
+      <div></div>
+      <div>http://example.com/2023/11/13/MySQL笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -821,7 +1039,7 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月20日</div>
+          <div>2023年11月13日</div>
         </div>
       
       
@@ -853,9 +1071,9 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" title="数据结构基础">
+                      <a href="/2023/11/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络-物理层">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构基础</span>
+                        <span class="hidden-mobile">计算机网络-物理层</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -863,8 +1081,8 @@ load data local infile &#39;/root/sql1.log&#39; into table tb_user fields termin
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E5%BA%94%E7%94%A8%E5%B1%82/" title="计算机网络-应用层">
-                        <span class="hidden-mobile">计算机网络-应用层</span>
+                      <a href="/2023/11/13/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程笔记">
+                        <span class="hidden-mobile">Java并发编程笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
