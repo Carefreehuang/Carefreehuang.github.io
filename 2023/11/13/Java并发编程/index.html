@@ -32,7 +32,7 @@
 <meta property="og:image" content="d:\Blog\source\img\threadlocalmap%E7%BB%93%E6%9E%84.png">
 <meta property="og:image" content="d:\Blog\source\img\CLH%E7%BB%93%E6%9E%84.png">
 <meta property="article:published_time" content="2023-11-13T14:24:13.270Z">
-<meta property="article:modified_time" content="2023-11-13T14:24:13.270Z">
+<meta property="article:modified_time" content="2023-11-26T12:54:30.710Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="d:\Blog\source\img\java%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B.png">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          18k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          134 分钟
+          152 分钟
         
       </span>
     
@@ -327,7 +327,17 @@
 <li>异步：调用发出后，不需要等待结果，直接返回</li>
 </ul>
 <h3 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h3><h4 id="为什么要使用多线程"><a href="#为什么要使用多线程" class="headerlink" title="为什么要使用多线程"></a>为什么要使用多线程</h4><ul>
-<li>运行程序同时执行多个线程，可以提高程序性能和资源利用率，改善用户体验</li>
+<li>cpu、内存、IO设备的速度有极大差异，为了更加合理的利用cpu的高性能，有了如下优化：<ul>
+<li>cpu增加了缓存（比内存快），避免了每次读取数据都要去内存中读，去缓存中读取速度更快，这同时也带了可见性问题<ul>
+<li>如何带来可见性问题呢？和 JMM的关系在哪里呢？<ul>
+<li>JMM 规定，每个线程都有自己的工作内存，用于缓存自己在主内存中常用的数据</li>
+<li>而线程的工作内存里的数据在物理上就是存储在cpu的缓存之中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h4 id="使用多线程会带来什么问题？"><a href="#使用多线程会带来什么问题？" class="headerlink" title="使用多线程会带来什么问题？"></a>使用多线程会带来什么问题？</h4><ul>
 <li><strong>死锁：</strong>死锁是指两个或多个线程相互等待对方持有的资源，导致所有线程无法继续执行的情况。</li>
@@ -410,10 +420,24 @@
 </ul>
 <h4 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h4><p>轻量级锁的目标是，减少无实际竞争情况下，使用重量级锁产生的性能消耗。</p>
 <ul>
+<li>过程：<ul>
+<li>线程对对象加锁，会在线程的栈帧中创造一个锁记录结构</li>
+<li>如果对象没有加锁（根据markword判断），让锁记录中 Object reference 指向锁对象，并尝试用 <strong>cas 替换 Object 的 Mark Word，将 Mark Word 的值存入锁记录</strong><ul>
+<li>为什么要cas呢？如何cas呢？<ul>
+<li>因为涉及到了数据的交换，而且此时并没有加锁，可能会在交换的时候（比如第一个轻量级锁写入的时候），另一个锁又来了，然后也获取，再写入，此时可能就会发生线程不安全，导致可能两个锁的锁记录的object reference都指向了这个对象，导致这个对象加了两个锁，所以必须使用cas，看是否在加锁的时候有其他对象来加锁。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果有轻量级锁了，那么会进行锁的膨胀，将markword指向一个monitor，实现重量级锁</li>
+<li>如果是同一个锁，那么会进行锁的重入，在锁记录中添加一条记录</li>
+</ul>
+</li>
 <li>特点：<ul>
 <li>轻量级锁通过在对象头部的标志位和指针记录锁的状态和持有者线程的标识，尝试使用CAS（compare and swap）操作来获取锁。如果获取失败，线程会进行自旋等待，以避免阻塞和线程切换的开销。</li>
-<li>可重入：如果是同一个线程来获取同一个对象，那么会添加一个LockRecord作为重入计数</li>
-<li>如果被竞争了，那么膨胀为重量级锁</li>
+<li>在对象 markword 中存储的是锁记录地址，锁记录里面存储了被锁的对象引用 。</li>
+<li>可重入：如果是同一个线程来获取同一个对象，那么会添加一个 LockRecord 作为重入计数。</li>
+<li>如果被竞争了，那么膨胀为重量级锁。</li>
 </ul>
 </li>
 </ul>
@@ -424,25 +448,34 @@
 <p>轻量级锁就类似于将书包挂在门上，每一次判断都需要翻一翻书包进行判断</p>
 <p>偏向锁就是直接将名字刻在门上</p>
 </blockquote>
+<p>偏向锁为什么不需要cas操作来加锁呢？</p>
 <ul>
-<li>特点：<ul>
-<li>使用对象头的markword来记录获取该对象的线程id（相当于刻名字）</li>
+<li><p>因为偏向锁直接将线程的id给加到了对象头的markword区域，不会存在上面的线程不安全问题。直接在设置的时候进行判断就行，如果这个值为空或者为自己，那么就可以直接设置，否则证明有竞争。</p>
+</li>
+<li><p>特点：</p>
+<ul>
+<li>使用对象头的 markword 来记录获取该对象的线程id（相当于刻名字）</li>
 </ul>
 </li>
-<li>应用场景：<ul>
+<li><p>应用场景：</p>
+<ul>
 <li>适用于无竞争的情况</li>
 </ul>
 </li>
-<li>多个线程交错访问同一个加锁对象，那么会有如下变化<ul>
+<li><p>多个线程交错访问同一个加锁对象，那么会有如下变化</p>
+<ul>
 <li>首先创建对象会进行偏向锁的标记</li>
 <li>第一个线程访问并获取锁时，会加偏向锁（让mark word标记该线程id）</li>
 <li>另一个线程又访问该对象并获取锁时（之前的锁已经释放），会升级为轻量锁</li>
 <li>释放轻量锁后，会变为无锁状态，并且取消偏向状态</li>
 </ul>
 </li>
-<li>如果重新偏向的次数太多（20）的话，那么会直接批量偏向新线程，而不会升级为轻量级锁。</li>
-<li>如果重新偏向更多（40），那么直接撤销</li>
-<li>偏向锁的失效：<ul>
+<li><p>如果重新偏向的次数太多（20）的话，那么会直接批量偏向新线程，而不会升级为轻量级锁。</p>
+</li>
+<li><p>如果重新偏向更多（40），那么直接撤销</p>
+</li>
+<li><p>偏向锁的失效：</p>
+<ul>
 <li>哈希码只有在使用的时候才会产生比如 <code>d.hashCode()</code> ，并且存储在对象头的mark word中，如果没有产生哈希码，那么默认为0，在使用偏向锁的时候，会使用这些位（存储哈希码的位）来存储线程id。所以一旦使用哈希码，那么偏向锁会失效。</li>
 </ul>
 </li>
@@ -853,7 +886,71 @@
 </ul>
 </li>
 </ul>
-<h3 id="常见并发容器"><a href="#常见并发容器" class="headerlink" title="常见并发容器"></a>常见并发容器</h3>
+<h3 id="常见并发容器"><a href="#常见并发容器" class="headerlink" title="常见并发容器"></a>常见并发容器</h3><h4 id="HashMap为什么线程不安全？"><a href="#HashMap为什么线程不安全？" class="headerlink" title="HashMap为什么线程不安全？"></a>HashMap为什么线程不安全？</h4><ol>
+<li>JDK1.7之前，以为是使用的头插法，所以在多线程情况下可能会导致<strong>环形链表</strong>，形成死链</li>
+<li><strong>数据丢失问题</strong>，多个键值对分配到一个桶中，多个线程的HashMap的put会出现数据覆盖问题。<ul>
+<li>两个线程 1,2 同时进行 put 操作，并且发生了哈希冲突（hash 函数计算出的插入下标是相同的）。</li>
+<li>不同的线程可能在不同的时间片获得 CPU 执行的机会，当前线程 1 执行完哈希冲突判断后，由于时间片耗尽挂起。线程 2 先完成了插入操作。</li>
+<li>随后，线程 1 获得时间片，由于之前已经进行过 hash 碰撞的判断，所有此时会直接进行插入，这就导致线程 2 插入的数据被线程 1 覆盖了。</li>
+</ul>
+</li>
+<li>put导致size不正确，然后也可能导致数据覆盖<ul>
+<li>线程 1 执行 <code>if(++size &gt; threshold)</code> 判断时，假设获得 <code>size</code> 的值为 10，由于时间片耗尽挂起。</li>
+<li>线程 2 也执行 <code>if(++size &gt; threshold)</code> 判断，获得 <code>size</code> 的值也为 10，并将元素插入到该桶位中，并将 <code>size</code> 的值更新为 11。</li>
+<li>随后，线程 1 获得时间片，它也将元素放入桶位中，并将 size 的值更新为 11。</li>
+<li>线程 1、2 都执行了一次 <code>put</code> 操作，但是 <code>size</code> 的值只增加了 1，也就导致实际上只有一个元素被添加到了 <code>HashMap</code> 中。</li>
+</ul>
+</li>
+</ol>
+<h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p><code>ConcurrentHashMap</code> 的源码比较庞大，这里简要概括一下其主要实现思路和关键部分，包括 JDK 1.7 和 JDK 1.8 两个版本。</p>
+<p><strong>JDK 1.7 版本：</strong></p>
+<p>在 JDK 1.7 中，<code>ConcurrentHashMap</code> 使用了分段锁（Segment）的机制，每个段相当于一个小的 <code>HashTable</code>，具体实现在 <code>Segment</code> 内。以下是主要的实现细节：</p>
+<ol>
+<li><strong>结构：</strong><ul>
+<li><code>ConcurrentHashMap</code> 包含一个 <code>Segment</code> 数组，每个 <code>Segment</code> 内部维护一个 <code>HashEntry</code> 数组，<code>HashEntry</code> 存储键值对。</li>
+<li><code>ConcurrentHashMap</code> 的整体结构是数组 + 链表。</li>
+</ul>
+</li>
+<li><strong>分段锁：</strong><ul>
+<li><code>Segment</code> 内部使用 <code>ReentrantLock</code> 来进行加锁，保护该段的读写操作。不同段之间的操作是并发的，提高了并发度。</li>
+</ul>
+</li>
+<li><strong><code>put</code> 操作：</strong><ul>
+<li><code>put</code> 操作首先计算键的哈希值，然后通过哈希值找到对应的 <code>Segment</code>。</li>
+<li>在该 <code>Segment</code> 中进行插入操作，使用 <code>ReentrantLock</code> 保护该段。</li>
+<li>如果链表过长，可能触发扩容操作。</li>
+</ul>
+</li>
+<li><strong>扩容：</strong><ul>
+<li><code>ConcurrentHashMap</code> 采用分段的扩容策略，每个 <code>Segment</code> 独立扩容，避免了整个表的扩容，减小了锁的粒度。</li>
+</ul>
+</li>
+</ol>
+<p><strong>JDK 1.8 版本：</strong></p>
+<p>在 JDK 1.8 中，<code>ConcurrentHashMap</code> 的实现进行了较大改进，引入了更先进的数据结构，主要是数组 + 链表 + 红黑树，以及一些 CAS 操作。以下是主要的实现细节：</p>
+<ol>
+<li><strong>结构：</strong><ul>
+<li><code>ConcurrentHashMap</code> 依然包含一个 <code>Node[]</code> 数组，每个节点是 <code>Node</code> 对象，存储键值对。</li>
+<li><code>ConcurrentHashMap</code> 的整体结构是数组 + 链表 + 红黑树。</li>
+</ul>
+</li>
+<li><strong>分段锁：</strong><ul>
+<li>JDK 1.8 中不再使用 <code>Segment</code>，而是直接在数组的每个节点上使用 CAS 操作来保护节点的修改。</li>
+<li>采用了 CAS 操作来保证并发写入的一致性，而不再需要显式的锁。</li>
+</ul>
+</li>
+<li><strong>链表转红黑树：</strong><ul>
+<li>当链表长度达到一定阈值（默认为8）时，链表会转换为红黑树，以提高查询性能。</li>
+</ul>
+</li>
+<li><strong>扩容：</strong><ul>
+<li>JDK 1.8 中对扩容进行了优化，引入了 <code>forwardingNodes</code> 机制，避免了重复计算哈希值，减少了扩容时的复制开销。</li>
+<li>采用了 <code>tryPresize</code> 操作，提前计算新容量，然后使用 CAS 操作来尝试进行扩容。</li>
+</ul>
+</li>
+</ol>
+<p>总体来说，JDK 1.8 中的 <code>ConcurrentHashMap</code> 引入了更为先进的数据结构和并发控制机制，提高了性能和并发度。分段锁机制被替代为更轻量级的 CAS 操作，提升了在高并发场景下的性能。链表转红黑树等优化也使得 <code>ConcurrentHashMap</code> 在各种场景下表现更为优越。</p>
+
                 
               </div>
             
@@ -946,8 +1043,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/25/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="01背包问题">
-                        <span class="hidden-mobile">01背包问题</span>
+                      <a href="/2023/11/13/%E9%BB%91%E9%A9%AC%E7%82%B9%E8%AF%84/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

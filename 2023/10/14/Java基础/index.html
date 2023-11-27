@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/java.png">
 <meta property="article:published_time" content="2023-10-14T09:52:51.145Z">
-<meta property="article:modified_time" content="2023-11-03T14:57:46.655Z">
+<meta property="article:modified_time" content="2023-11-18T16:03:03.953Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/java.png">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          141 分钟
+          152 分钟
         
       </span>
     
@@ -353,10 +353,19 @@
 <li>作用：<ul>
 <li>Java 基本数据类型的包装类型的大部分都用到了缓存机制来提升性能。</li>
 <li>Byte,Short,Integer,Long 这 4 种包装类默认创建了数值 [-128，127] 的相应类型的缓存数据，Character 创建了数值在 [0,127] 范围的缓存数据，Boolean 直接返回 True or False。</li>
-<li><strong>简单来说就是：当你生成一个包装对象时，在缓存数值范围内的，系统已经给你创建好了，你直接用就行，并不会内部重新new对象，不在缓存内的就是在内部给你new出来，此时每个的地址都不同</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">packCache</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//1，2 比较在缓存内，一个正常生成（直接使用缓存），</span><br>    <span class="hljs-comment">//一个手动new，返回false，因为一个使用的预先生产的缓存，</span><br>    <span class="hljs-comment">//一个是new</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i1</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(<span class="hljs-number">80</span>);<br>    <span class="hljs-comment">//1，3，在缓存范围内，都正常生成，结果地址相同，</span><br>    <span class="hljs-comment">//说明都是使用的预先生成好的缓存对象</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i3</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-comment">//比较超出缓存范围，返回false，因为超出范围，</span><br>    <span class="hljs-comment">//都是在内部new的</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i4</span> <span class="hljs-operator">=</span> <span class="hljs-number">999</span>;<br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i5</span> <span class="hljs-operator">=</span> <span class="hljs-number">999</span>;<br>    <span class="hljs-type">Float</span> <span class="hljs-variable">f1</span> <span class="hljs-operator">=</span> <span class="hljs-number">100f</span>;<br>    <span class="hljs-type">Float</span> <span class="hljs-variable">f2</span> <span class="hljs-operator">=</span> <span class="hljs-number">100f</span>;<br>    System.out.println(f1 == f2);<span class="hljs-comment">//false，因为Float，Double没有实现缓存机制</span><br>    System.out.println(i1 == i2);<span class="hljs-comment">//false</span><br>    System.out.println(i1 == i3);<span class="hljs-comment">//true</span><br>    System.out.println(i4 == i5);<span class="hljs-comment">//false</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><strong>简单来说就是：当你生成一个包装对象时，在缓存数值范围内的，系统已经给你创建好了，你直接用就行，并不会内部重新new对象，不在缓存内的就是在内部给你new出来，此时每个的地址都不同</strong><ul>
+<li>new 每次都是产生新的对象，不会复用缓存池对象</li>
+<li>Integer i &#x3D; 80 等同于 Integer i &#x3D; Integer.valueOf(80)，如果数字在缓存范围内，都会复用缓存池中对象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">packCache</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//1，2 比较在缓存内，一个正常生成（直接使用缓存），</span><br>    <span class="hljs-comment">//一个手动new，返回false，因为一个使用的预先生产的缓存，</span><br>    <span class="hljs-comment">//一个是new</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i1</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>; <span class="hljs-comment">// 就等同于 Integer.valueOf(80)，是使用的缓存池中的对象</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(<span class="hljs-number">80</span>); <span class="hljs-comment">// new 是产生新的对象</span><br>    <span class="hljs-comment">//1，3，在缓存范围内，都正常生成，结果地址相同，</span><br>    <span class="hljs-comment">//说明都是使用的预先生成好的缓存对象</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i3</span> <span class="hljs-operator">=</span> <span class="hljs-number">80</span>;<br>    <span class="hljs-comment">//比较超出缓存范围，返回false，因为超出范围，</span><br>    <span class="hljs-comment">//都是在内部new的</span><br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i4</span> <span class="hljs-operator">=</span> <span class="hljs-number">999</span>;<br>    <span class="hljs-type">Integer</span> <span class="hljs-variable">i5</span> <span class="hljs-operator">=</span> <span class="hljs-number">999</span>;<br>    <span class="hljs-type">Float</span> <span class="hljs-variable">f1</span> <span class="hljs-operator">=</span> <span class="hljs-number">100f</span>;<br>    <span class="hljs-type">Float</span> <span class="hljs-variable">f2</span> <span class="hljs-operator">=</span> <span class="hljs-number">100f</span>;<br>    System.out.println(f1 == f2);<span class="hljs-comment">//false，因为Float，Double没有实现缓存机制</span><br>    System.out.println(i1 == i2);<span class="hljs-comment">//false</span><br>    System.out.println(i1 == i3);<span class="hljs-comment">//true</span><br>    System.out.println(i4 == i5);<span class="hljs-comment">//false</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<p><strong>valueOf()源码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Integer <span class="hljs-title function_">valueOf</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> &#123;<br>    <span class="hljs-keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)<br>        <span class="hljs-keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Integer</span>(i);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h4 id="装箱和拆箱"><a href="#装箱和拆箱" class="headerlink" title="装箱和拆箱"></a>装箱和拆箱</h4><ul>
 <li><strong>装箱</strong>：将基本类型用他们对应的引用类型包装起来；<ul>
 <li>调用了包装类的<code>valueof()</code></li>
@@ -452,6 +461,7 @@
 <li><strong>重载</strong>：<ul>
 <li>发生在同一个类中（或者父类和子类之间），方法名必须相同，参数类型不同、个数不同、顺序不同，方法返回值和访问修饰符可以不同。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//如果多个方法(比如 StringBuilder 的构造方法)有相同的名字、不同的参数， 便产生了重载。</span><br>  <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>  <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;HelloWorld&quot;</span>);<br></code></pre></td></tr></table></figure></li>
 <li><strong>重载就是同一个类之中多个同名方法根据传参的不同执行不同的处理逻辑</strong></li>
+<li><strong>只有返回值不同的不算重载！</strong></li>
 </ul>
 </li>
 <li><strong>重写</strong><ul>
@@ -502,11 +512,17 @@
 </li>
 </ul>
 <h4 id="面向对象三大特征"><a href="#面向对象三大特征" class="headerlink" title="面向对象三大特征"></a>面向对象三大特征</h4><ul>
-<li>封装<ul>
-<li>将数据和方法封装在一个对象之中，在对象外只提供有限的接口来访问对象中的数据，隐藏了实现细节，提高了代码的安全性和可维护性</li>
+<li><p>封装</p>
+<ul>
+<li>将数据和方法封装在一个对象之中，在对象外只提供有限的接口来访问对象中的数据，隐藏了实现细节，提高了代码的安全性和可维护性<ul>
+<li>减少耦合</li>
+<li>减轻维护负担，更容易理解</li>
 </ul>
 </li>
-<li>继承（extends）<ul>
+</ul>
+</li>
+<li><p>继承（extends）</p>
+<ul>
 <li>使用已存在的类的定义作为基础建立新类的技术</li>
 <li>子类拥有父类对象所有的属性和方法（包括私有属性和私有方法），但是父类中的私有属性和方法子类是无法访问，只是拥有</li>
 <li>子类可以拥有自己属性和方法，即子类可以对父类进行扩展。</li>
@@ -514,7 +530,8 @@
 <li>提高了代码的复用性和扩展性</li>
 </ul>
 </li>
-<li>多态<ul>
+<li><p>多态</p>
+<ul>
 <li>表示一个对象具有多种的状态，具体表现为父类的引用指向子类的实例，即父类可以是子类</li>
 <li>对象类型和引用类型之间具有继承（类）&#x2F;实现（接口）的关系</li>
 <li>引用类型变量发出的方法调用的到底是哪个类中的方法，必须在程序运行期间才能确定</li>
@@ -545,23 +562,34 @@
 </ul>
 </li>
 </ul>
-<h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><ul>
-<li><p><strong>public</strong>：类成员和构造函数在任何地方都可以被访问。即公共访问级别，没有访问限制。</p>
-</li>
-<li><p><strong>protected</strong>：</p>
+<h4 id="值传递问题"><a href="#值传递问题" class="headerlink" title="值传递问题"></a>值传递问题</h4><p>Java 的参数是以值传递的形式传入方法中，而不是引用传递。即传入方法的是一个地址。</p>
+<p>如在方法中传入一个dog对象</p>
+<p>在方法中将dog对象指向新的不同dog对象，原dog对象不会变</p>
 <ul>
-<li>使用protected修饰的类成员和构造函数可以在同一个包内的其他类中访问。</li>
-<li>以及在不同包的子类中访问。</li>
+<li>因为是传入函数内了，此时是一个局部变量，在函数里面确实指向变了，但是出了函数就复原了</li>
+</ul>
+<p>将方法中将dog对象进行属性修改，那么原dog对象的属性会变</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">s    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> &#123;<br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> age;<br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">Dog</span><span class="hljs-params">(<span class="hljs-type">int</span> age)</span>&#123;<br>            <span class="hljs-built_in">this</span>.age = age;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func1</span><span class="hljs-params">(Dog dog)</span>&#123;<br>        dog.age = <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">func2</span><span class="hljs-params">(Dog dog)</span>&#123;<br>        dog = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-number">20</span>);<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-type">Dog</span> <span class="hljs-variable">dog1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-number">100</span>);<br>        System.out.println(dog1);<span class="hljs-comment">// $Dog@1e643faf</span><br>        System.out.println(dog1.age);<span class="hljs-comment">// 100</span><br>        func2(dog1);<br>        System.out.println(dog1); <span class="hljs-comment">// $Dog@1e643faf</span><br>        System.out.println(dog1.age); <span class="hljs-comment">// 100</span><br>        func1(dog1);<br>        System.out.println(dog1);<span class="hljs-comment">// $Dog@1e643faf</span><br>        System.out.println(dog1.age); <span class="hljs-comment">// 10</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><ul>
+<li><strong>public</strong>：类成员和构造函数在任何地方都可以被访问。即公共访问级别，没有访问限制。</li>
+<li><strong>protected</strong>：<ul>
+<li>使用protected修饰的类成员和构造函数可以在<strong>同一个包内的其他类中访问。</strong></li>
+<li><strong>以及在不同包的子类中访问。</strong></li>
 <li>对于不同包中的非子类，访问受限制。</li>
 </ul>
 </li>
-<li><p><strong>default</strong>：</p>
-<ul>
+<li><strong>private</strong>：使用private修饰的类成员和构造函数只能在同一个类中访问，对于其他类（包括同一个包中的类和子类）都是不可见的。</li>
+<li><strong>默认</strong>：<ul>
 <li>如果没有使用任何访问修饰符，默认访问修饰符将被应用。</li>
 <li>使用默认修饰符修饰的类、类成员和构造函数可以在同一个包内被访问，但对于不同包中的类是不可见的。</li>
+<li>不应该叫default<ul>
+<li>因为default是一种在接口中提供默认方法实现的修饰符</li>
 </ul>
 </li>
-<li><p><strong>private</strong>：使用private修饰的类成员和构造函数只能在同一个类中访问，对于其他类（包括同一个包中的类和子类）都是不可见的。</p>
+</ul>
 </li>
 </ul>
 <h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><h4 id="Object类的常见方法"><a href="#Object类的常见方法" class="headerlink" title="Object类的常见方法"></a>Object类的常见方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回当前运行时对象的 Class 对象，使用了 final 关键字修饰，故不允许子类重写。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> Class&lt;?&gt; getClass()<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于返回对象的哈希码，主要使用在哈希表中，比如 JDK 中的HashMap。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 用于比较 2 个对象的内存地址是否相等，String 类对该方法进行了重写以用于比较字符串的值是否相等。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object obj)</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，用于创建并返回当前对象的一份拷贝。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">native</span> Object <span class="hljs-title function_">clone</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> CloneNotSupportedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 返回类的名字实例的哈希码的 16 进制的字符串。建议 Object 所有的子类都重写这个方法。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。唤醒一个在此对象监视器上等待的线程(监视器相当于就是锁的概念)。如果有多个线程在等待只会任意唤醒一个。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notify</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native 方法，并且不能重写。跟 notify 一样，唯一的区别就是会唤醒在此对象监视器上等待的所有线程，而不是一个线程。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">notifyAll</span><span class="hljs-params">()</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * native方法，并且不能重写。暂停线程的执行。注意：sleep 方法没有释放锁，而 wait 方法释放了锁 ，timeout 是等待时间。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">native</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 多了 nanos 参数，这个参数表示额外时间（以纳秒为单位，范围是 0-999999）。 所以超时的时间还需要加上 nanos 纳秒。。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">(<span class="hljs-type">long</span> timeout, <span class="hljs-type">int</span> nanos)</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 跟之前的2个wait方法一样，只不过该方法一直等待，没有超时时间这个概念</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">wait</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 实例被垃圾回收器回收的时候触发的操作</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">finalize</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Throwable &#123; &#125;<br></code></pre></td></tr></table></figure>
@@ -647,6 +675,22 @@
 <ul>
 <li>保存字符串的数组被 final 修饰且为私有的，并且String 类没有提供&#x2F;暴露修改这个字符串的方法。</li>
 <li>String 类被 final 修饰导致其不能被继承，进而避免了子类破坏 String 不可变</li>
+</ul>
+<p><strong>不可变的好处？</strong></p>
+<ul>
+<li>缓存hash值<ul>
+<li>String类型的hash值经常被使用，如果String不可变，那么他的hash值也不可变，因此String只需要在第一次计算hash值，然后缓存起来，以后就可以一直重复使用</li>
+</ul>
+</li>
+<li>安全性<ul>
+<li>多线程安全</li>
+</ul>
+</li>
+<li>字符串常量池的需要<ul>
+<li>“String Pool”（字符串池）是指一个保存着字符串对象的缓存区域，用于避免创建相同内容的字符串对象的重复内存分配。</li>
+<li>如果String可以改变，那么字符串池中的字符也可能受到改变，其他指向该字符的String就会受到影响，可能会出问题</li>
+</ul>
+</li>
 </ul>
 <h4 id="字符串的拼接-“-”-StringBuilder"><a href="#字符串的拼接-“-”-StringBuilder" class="headerlink" title="字符串的拼接 “+” &#x2F; StringBuilder"></a>字符串的拼接 “+” &#x2F; StringBuilder</h4><ul>
 <li>字符串对象通过 “+” 的字符串拼接实际上是通过 <code>StringBuilder</code>调用<code>append()</code>方法实现的</li>

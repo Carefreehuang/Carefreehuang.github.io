@@ -1,0 +1,1301 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/topLogo.png">
+  <link rel="icon" href="/img/topLogo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Carefreehuang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JVM 概述基本介绍JVM：全称 Java Virtual Machine，即 Java 虚拟机，一种规范，本身是一个虚拟计算机，直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作特点：  Java 虚拟机基于二进制字节码执行，由一套字节码指令集、 一组寄存器、一个栈、一个垃圾回收堆、一个方法区等组成 JVM 屏蔽了与操作系统平台相关的信息，从而能够让 Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Carefreehaung的个人博客">
+<meta property="og:url" content="http://example.com/2023/11/04/JVM/index.html">
+<meta property="og:site_name" content="Carefreehaung的个人博客">
+<meta property="og:description" content="JVM 概述基本介绍JVM：全称 Java Virtual Machine，即 Java 虚拟机，一种规范，本身是一个虚拟计算机，直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作特点：  Java 虚拟机基于二进制字节码执行，由一套字节码指令集、 一组寄存器、一个栈、一个垃圾回收堆、一个方法区等组成 JVM 屏蔽了与操作系统平台相关的信息，从而能够让 Java">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:\Blog\source\img\jdk%EF%BC%8Cjre%EF%BC%8Cjvm%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="d:\Blog\source\img\java1.8%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="d:\Blog\source\img\%E5%88%9B%E5%BB%BAJava%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:image" content="d:\Blog\source\img\%E6%A0%87%E8%AE%B0%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="d:\Blog\source\img\%E6%96%B0%E7%94%9F%E4%BB%A3%E8%80%81%E7%94%9F%E4%BB%A3.png">
+<meta property="og:image" content="d:\Blog\source\img\serial%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\parnew%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\serialold%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\parallelold%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\cms%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\g1%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="d:\Blog\source\img\zgc%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6.png">
+<meta property="og:image" content="d:\Blog\source\img\java%E5%9C%A8jvm%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B.png">
+<meta property="og:image" content="d:\Blog\source\img\class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%B1%9E%E6%80%A7.png">
+<meta property="og:image" content="d:\Blog\source\img\%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
+<meta property="og:image" content="d:\Blog\source\img\%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9A%84%E5%B1%82%E6%AC%A1.png">
+<meta property="article:published_time" content="2023-11-04T15:23:28.678Z">
+<meta property="article:modified_time" content="2023-11-26T13:39:21.195Z">
+<meta property="article:author" content="Carefreehuang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:\Blog\source\img\jdk%EF%BC%8Cjre%EF%BC%8Cjvm%E5%AF%B9%E6%AF%94.png">
+  
+  
+  
+  <title>Carefreehaung的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Carefreehaung</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-04 23:23" pubdate>
+          2023年11月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          107 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="JVM-概述"><a href="#JVM-概述" class="headerlink" title="JVM 概述"></a>JVM 概述</h2><h4 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h4><p>JVM：全称 Java Virtual Machine，即 Java 虚拟机，一种规范，本身是一个虚拟计算机，直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作<br>特点：</p>
+<ul>
+<li>Java 虚拟机基于二进制字节码执行，由一套字节码指令集、 一组寄存器、一个栈、一个垃圾回收堆、一个方法区等组成</li>
+<li>JVM 屏蔽了与操作系统平台相关的信息，从而能够让 Java 程序只需要生成能够在 JVM 上运行的字节码文件，通过该机制实现的<strong>跨平台性</strong><ul>
+<li>因为字节码是只针对JVM而言的虚拟机指令集</li>
+<li>不同的平台实现的JVM不同（jvm和平台底层的逻辑处理关系），但是都遵循JVM规范，可以正确读取字节码</li>
+</ul>
+</li>
+</ul>
+<p>Java代码执行流程：Java 程序 –（编译）–&gt; 字节码文件 –（解释执行）–&gt; 操作系统（Win，Linux）</p>
+<p>JVM、JRE、JDK对比：</p>
+<ul>
+<li>JDK(Java SE Development Kit)：Java 标准开发包，提供了编译、运行 Java 程序所需的各种工具和资源</li>
+<li>JRE( Java Runtime Environment)：Java 运行环境，用于解释执行 Java 的字节码文件<br><img src="D:\Blog\source\img\jdk，jre，jvm对比.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="架构模型"><a href="#架构模型" class="headerlink" title="架构模型"></a>架构模型</h4><p>Java 编译器输入的指令流是一种<strong>基于栈的指令集架构</strong>。因为跨平台的设计，Java 的指令都是根据栈来设计的，不同平台 CPU 架构不同，所以<strong>不能设计为基于寄存器架构</strong></p>
+<h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>JVM 的生命周期分为三个阶段，分别为：<strong>启动、运行、死亡</strong></p>
+<ul>
+<li><strong>启动</strong>：当启动一个 Java 程序时，通过引导类加载器（bootstrap class loader）创建一个初始类（initial class），对于拥有 main 函数的类就是 JVM 实例运行的起点</li>
+<li><strong>运行</strong>：<ul>
+<li>main() 方法是一个程序的初始起点，任何线程均可由在此处启动</li>
+<li>在 JVM 内部有两种线程类型，分别为：用户线程和守护线程，JVM 使用的是守护线程，main() 和其他线程使用的是用户线程，守护线程会随着用户线程的结束而结束<ul>
+<li>用户线程是由应用程序代码创建和管理的线程，它们通常用于执行应用程序的业务逻辑和任务。</li>
+<li>守护线程是一种特殊类型的线程，它的存在不会阻止JVM退出。它们通常用于<strong>执行后台任务和服务</strong>，如垃圾回收、定时任务等。</li>
+<li>守护线程在用户线程结束后，如果没有其他用户线程继续运行，它们会自动退出，以确保JVM正常关闭。</li>
+</ul>
+</li>
+<li>执行一个 Java 程序时，真真正正在执行的是一个 Java 虚拟机的进程</li>
+<li>JVM 有两种运行模式 Server 与 Client，两种模式的区别在于：Client 模式启动速度较快，Server 模式启动较慢；但是启动进入稳定期长期运行之后 Server 模式的程序运行速度比 Client 要快很多</li>
+<li>Server 模式启动的 JVM 采用的是重量级的虚拟机，对程序采用了更多的优化；Client 模式启动的 JVM 采用的是轻量级的虚拟机</li>
+</ul>
+</li>
+<li><strong>死亡</strong>：<ul>
+<li>当程序中的用户线程<strong>都中止</strong>，JVM 才会退出</li>
+<li>程序正常执行结束、程序异常或错误而异常终止、操作系统错误导致终止</li>
+<li>线程调用 Runtime 类 halt 方法或 System 类 exit 方法，并且 Java 安全管理器允许这次 exit 或 halt 操作</li>
+</ul>
+</li>
+</ul>
+<h2 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h2><h4 id="内存概述"><a href="#内存概述" class="headerlink" title="内存概述"></a>内存概述</h4><ul>
+<li>内存结构是 JVM 中非常重要的一部分，是非常重要的系统资源，是硬盘和 CPU 的桥梁，承载着操作系统和应用程序的实时运行，又叫运行时数据区</li>
+<li>JVM 内存结构<strong>规定了 Java 在运行过程中内存申请、分配、管理的策略，保证了 JVM 的高效稳定运行</strong><br><img src="D:\Blog\source\img\java1.8内存结构.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h4 id="JVM内存"><a href="#JVM内存" class="headerlink" title="JVM内存"></a>JVM内存</h4><ol>
+<li><p>程序计数器</p>
+<ul>
+<li>作用，记住下一条jvm指令的执行地址，在上下文切换后就可以知道之前运行到哪里了</li>
+<li>特点<ul>
+<li>是线程私有的</li>
+<li>不会存在内存溢出</li>
+</ul>
+</li>
+<li>原理<ul>
+<li>JVM 对于多线程是通过线程轮流切换并且分配线程执行时间，一个处理器只会处理执行一个线程</li>
+<li>切换线程需要从程序计数器中来回去到当前的线程上一次执行的行号</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>虚拟机栈</p>
+<ul>
+<li>每个线程运行所需要的内存，称为虚拟机栈</li>
+<li>每个栈由多个栈帧（frame）组成，对应着每次方法调用时所占用的内存（存储局部变量表，操作数栈，动态链接，方法出口等信息）<ul>
+<li>局部变量表：存储方法里的 Java 基本数据类型以及对象的引用</li>
+<li>动态链接：也叫指向运行时常量池的方法引用</li>
+<li>方法返回地址：方法正常退出或者异常退出的地址（即程序执行下一条指令）</li>
+<li>操作数栈：存储方法执行过程中的临时数据和中间结果</li>
+<li>表达式栈和其他一些附加信息</li>
+</ul>
+</li>
+<li>每个线程只能有一个活动栈帧，对应着当前正在执行的那个方法</li>
+<li>虚拟机栈特点：<ul>
+<li>栈内存不需要进行GC，方法开始执行的时候会进栈，方法调用后自动弹栈，相当于清空了数据</li>
+<li>方法内的局部变量是否线程安全：<ul>
+<li>如果方法内局部变量没有逃离方法的作用访问，它是线程安全的（逃逸分析）</li>
+<li>如果是局部变量引用了对象，并逃离方法的作用范围，需要考虑线程安全</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>本地方法栈</p>
+<ul>
+<li>本地方法栈是为虚拟机执行本地方法时提供服务的</li>
+</ul>
+</li>
+<li><p>堆<br>Heap 堆：是 JVM 内存中最大的一块，<strong>由所有线程共享</strong>，由垃圾回收器管理的主要区域，堆中对象大部分都需要考虑线程安全的问题<br>存放：</p>
+<ul>
+<li>对象实例：类初始化生成的对象，基本数据类型的数组也是对象实例，new 创建对象都使用堆内存</li>
+<li>字符串常量池：<ul>
+<li>字符串常量池原本存放在方法区，JDK7开始存放于堆中</li>
+<li>字符串常量池<strong>存储的是 String 对象的直接引用或者对象</strong>，是一张 string table</li>
+</ul>
+</li>
+<li>静态变量：静态变量是有 static 修饰的变量，JDK8 时从方法区迁移至堆中</li>
+<li>线程分配缓冲区 Thread Local Allocation Buffer：线程私有但不影响堆的共性，可以提升对象分配的效率</li>
+<li>堆内存诊断工具：</li>
+</ul>
+<ol>
+<li>jps：查看当前系统中有哪些 Java 进程</li>
+<li>jmap：查看堆内存占用情况 jhsdb jmap –heap –pid 进程id</li>
+<li>jconsole：图形界面的，多功能的监测工具，可以连续监测、</li>
+</ol>
+</li>
+<li><p>方法区</p>
+<blockquote>
+<p>在Java 8及之前的版本，<strong>方法区是堆的一部分</strong>，而在Java 8及以后的版本，方法区的实现发生了变化。在Java 8及以后，永久代（Permanent Generation）被移除，而方法区的内容被放置在一个称<strong>为元空间（Metaspace）的本地内存区域中</strong>。</p>
+<p>元空间不再有固定的内存大小，而是根据应用程序的需要动态地调整大小。元空间的数据结构和存储方式可能与传统的永久代有所不同，它更灵活地利用本地内存，并且在一定程度上缓解了永久代的一些限制。</p>
+</blockquote>
+<ol>
+<li>方法区：</li>
+</ol>
+<ul>
+<li>是<strong>各个线程共享</strong>的内存区域，用于存储已被虚拟机加载的类信息、常量、即时编译器编译后的代码等数据，虽然 Java 虚拟机规范把方法区描述为堆的一个逻辑部分，但是也叫 Non-Heap（非堆）</li>
+<li>方法区是一个 JVM 规范，永久代与元空间都是其一种实现方式</li>
+</ul>
+<ol start="2">
+<li>为了避免方法区出现 OOM(Out Of MemoryError)，在 JDK8 中将堆内的方法区（永久代）移动到了本地内存上，重新开辟了一块空间，叫做元空间，元空间存储类的元信息，静态变量和字符串常量池等放入堆中</li>
+<li>类元信息：在类编译期间放入方法区，存放了类的基本信息，包括类的方法、参数、接口以及常量池表</li>
+<li>常量池表（Constant Pool Table）是 Class 文件的一部分，存储了类在编译期间生成的字面量、符号引用，JVM 为每个已加载的类维护一个常量池</li>
+</ol>
+<ul>
+<li>字面量：基本数据类型、字符串类型常量、声明为 final 的常量值等</li>
+<li>符号引用：类、字段、方法、接口等的符号引用</li>
+</ul>
+<ol start="5">
+<li>运行时常量池是方法区的一部分</li>
+</ol>
+<ul>
+<li>常量池：<ul>
+<li>常量池是位于Java类文件（.class文件）中的一部分，用于存储各种常量信息，包括字符串常量、类名、方法名、字段名、常量值等。</li>
+<li>常量池中的常量信息在编译期间被收集和生成，并在运行时被加载到内存中供JVM使用。</li>
+<li>常量池中的常量是不可修改的，一旦定义，就不能被更改。</li>
+<li>常量池中的字符串常量通常是被共享的，即多个字符串变量可以引用相同的字符串对象，以减少内存占用。</li>
+</ul>
+</li>
+<li>StringTable<ul>
+<li>StringTable是JVM内部的数据结构，用于管理和存储字符串对象。</li>
+<li>具体请看：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cd546566850/article/details/105353791">JVM内存结构之浅析常量池、运行时常量池、StringTable</a><br><img src="D:\Blog\source\img\创建Java对象.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>直接内存</p>
+<ol>
+<li>直接内存是 Java 堆外、直接向系统申请的内存区间，不是虚拟机运行时数据区的一部分，也不是《Java 虚拟机规范》中定义的内存区域<ul>
+<li>常见于 NIO 操作时，用于数据缓冲区</li>
+<li>分配回收成本较高，但读写性能高</li>
+<li>不受 JVM 内存回收管理</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="JVM与线程的关系"><a href="#JVM与线程的关系" class="headerlink" title="JVM与线程的关系"></a>JVM与线程的关系</h4><ul>
+<li>线程由JVM创建和管理</li>
+<li>JVM负责线程的生命周期</li>
+<li>JVM为每个线程分配独立资源：<ul>
+<li>每个线程都有自己的  程序计数器、栈、堆</li>
+</ul>
+</li>
+</ul>
+<h2 id="JVM-垃圾回收和内存分配"><a href="#JVM-垃圾回收和内存分配" class="headerlink" title="JVM 垃圾回收和内存分配"></a>JVM 垃圾回收和内存分配</h2><h4 id="堆的基本结构"><a href="#堆的基本结构" class="headerlink" title="堆的基本结构"></a>堆的基本结构</h4><p>Java 的自动内存管理主要是针对对象内存的回收和对象内存的分配。同时，Java 自动内存管理最核心的功能是 <strong>堆</strong> 内存中对象的分配与回收</p>
+<p>Java 堆是垃圾收集器管理的主要区域，因此也被称作 <strong>GC 堆（Garbage Collected Heap）</strong>。</p>
+<p>从垃圾回收的角度来说，由于现在收集器基本都采用<strong>分代垃圾收集算法</strong>，所以 Java 堆被划分为了几个不同的区域，这样我们就可以<strong>根据各个区域的特点选择合适的垃圾收集算法</strong>。</p>
+<p>堆内存主要被划分为两个部分：</p>
+<ul>
+<li>新生代<ul>
+<li>包括Eden空间，SurvivorFrom，SurvivorTo</li>
+</ul>
+</li>
+<li>老年代</li>
+<li>永久代（1.8后被移除）：<ul>
+<li>存储类的元数据和静态变量</li>
+<li>元数据包括：类的结构信息，方法的字节码，常量池，字段，方法描述符等</li>
+<li>1.8后将上述的数据存储在了方法区的元空间里，不占用堆内存，使用的是本地内存，所以内存十分充足。</li>
+</ul>
+</li>
+</ul>
+<h3 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h3><ul>
+<li>分配流程<ul>
+<li>对象一般在堆上分配</li>
+<li>对象优先在Eden分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活的对象将进入老年代</li>
+</ul>
+</li>
+</ul>
+<h3 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h3><ul>
+<li>如果一个或多个对象没有任何的引用指向它了，那么这个对象现在就是垃圾</li>
+<li>垃圾收集主要针对<strong>堆和方法区</strong>进行，程序计数器、虚拟机栈、本地方法栈这三个区域属于线程私有，只存在于线程的生命周期内，线程结束后就会消失，因此不需要进行垃圾回收</li>
+</ul>
+<h4 id="如何判断可以进行垃圾回收"><a href="#如何判断可以进行垃圾回收" class="headerlink" title="如何判断可以进行垃圾回收"></a>如何判断可以进行垃圾回收</h4><ul>
+<li><p>引用计数算法 </p>
+<ul>
+<li>引用计数算法（Reference Counting）：对每个对象保存一个整型的引用计数器属性，用于记录对象被引用的情况。<ul>
+<li>对于一个对象 A，只要有任何一个对象引用了 A，则 A 的引用计数器就加 1；</li>
+<li>当引用失效时，引用计数器就减 1；</li>
+<li>当对象 A 的引用计数器的值为 0，即表示对象A不可能再被使用，可进行回收（Java 没有采用）</li>
+</ul>
+</li>
+<li>优点：<ul>
+<li>回收没有延迟性，无需等到内存不够时才开始回收</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>每次对象被引用时，都需要更新计数器，有时间开销</li>
+<li>浪费cpu资源，内存够用时，计数器统计仍在进行</li>
+<li><strong>无法解决循环引用问题，会引发内存泄漏</strong>（即互相引用的对象永远也无法被回收）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可达性分析算法</p>
+<ul>
+<li>可达性分析算法：也可以称为根搜索算法、追踪性垃圾收集</li>
+<li>GC Roots 对象：<ul>
+<li>虚拟机栈中局部变量表中引用的对象：各个线程被调用的方法中使用到的参数、局部变量等</li>
+<li>本地方法栈中引用的对象</li>
+<li>堆中类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+<li>字符串常量池（string Table）里的引用</li>
+<li>同步锁 synchronized 持有的对象</li>
+<li>GC Roots <strong>是一组活跃的引用，不是对象</strong>，放在 GC Roots Set 集合</li>
+</ul>
+</li>
+<li>工作原理：<ul>
+<li>可达性分析算法以根对象集合（GCRoots）为起始点，从上至下的方式搜索被根对象集合所连接的目标对象<ul>
+<li>可达性分析算法后，内存中的存活对象都会被根对象集合直接或间接连接着，搜索走过的路径称为引用链</li>
+<li>如果目标对象没有任何引用链相连，则是不可达的，就意味着该对象己经死亡，可以标记为垃圾对象</li>
+<li>在可达性分析算法中，只有能够被根对象集合直接或者间接连接的对象才是存活对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>finalization</p>
+<ul>
+<li>Java 语言提供了对象终止（finalization）机制来允许开发人员提供<strong>对象被销毁之前的自定义处理逻辑</strong></li>
+<li>垃圾回收此对象之前，会先调用这个对象的 finalize() 方法，finalize() 方法允许在子类中被重写，用于在对象被回收时进行后置处理，通常在这个方法中进行一些资源释放和清理，比如关闭文件、套接字和数据库连接等</li>
+<li><strong>finalize()只能被调用一次</strong></li>
+</ul>
+</li>
+<li><p>引用分析</p>
+<ul>
+<li><p>强引用：被强引用关联的对象不会被回收，只有所有 GCRoots 都不通过强引用引用该对象，才能被垃圾回收</p>
+<ul>
+<li>强引用可以直接访问目标对象</li>
+<li>虚拟机宁愿抛出 OOM 异常，也不会回收强引用所指向对象</li>
+<li>强引用可能导致内存泄漏</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Object</span> <span class="hljs-variable">obj</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();<span class="hljs-comment">//使用 new 一个新对象的方式来创建强引用</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>软引用：被软引用关联的对象只有在内存不够的情况下才会被回收</p>
+<ul>
+<li><strong>配合引用队列来释放软引用自身</strong>，在构造软引用时，可以指定一个引用队列，当软引用对象被回收时，就会加入指定的引用队列，通过这个队列可以跟踪对象的回收情况</li>
+</ul>
+</li>
+<li><p>弱引用：被弱引用关联的对象一定会被回收，只能存活到下一次垃圾回收发生之前</p>
+<ul>
+<li>仅有弱引用引用该对象时，在垃圾回收时，无论内存是否充足，都会回收弱引用对象</li>
+<li>配合引用队列来释放弱引用自身</li>
+</ul>
+</li>
+<li><p>虚引用：也称为幽灵引用或者幻影引用，是所有引用类型中最弱的一个</p>
+<ul>
+<li>一个对象是否有虚引用的存在，不会对其生存时间造成影响，也无法通过虚引用得到一个对象</li>
+<li>为对象设置虚引用的<strong>唯一目的是在于跟踪垃圾回收过程，监测对象是否存活</strong></li>
+</ul>
+</li>
+<li><p>终结器引用（finalization）</p>
+</li>
+<li><p>引用队列作用：</p>
+<ul>
+<li>引用队列（ReferenceQueue）是一种特殊的队列，用于<strong>保存被垃圾回收器回收的对象的引用</strong>。它的主要作用是提供一种<strong>通知机制</strong>，让开发者能够在对象被回收时得到通知。</li>
+<li>当一个对象被虚引用、软引用或者弱引用所引用时，如果该对象被垃圾回收器回收，那么对应的引用会被添加到引用队列中。开发者可以通过检查引用队列，获取这些引用，从而得知对象何时被回收。</li>
+<li><strong>也就是说，将要回收的对象会被引用，然后放到引用队列之中，如果被回收成功，那么队列之中相应引用也就消失，然后根据这个来检查队列之中哪些对象被成功回收</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="软引用、弱引用、虚引用的对比"><a href="#软引用、弱引用、虚引用的对比" class="headerlink" title="软引用、弱引用、虚引用的对比"></a>软引用、弱引用、虚引用的对比</h4><ul>
+<li>软引用：在内存不足时可以被回收，但相对较慢，主要用于实现缓存机制。</li>
+<li>弱引用：无论内存是否充足，只要没有强引用引用该对象，就会被回收，主要用于非必需引用的场景。</li>
+<li>虚引用：无法通过虚引用获取对象的实例，主要用于跟踪对象的回收状态。</li>
+</ul>
+<h4 id="如何判断一个常量是废弃常量？"><a href="#如何判断一个常量是废弃常量？" class="headerlink" title="如何判断一个常量是废弃常量？"></a>如何判断一个常量是废弃常量？</h4><p>当常量池中的该常量没有被任何对象所引用时，该常量是废弃常量</p>
+<h4 id="如何判断一个类是无用的类？"><a href="#如何判断一个类是无用的类？" class="headerlink" title="如何判断一个类是无用的类？"></a>如何判断一个类是无用的类？</h4><ul>
+<li>该类的所有实例都已经被回收，即Java堆中不存在任何该类的实例</li>
+<li>加载该类的<code>ClassLoader</code>已经被回收</li>
+<li>该类对应的 <code>java.lang.Class</code> 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</li>
+</ul>
+<p>虚拟机可以对满足上述 3 个条件的无用类进行回收，这里说的仅仅是“可以”，<strong>而并不是和对象一样不使用了就会必然被回收</strong>。</p>
+<h4 id="回收算法"><a href="#回收算法" class="headerlink" title="回收算法"></a>回收算法</h4><ol>
+<li>标记-清除法<ul>
+<li>先标记，再清除 </li>
+<li><strong>标记</strong>：Collector 从引用根节点开始遍历，标记所有被引用的对象，一般是在对象的 Header 中记录为可达对象，<strong>标记的是引用的对象，不是垃圾</strong></li>
+<li><strong>清除</strong>：Collector 对堆内存从头到尾进行线性的遍历，如果发现某个对象在其 Header 中没有标记为可达对象，则将其回收</li>
+<li>缺点：<ul>
+<li>因为没有整理，所以会产生不连续的内存碎片</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>标记-整理法<ul>
+<li>与标记-清除法一样，不过清除之后将存活对象都移动到了内存的一端，解决了内存碎片问题</li>
+<li>缺点：<ul>
+<li>需要遍历移动对象，处理效率低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>标记-复制法<ul>
+<li>前提：每次新生代都会回收大量的垃圾（90%？） </li>
+<li>将内存空间划分成两个部分，一个from，一个to</li>
+<li>当回收垃圾时，会将非垃圾的对象复制到另一块区域（将from区非垃圾复制到to区），并在复制的时候保证了内存的连续性。</li>
+<li>清空from区，将from指针和to指针互换（即from又指向了非垃圾对象区，to又指向了空区）<br><img src="D:\Blog\source\img\标记复制算法.png" srcset="/img/loading.gif" lazyload> </li>
+<li>缺点：<ul>
+<li>需要占用双倍内存</li>
+<li><strong>不适合老年代</strong>：如果存活对象数量比较大，复制性能会变得很差。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="分代垃圾回收"><a href="#分代垃圾回收" class="headerlink" title="分代垃圾回收"></a>分代垃圾回收</h4><p>在新生代中，每次收集都会有大量对象死去，所以可以选择”标记-复制“算法，只需要付出少量对象的复制成本（因为死了的不需要复制，只需要复制少量存活的即可）就可以完成每次垃圾收集。</p>
+<p>而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
+<ul>
+<li><strong>新生代</strong><ul>
+<li>是用来<strong>存放新生的对象</strong>。一般占据堆的1&#x2F;3 空间。由于频繁创建对象，所以新生代会频繁触发MinorGC 进行垃圾 回收。新生代又分为Eden 区、ServivorFrom、 ServivorTo 3个区。</li>
+</ul>
+</li>
+<li><strong>老年代</strong><ul>
+<li>主要存放应用程序中生命周期长的内存对象。老年代的对象比较稳定，所以MajorGC（fullGC）不会频繁执行。在进行MajorGC 前一般都先进行了一次MinorGC，使得有新生代的对象晋身入老年代，导致空间不够用时才触发。<br><img src="D:\Blog\source\img\新生代老生代.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+<li><strong>分代回收过程</strong>：<ul>
+<li>对象首先分配在伊甸园区域</li>
+<li>新生代空间不足时，触发 minor gc，伊甸园和 from 存活的对象使用 copy 复制到 to 中，存活的对象年龄加 1并且交换 from to</li>
+<li>minor gc 会引发 stop the world，暂停其它用户的线程，等垃圾回收结束，用户线程才恢复运行</li>
+<li>当对象寿命超过阈值时，会晋升至老年代，最大寿命是15（4bit）</li>
+<li>当老年代空间不足，会先尝试触发 minor gc，如果之后空间仍不足，那么触发 full gc</li>
+</ul>
+</li>
+<li><strong>永久代</strong><ul>
+<li>指内存的永久保存区域，主要存放Class 和Meta (元数据)的信息,Class在被加载的时候被放入永久区域，它和和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所以这也导致了永久代的区域会随着加载的Class 的增多而胀满，最终抛出OOM异常。</li>
+<li>在Java8 中，永久代已经被移除，被一个称为“元数据区”(元空间)的区域所取代。</li>
+<li>元空间的本质和永久代类似，元空间与永久代之间最大的区别在于:<strong>元空间并不在虚拟机中，而是使用本地内存</strong>。因此，默认情况下，<strong>元空间的大小仅受本地内存限制</strong>。</li>
+<li>类的元数据放入native memory,字符串池和类的静态变量放入java 堆中，这样可以加载多少类的元数据就不再由MaxPermSize控制，而由系统的实际可用空间来控制。</li>
+</ul>
+</li>
+<li><strong>回收策略</strong><ul>
+<li>部分收集：不是进行整个java堆的垃圾收集<ul>
+<li>新生代收集（Minor GC&#x2F;Young GC）：只是新生代的垃圾收集</li>
+<li>老年代收集（Major GC&#x2F;Old GC）：只是老年代的垃圾收集（很多时候不区分Full GC和Major GC）</li>
+</ul>
+</li>
+<li>整堆收集：<ul>
+<li>Full GC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h4><ul>
+<li><p>Serial收集器<br><img src="D:\Blog\source\img\serial收集器.jpg" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li>又叫串行收集器，以串行方式执行</li>
+<li>是单线程收集器，只会使用一个线程进行垃圾收集</li>
+<li>简单高效</li>
+</ul>
+</li>
+<li><p>ParNew收集器<br><img src="D:\Blog\source\img\parnew收集器.jpg" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li>是Serial收集器的多线程版本</li>
+<li>是 Server 模式下的虚拟机首选新生代收集器，除了性能原因外，主要是因为除了 Serial 收集器，只有它能与 CMS 收集器配合工作。</li>
+<li>默认开启线程数量与cpu数量相同</li>
+<li>单核下性能绝不会比serial收集器好</li>
+</ul>
+</li>
+<li><p>Parallel Scavenge收集器</p>
+<ul>
+<li>与ParNew一样是多线程收集器，目标是尽可能缩短垃圾收集时用户线程停顿的时间，达到一个可控制的吞吐量，也被称为：吞吐量优先 收集器</li>
+<li>这里的吞吐量指：cpu运行用户代码时间 &#x2F; 总时间</li>
+<li>缩短停顿时间是以牺牲吞吐量和新生代空间来换取的: 新生代空间变小，垃圾回收变得频繁，导致吞吐量下降。（当新生代空间变少，自然用于停顿标识垃圾的时间也就减少了）</li>
+</ul>
+</li>
+<li><p>Serial Old收集器<br><img src="D:\Blog\source\img\serialold收集器.jpg" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>与Serial收集器对比，回收区域不同，回收方式也不同</li>
+<li>serial收集器的老年代版本</li>
+</ul>
+</li>
+<li><p>Parallel Old收集器<br><img src="D:\Blog\source\img\parallelold收集器.jpg" srcset="/img/loading.gif" lazyload>  </p>
+<ul>
+<li>是 Parallel Scavenge 收集器的老年代版本。</li>
+</ul>
+</li>
+<li><p>CMS收集器<br><img src="D:\Blog\source\img\cms收集器.jpg" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li>CMS(Concurrent Mark Sweep)，Mark Sweep 指的是标记 - 清除算法。</li>
+<li>流程：<ul>
+<li>初始标记: 仅仅只是标记一下 GC Roots 能直接关联到的对象，速度很快，需要停顿。</li>
+<li>并发标记: 进行 GC Roots Tracing 的过程，它在整个回收过程中耗时最长，不需要停顿。（不影响用户线程的运行）</li>
+<li>重新标记: 为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录，需要停顿。</li>
+<li>并发清除: 不需要停顿。</li>
+</ul>
+</li>
+<li>缺点；<ul>
+<li>吞吐量低，低停顿时间是以牺牲吞吐量为代价，导致cpu利用率不高<ul>
+<li>（为什么呢？因为其并发标记时占用了线程，使用户线程执行的时间变少了）</li>
+</ul>
+</li>
+<li>无法处理浮动垃圾：浮动垃圾是指并发清除阶段由于用户线程仍在继续而产生的垃圾，这部分垃圾只能在下一次GC才能进行回收。<ul>
+<li>意味着 CMS 收集不能像其它收集器那样等待老年代快满的时候再回收。如果预留的内存不够存放浮动垃圾，就会出Concurrent Mode Failure，这时虚拟机将临时启用 Serial Old 来替代 CMS。</li>
+</ul>
+</li>
+<li>使用的标记-清除算法会导致空间碎片</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Garbage First收集器:  <a target="_blank" rel="noopener" href="https://pdai.tech/md/java/jvm/java-jvm-gc-g1.html">G1详解</a><br><img src="D:\Blog\source\img\g1收集器.jpg" srcset="/img/loading.gif" lazyload> </p>
+<ul>
+<li>堆被分为新生代和老年代，其它收集器进行收集的范围都是整个新生代或者老年代，而 G1 可以直接对新生代和老年代一起回收。</li>
+<li>G1 把堆划分成多个大小相等的独立区域(Region)，新生代和老年代不再物理隔离。</li>
+<li>通过引入 Region 的概念，从而将原来的一整块内存空间划分成多个的小空间，使得每个小空间可以单独进行垃圾回收。这种划分方法带来了很大的灵活性，使得可预测的停顿时间模型成为可能。通过记录每个 Region 垃圾回收时间以及回收所获得的空间(这两个值是通过过去回收的经验获得)，并维护一个优先列表，每次根据允许的收集时间，优先回收价值最大的 Region。</li>
+<li>每个 Region 都有一个 Remembered Set，用来记录该 Region 对象的引用对象所在的 Region。通过使用 Remembered Set，在做可达性分析的时候就可以避免全堆扫描。</li>
+<li>步骤<ul>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>最终标记：为了修正在并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录</li>
+<li>筛选回收：首先对各个 Region 中的回收价值和成本进行排序，根据用户所期望的 GC 停顿时间来制定回收计划。</li>
+</ul>
+</li>
+<li>使用标记-整理算法，不会产生内存碎片</li>
+<li>可预测的停顿: 能让使用者明确指定在一个长度为 M 毫秒的时间段内，消耗在 GC 上的时间不得超过 N 毫秒。</li>
+</ul>
+</li>
+<li><p>ZGC收集器:  <a target="_blank" rel="noopener" href="https://pdai.tech/md/java/jvm/java-jvm-gc-zgc.html">ZGC详解</a><br><img src="D:\Blog\source\img\zgc垃圾回收.png" srcset="/img/loading.gif" lazyload>  </p>
+<ul>
+<li>ZGC（The Z Garbage Collector）是JDK 11中推出的一款低延迟垃圾回收器，它的设计目标包括：<ul>
+<li>停顿时间不超过10ms；</li>
+<li>停顿时间不会随着堆的大小，或者活跃对象的大小而增加（对程序吞吐量影响小于15%）；</li>
+<li>支持8MB~4TB级别的堆（未来支持16TB）。</li>
+</ul>
+</li>
+<li>使用关键技术<ul>
+<li>ZGC通过着色指针和读屏障技术，解决了转移过程中准确访问对象的问题，实现了并发转移。<ul>
+<li>染色指针是一种将信息存储在指针中的技术</li>
+</ul>
+</li>
+<li>在ZGC中，应用线程访问对象将触发“读屏障”，如果发现对象被移动了，那么“读屏障”会把读出来的指针更新到对象的新地址上，这样应用线程始终访问的都是对象的新地址。<ul>
+<li>读屏障类似于aop的环绕方法，在事件发生的前后进行指定的操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JVM-类加载"><a href="#JVM-类加载" class="headerlink" title="JVM 类加载"></a>JVM 类加载</h2><h3 id="类字节码"><a href="#类字节码" class="headerlink" title="类字节码"></a>类字节码</h3><h4 id="多语言编译为字节码在JVM运行"><a href="#多语言编译为字节码在JVM运行" class="headerlink" title="多语言编译为字节码在JVM运行"></a>多语言编译为字节码在JVM运行</h4><ul>
+<li>为什么需要字节码：<ul>
+<li>计算机是不能直接运行java代码的，java代码必须先编译成字节码文件，然后由jvm识别转换成对应操作系统的指令。</li>
+</ul>
+</li>
+<li>为什么jvm不能直接运行java代码：<ul>
+<li>这是因为在cpu层面看来计算机中所有的操作都是一个个指令的运行汇集而成的，java是高级语言，只有人类才能理解其逻辑，计算机是无法识别的</li>
+<li>所以java代码必须要先编译成字节码文件，jvm才能正确识别代码转换后的指令并将其运行。这样也就实现了一次编写到处运行的目的。</li>
+<li><img src="D:\Blog\source\img\java在jvm的加载过程.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+</li>
+</ul>
+<h4 id="Java字节码文件"><a href="#Java字节码文件" class="headerlink" title="Java字节码文件"></a>Java字节码文件</h4><ul>
+<li>编译后形成的class到底是个啥<ul>
+<li>class文件本质上是一个以8位字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑的排列在class文件中。</li>
+<li>jvm根据其特定的规则解析该二进制数据，从而得到相关信息。</li>
+</ul>
+</li>
+<li>Class文件结构属性<br><img src="D:\Blog\source\img\class文件结构属性.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h3 id="Java类加载机制"><a href="#Java类加载机制" class="headerlink" title="Java类加载机制"></a>Java类加载机制</h3><h4 id="类加载到底是干什么的？"><a href="#类加载到底是干什么的？" class="headerlink" title="类加载到底是干什么的？"></a>类加载到底是干什么的？</h4><p>类加载是Java虚拟机（JVM）在运行时将类的字节码文件加载到内存中的过程。</p>
+<p>这个过程的目的是为了使得运行中的Java程序能够访问、执行和操作类的定义，以支持程序的正常运行和动态性。</p>
+<p>可以说是：</p>
+<ul>
+<li>我要使用到这个类，那么我就需要知道这个类的 “规范”，去哪里查看规范呢？</li>
+<li>就是去内存中的<strong>方法区</strong>查看类。</li>
+<li>每当加载一个类（类是存储在方法区）就会在堆中创造一个Class实例，Class实例可以支持Java的反射特性</li>
+</ul>
+<h4 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h4><blockquote>
+<p>类的生命周期包括了<code>加载</code>、<code>验证</code>、<code>准备</code>、<code>解析</code>、<code>初始化</code>五个阶段<br><img src="D:\Blog\source\img\类的生命周期.png" srcset="/img/loading.gif" lazyload></p>
+</blockquote>
+<ul>
+<li><p><strong>加载: 查找并加载类的二进制数据</strong></p>
+<ul>
+<li><p>通过一个类的全限定名来获取其定义的二进制字节流。</p>
+</li>
+<li><p><strong>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</strong></p>
+</li>
+<li><p>在Java堆中生成一个代表这个类的java.lang.Class对象，作为对方法区中这些数据的访问入口。</p>
+<blockquote>
+<p>加载阶段(准确地说，是加载阶段获取类的二进制字节流的动作)是可控性最强的阶段，既可以使用系统提供的类加载器来完成加载，也可以自定义自己的类加载器来完成加载。</p>
+</blockquote>
+</li>
+<li><p>加载方式</p>
+<ul>
+<li>本地系统直接加载</li>
+<li>网络下载.class文件</li>
+<li>从zip，jar等归档文件中加载.class文件</li>
+<li>从专有数据库中提取.class文件</li>
+<li>将Java源文件动态编译为.class文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>验证: 确保被加载的类的正确性</strong></p>
+<ul>
+<li>验证是连接阶段的第一步，这一阶段的目的是为了<strong>确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全</strong>。验证阶段大致会完成4个阶段的检验动作:<ul>
+<li>文件格式验证：验证字节流是否符合Class文件格式的规范，如是否以<code>0xCAFEBABE</code>开头<ul>
+<li>字节码文件魔数0xCAFEBABE，每一个java字节码文件(.class)都是以相同的4字节内容开始的——十六进制的CAFEBABE，用来判断是否是java字节码文件（文件名后缀+魔数等）</li>
+</ul>
+</li>
+<li>元数据验证：对字节码描述的信息进行语义分析(注意: 对比javac编译阶段的语义分析)，以保证其描述的信息符合Java语言规范的要求，例如: 这个类是否有父类，除了java.lang.Object之外。</li>
+<li>字节码验证：通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。</li>
+<li>符号引用验证：确保解析动作能正确执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>准备: 为类的静态变量分配内存，并将其初始化为默认值</strong></p>
+<ul>
+<li>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段，<strong>这些内存都将在方法区中分配</strong><ul>
+<li>这时候进行内存分配的仅包括**类变量(static)**，而不包括实例变量，实例变量会在对象实例化时随着对象一块分配在Java堆中。</li>
+<li>这里所设置的初始值通常情况下是数据类型默认的零值(如0、0L、null、false等)，而不是被在Java代码中被显式地赋予的值。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>解析: 把类中的符号引用转换为直接引用</strong></p>
+<ul>
+<li>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程<ul>
+<li>解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用点限定符7类符号引用进行。</li>
+</ul>
+</li>
+<li>符号引用就是一组符号来描述目标，可以是任何字面量。</li>
+<li>直接引用就是直接指向目标的指针、相对偏移量或一个间接定位到目标的句柄。</li>
+<li><strong>性能更高，直接存地址和引用，就不需要解析符号，然后再去找值</strong></li>
+</ul>
+</li>
+<li><p><strong>初始化：为类的静态变量赋予正确的初始值</strong></p>
+<ul>
+<li>声明类变量是指定初始值</li>
+<li>使用静态代码块为类变量指定初始值</li>
+<li><strong>初始化步骤</strong><ul>
+<li>假如这个类还没有被加载和连接，则程序先加载并连接该类</li>
+<li>假如该类的直接父类还没有被初始化，则先初始化其直接父类</li>
+<li>假如类中有初始化语句，则系统依次执行这些初始化语句</li>
+</ul>
+</li>
+<li><strong>类初始化时间</strong><ul>
+<li>创建类的实例，也就是new的方式</li>
+<li>访问某个类或接口的静态变量，或者对该静态变量赋值</li>
+<li>调用类的静态方法</li>
+<li>反射(如Class.forName(“com.pdai.jvm.Test”))</li>
+<li>初始化某个类的子类，则其父类也会被初始化</li>
+<li>Java虚拟机启动时被标明为启动类的类(Java Test)，直接使用java.exe命令来运行某个主类</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>使用</strong></p>
+<ul>
+<li>类访问方法区内的数据结构的接口， 对象是Heap区的数据。</li>
+</ul>
+</li>
+<li><p><strong>卸载</strong></p>
+<ul>
+<li>执行了System.exit()方法</li>
+<li>程序正常执行结束</li>
+<li>程序在执行过程中遇到了异常或错误而异常终止</li>
+<li>由于操作系统出现错误而导致Java虚拟机进程终止</li>
+</ul>
+</li>
+</ul>
+<h4 id="类加载器、JVM类加载机制"><a href="#类加载器、JVM类加载机制" class="headerlink" title="类加载器、JVM类加载机制"></a>类加载器、JVM类加载机制</h4><ul>
+<li><p>类加载器的层次<br><img src="D:\Blog\source\img\类加载器的层次.png" srcset="/img/loading.gif" lazyload> </p>
+</li>
+<li><p>启动类加载器（Bootstrap ClassLoader）：</p>
+<ul>
+<li>负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库(如rt.jar，所有的java.*开头的类均被Bootstrap ClassLoader加载)。启动类加载器是无法被Java程序直接引用的。</li>
+</ul>
+</li>
+<li><p>扩展类加载器（Extension ClassLoader）：</p>
+<ul>
+<li>该加载器由sun.misc.Launcher$ExtClassLoader实现，它负责加载JDK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库(如javax.*开头的类)，开发者可以直接使用扩展类加载器。</li>
+</ul>
+</li>
+<li><p>应用程序类加载器（Application ClassLoader）：</p>
+<ul>
+<li>该类加载器由sun.misc.Launcher$AppClassLoader来实现，它负责加载用户类路径(ClassPath)所指定的类，开发者可以直接使用该类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</li>
+</ul>
+<blockquote>
+<p>启动类加载器加载核心库，扩展类加载器加载扩展库，应用程序类加载器加载用户类路径上的类。</p>
+</blockquote>
+</li>
+<li><p>类的加载</p>
+<ul>
+<li>命令行启动应用时候由JVM初始化加载</li>
+<li>通过Class.forName()方法动态加载</li>
+<li>通过ClassLoader.loadClass()方法动态加载</li>
+</ul>
+</li>
+<li><p>JVM类加载机制</p>
+<ul>
+<li><code>全盘负责</code><ul>
+<li>当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显示使用另外一个类加载器来载入</li>
+</ul>
+</li>
+<li><code>父类委托</code><ul>
+<li>先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类</li>
+</ul>
+</li>
+<li><code>缓存机制</code><ul>
+<li>缓存机制将会保证所有加载过的Class都会被缓存，当程序中需要使用某个Class时，类加载器先从缓存区寻找该Class，只有缓存区不存在，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存入缓存区。</li>
+<li><strong>这就是为什么修改了Class后，必须重启JVM，程序的修改才会生效</strong></li>
+</ul>
+</li>
+<li><code>双亲委派机制</code><ul>
+<li>如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把请求委托给父加载器去完成，依次向上</li>
+<li>因此，所有的类加载请求最终都应该被传递到顶层的启动类加载器中，只有当父加载器在它的搜索范围中没有找到所需的类时，即无法完成该加载，子加载器才会尝试自己去加载该类。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>双亲委派机制过程？</strong></p>
+<ol>
+<li>当AppClassLoader加载一个class时，它首先不会自己去尝试加载这个类，而是把类加载请求委派给父类加载器ExtClassLoader去完成。</li>
+<li>当ExtClassLoader加载一个class时，它首先也不会自己去尝试加载这个类，而是把类加载请求委派给BootStrapClassLoader去完成。</li>
+<li>如果BootStrapClassLoader加载失败(例如在$JAVA_HOME&#x2F;jre&#x2F;lib里未查找到该class)，会使用ExtClassLoader来尝试加载；</li>
+<li>若ExtClassLoader也加载失败，则会使用AppClassLoader来加载，如果AppClassLoader也加载失败，则会报出异常ClassNotFoundException。</li>
+</ol>
+</li>
+<li><p><strong>双亲委派优势</strong></p>
+<ul>
+<li><p>系统类防止内存中出现多份同样的字节码，即<strong>避免重复加载</strong></p>
+<ul>
+<li><p>理解”类的唯一性”可以通过一个反例更清晰：</p>
+<ul>
+<li><p>假设没有双亲委派机制，而是每个类加载器都可以独立加载类。考虑以下情况：</p>
+<ul>
+<li><strong>类A被应用程序类加载器加载。</strong></li>
+<li><strong>同一个类A也存在于一个自定义类加载器加载的jar包中。</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>保证Java程序安全稳定运行，即<strong>避免篡改核心类</strong></p>
+</li>
+<li><p>例如，有一个你写了一个Object类，放在ClassPath下去给应用程序加载器加载，此时应用程序加载器会让一层一层往上传递信息，如果父类有Object类，则会加载父类的Object，而不会加载子类的。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2023/11/04/JVM/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Carefreehuang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/25/%E5%B9%B6%E6%9F%A5%E9%9B%86/" title="01背包问题">
+                        <span class="hidden-mobile">01背包问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

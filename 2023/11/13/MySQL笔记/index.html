@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/mysql.png">
 <meta property="article:published_time" content="2023-11-13T14:24:13.276Z">
-<meta property="article:modified_time" content="2023-11-15T08:23:30.580Z">
+<meta property="article:modified_time" content="2023-11-17T15:15:47.713Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/mysql.png">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          18k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          131 分钟
+          148 分钟
         
       </span>
     
@@ -305,10 +305,16 @@
 <h4 id="为什么-MySQL-不建议使用-NULL-作为列默认值？"><a href="#为什么-MySQL-不建议使用-NULL-作为列默认值？" class="headerlink" title="为什么 MySQL 不建议使用 NULL 作为列默认值？"></a>为什么 MySQL 不建议使用 <code>NULL</code> 作为列默认值？</h4><p><strong>语义模糊：</strong> <code>NULL</code> 的语义是未知或缺失的值，因此在某些情况下，使用 <code>NULL</code> 作为默认值可能使列的语义变得模糊。默认值应该是具有明确定义含义的常规值，而不是表示未知的 <code>NULL</code>。</p>
 <h4 id="Boolean类型如何表示？"><a href="#Boolean类型如何表示？" class="headerlink" title="Boolean类型如何表示？"></a>Boolean类型如何表示？</h4><p>MySQL 中没有专门的布尔类型，而是用 TINYINT(1) 类型来表示布尔值。TINYINT(1) 类型可以存储 0 或 1，分别对应 false 或 true</p>
 <h3 id="SQL语句在MySQL中的执行过程"><a href="#SQL语句在MySQL中的执行过程" class="headerlink" title="SQL语句在MySQL中的执行过程"></a>SQL语句在MySQL中的执行过程</h3><h5 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h5><p><img src="D:\Blog\source\img\mysql基础架构.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>连接器：</strong> 身份认证和权限相关(登录 MySQL 的时候)。</p>
+<p><strong>查询缓存：</strong> 执行查询语句的时候，会先查询缓存（MySQL 8.0 版本后移除，因为这个功能不太实用）。</p>
+<p><strong>分析器：</strong> 没有命中缓存的话，SQL 语句就会经过分析器，分析器说白了就是要先看你的 SQL 语句要干嘛，再检查你的 SQL 语句语法是否正确。</p>
+<p><strong>优化器：</strong> 按照 MySQL 认为最优的方案去执行。</p>
+<p><strong>执行器：</strong> 执行语句，然后从存储引擎返回数据。 执行语句之前会先判断是否有权限，如果没有权限的话，就会报错。</p>
+<p><strong>插件式存储引擎</strong>：主要负责数据的存储和读取，采用的是插件式架构，支持 InnoDB、MyISAM、Memory 等多种存储引擎</p>
 <h5 id="查询语句"><a href="#查询语句" class="headerlink" title="查询语句"></a>查询语句</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> tb_student  A <span class="hljs-keyword">where</span> A.age<span class="hljs-operator">=</span><span class="hljs-string">&#x27;18&#x27;</span> <span class="hljs-keyword">and</span> A.name<span class="hljs-operator">=</span><span class="hljs-string">&#x27; 张三 &#x27;</span>;<br><br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>先连接器检查该语句是否有权限，没有权限直接返回错误信息，在8.0前 有权限则去缓存中查询，如果有则返回，否则执行分析器步骤</li>
+<li>先连接器检查该语句是否有权限，没有权限直接返回错误信息，在8.0前 有权限则去缓存中查 询，如果有则返回，否则执行分析器步骤</li>
 <li>通过分析器进行词法分析，并且检查语法问题，没有问题就继续执行下一步</li>
 <li>通过优化器进行语句优化，如：先判断年纪、先判断名字，确认好方案后再进行下一步</li>
 <li>执行器执行前还会再进行一次权限校验，判断使用的一些接口是否能行</li>
@@ -324,6 +330,40 @@
 <li>执行器收到通知后记录 binlog，然后调用引擎接口，提交 redo log 为提交状态。</li>
 <li>更新完成。</li>
 </ul>
+<h5 id="写入数据"><a href="#写入数据" class="headerlink" title="写入数据"></a>写入数据</h5><h5 id="MySQL底层写入数据的过程涉及到存储引擎、Redo-Log和磁盘I-O等多个方面。下面是一个基本的数据写入过程的概述："><a href="#MySQL底层写入数据的过程涉及到存储引擎、Redo-Log和磁盘I-O等多个方面。下面是一个基本的数据写入过程的概述：" class="headerlink" title="MySQL底层写入数据的过程涉及到存储引擎、Redo Log和磁盘I&#x2F;O等多个方面。下面是一个基本的数据写入过程的概述："></a>MySQL底层写入数据的过程涉及到存储引擎、Redo Log和磁盘I&#x2F;O等多个方面。下面是一个基本的数据写入过程的概述：</h5><ol>
+<li><strong>接收客户端请求：</strong><ul>
+<li>当客户端发送写入请求（例如插入、更新、删除数据）时，MySQL的连接管理器接收并处理请求。</li>
+</ul>
+</li>
+<li><strong>查询分析器和优化器：</strong><ul>
+<li>查询分析器解析并验证SQL语句的语法，优化器选择最佳的执行计划。</li>
+</ul>
+</li>
+<li><strong>锁定和并发控制：</strong><ul>
+<li>MySQL使用并发控制机制，例如锁，来确保事务的隔离性和一致性。在写入数据之前，必须获取适当的锁。</li>
+</ul>
+</li>
+<li><strong>Redo Log记录：</strong><ul>
+<li>在写入数据之前，相关的修改操作被记录到Redo Log中。这是为了确保在发生故障时，可以通过重新应用Redo Log来还原数据库的状态。</li>
+<li>Redo Log的记录是追加写入的，通常是顺序写入，以减少磁盘I&#x2F;O的寻址开销。</li>
+</ul>
+</li>
+<li><strong>数据写入内存缓存：</strong><ul>
+<li>数据修改首先写入到内存中的缓存，包括Buffer Pool（用于存储数据页和索引页）和其他内存结构。</li>
+<li>这样可以提高写入性能，因为内存的访问速度比磁盘快得多。</li>
+</ul>
+</li>
+<li><strong>刷新到磁盘：</strong><ul>
+<li>缓存中的数据被定期刷新到磁盘，以确保数据的持久性。</li>
+<li>刷新可以通过不同的机制完成，包括后台线程、用户提交事务时的刷新等。</li>
+</ul>
+</li>
+<li><strong>物理文件写入：</strong><ul>
+<li>最终，数据被写入到磁盘上的物理文件，包括数据文件和索引文件。</li>
+<li>存储引擎负责将数据写入适当的文件，并确保数据在物理层面的安全性。</li>
+</ul>
+</li>
+</ol>
 <h5 id="为什么要使用两个日志模块？"><a href="#为什么要使用两个日志模块？" class="headerlink" title="为什么要使用两个日志模块？"></a>为什么要使用两个日志模块？</h5><ol>
 <li><strong>redo log（重做日志）：</strong><ul>
 <li><strong>目的：</strong> redo log的主要目的是确保事务的持久性，即使在数据库发生故障时也能够恢复数据。</li>
@@ -468,7 +508,10 @@
 </ul>
 </li>
 <li>缺点：<ul>
-<li><strong>依赖于有序的数据</strong>：因为 B+树是多路平衡树，如果索引的数据不是有序的，那么就需要在插入时排序，如果数据是整型还好，否则类似于字符串或 UUID 这种又长又难比较的数据，插入或查找的速度肯定比较慢。</li>
+<li><strong>依赖于有序的数据</strong>：因为 B+树是多路平衡树，如果索引的数据不是有序的，那么就需要在插入时排序，如果数据是整型还好，否则类似于字符串或 UUID 这种又长又难比较的数据，插入或查找的速度肯定比较慢。<ul>
+<li>并且插入的时候可能会涉及到表的修改（主键不有序）</li>
+</ul>
+</li>
 <li><strong>更新代价大</strong>：因为索引存储了数据，其对应列的修改也会造成索引的修改，而聚集索引中存放了整行的数据，所以修改发生的更为频繁，代价更大</li>
 </ul>
 </li>
@@ -494,6 +537,7 @@
 </li>
 <li><p>联合索引 ：使用表中的多个字段创建索引，就是 联合索引</p>
 <ul>
+<li>实现：<strong>采用多个键值的形式（第一个键相同，再对其中的第二个键排序）</strong></li>
 <li><strong>最左前缀匹配原则</strong>：最左前缀法则指的是查询从索引的最左列开始，并且不跳过索引中的列。如果跳跃某一列，索引将会部分失效(后面的字段索引失效)。<ul>
 <li>其实只要查找时联合索引（创建时）的最左边字段存在，索引就会生效，中间跳过了某个字段，那么后面的字段索引就会失效</li>
 </ul>
@@ -747,7 +791,7 @@
 <li>InnoDB存储引擎基于磁盘文件存储，访问物理硬盘和在内存中进行访问，速度相差很大，为了尽可能弥补这两者之间的I&#x2F;O效率的差值，就需要把经常使用的数据加载到缓冲池中，<strong>避免每次访问都进行磁盘I&#x2F;O</strong>。</li>
 <li>Buffer Pool是主内存中的一个区域，里面缓存用于操作的真实数据</li>
 <li>执行增删查改时，会先操作缓冲池中的数据（没有就去磁盘中加载到缓冲池），然后再一定频率将缓冲池数据刷新到磁盘，从而减少磁盘IO，加快处理速度。</li>
-<li>以页为单位：<ul>
+<li><strong>以页为单位：</strong><ul>
 <li>free page：空闲page，未被使用。</li>
 <li>clean page：被使用page，数据没有被修改过。</li>
 <li>dirty page：脏页，被使用page，数据被修改过，也中数据与磁盘的数据产生了不一致。</li>
@@ -799,6 +843,42 @@
 </ul>
 </li>
 </ol>
+<h5 id="双写缓冲区和-redo-log"><a href="#双写缓冲区和-redo-log" class="headerlink" title="双写缓冲区和 redo log"></a>双写缓冲区和 redo log</h5><ol>
+<li><p><strong><code>Doublewrite Buffer</code>（双写缓冲区）：</strong></p>
+<ul>
+<li><strong>问题：</strong> 主要处理的是在写入数据页到磁盘时，防止由于系统崩溃导致的部分数据页写入磁盘，部分未写入的情况。</li>
+<li><strong>解决方式：</strong> 在将数据页从内存写入磁盘之前，先将数据页的内容写入到双写缓冲区文件中。即使在系统崩溃时，部分数据页已经写入磁盘，部分写入双写缓冲区，仍然能够通过双写缓冲区进行恢复。</li>
+</ul>
+</li>
+<li><p><strong><code>Redo Log</code>（重做日志）：</strong></p>
+<ul>
+<li><strong>问题：</strong> 主要处理的是事务的原子性和持久性，确保在系统崩溃时，能够重新应用事务的修改操作，保证事务的完整性。</li>
+<li><strong>解决方式：</strong> 在事务进行修改操作时，将相关的修改记录到Redo Log中。在事务提交前，Redo Log的记录就已经被持久化到磁盘。即使系统崩溃，可以通过重新应用Redo Log中的记录来还原事务的修改。</li>
+</ul>
+<p>当系统在启动时需要进行恢复时，Redo Log中的记录通常会被重新应用到<code>Buffer Pool</code>中，而不是直接写入磁盘。</p>
+<p>具体过程如下：</p>
+<ol>
+<li><strong>读取Redo Log：</strong><ul>
+<li>在系统启动时，数据库管理系统会检查Redo Log，以确定在上一次正常关闭之前发生了哪些事务修改。</li>
+</ul>
+</li>
+<li><strong>重新应用到Buffer Pool：</strong><ul>
+<li>恢复进程会将Redo Log中的记录重新应用到<code>Buffer Pool</code>中。</li>
+<li>在这一过程中，不是直接写入磁盘，而是将事务的修改操作在内存中的数据结构中进行重演，即在<code>Buffer Pool</code>中模拟事务的执行。</li>
+</ul>
+</li>
+<li><strong>刷新到磁盘：</strong><ul>
+<li>一旦事务的修改在<code>Buffer Pool</code>中被重演，系统会逐渐将这些修改刷新到磁盘，确保数据的持久性。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>关系：</strong></p>
+<ul>
+<li>两者都是为了数据恢复，但面向的问题和提供的解决方案略有不同。<code>Doublewrite Buffer</code>解决了数据页写入磁盘的原子性问题，而<code>Redo Log</code>解决了事务的原子性和持久性问题。</li>
+<li>组合使用两者，可以在系统异常时提供更加可靠的数据恢复机制，确保数据的完整性和一致性。</li>
+</ul>
 <h4 id="事务原理"><a href="#事务原理" class="headerlink" title="事务原理"></a>事务原理</h4><p> 事务 是一组操作的集合，它是一个<strong>不可分割的工作单位</strong>，事务会把所有的操作作为一个整体一起向系统提交或撤销操作请求，即这些操作<strong>要么同时成功，要么同时失败。</strong></p>
 <ul>
 <li><p>特性（ACID）：</p>
@@ -815,8 +895,23 @@
 </li>
 <li><p>特性的实现：</p>
 <ul>
-<li>原子性、一致性、持久性，实际上是由InnoDB中的两份日志来保证的，一份是redo log日志，一份是undo log日志。</li>
-<li>而隔离性是通过数据库的锁，加上MVCC来保证的。<br><img src="/../img/%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0.png" srcset="/img/loading.gif" lazyload></li>
+<li><strong>原子性的实现：</strong><ul>
+<li>通过事务日志的使用，MySQL能够在崩溃后通过重放Redo Log来重新应用事务的修改，或者通过Undo Log来回滚事务的修改，从而确保事务的原子性。</li>
+</ul>
+</li>
+<li><strong>持久性的实现：</strong><ul>
+<li>事务日志（Redo Log）的记录是在事务提交之前就写入磁盘的，这确保了事务的修改在数据库崩溃后能够被可靠地恢复。</li>
+</ul>
+</li>
+<li><strong>一致性的实现：</strong><ul>
+<li>事务日志的使用以及各种锁机制确保了数据库在执行事务时保持一致状态。当事务提交时，相关的修改操作会以一致的方式应用到数据库。</li>
+</ul>
+</li>
+<li><strong>隔离性的实现：</strong><ul>
+<li>隔离性由事务隔离级别来控制。MySQL通过锁机制和多版本并发控制（MVCC）来实现不同隔离级别下事务的隔离性。</li>
+</ul>
+</li>
+<li><img src="/../img/%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0.png" srcset="/img/loading.gif" lazyload></li>
 </ul>
 </li>
 <li><p>redo log<br>重做日志，记录的是事务提交时数据页的物理修改，是用来实现事务的持久性。</p>
@@ -855,7 +950,18 @@
 <li>如：select … lock in share mode(共享锁)，select …for update、update、insert、delete(排他锁)都是一种当前读。</li>
 <li>在实现<code>Repeatable Read</code> 时，如果执行的是当前读，则会对读取的记录使用 <code>Next-key Lock</code> ，来防止其它事务在间隙间插入数据</li>
 </ul>
-<h4 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h4><ul>
+<h4 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h4><h5 id="为什么需要快照读？"><a href="#为什么需要快照读？" class="headerlink" title="为什么需要快照读？"></a>为什么需要快照读？</h5><ul>
+<li>提供读取一致性数据：<ul>
+<li>比如一个读，一个改，如果没有快照，那读事务第一个读和第二个读的数据都不一样，无法进行正确的逻辑操作，会有并发安全问题。</li>
+</ul>
+</li>
+<li>解决读取冲突：<ul>
+<li>一个读一个写，传统读操作可能会被写操作阻塞，通过快照读，事务可以读取到事务开始时的一致数据快照，与其他并发事务的修改操作相互独立，避免了读取冲突，提供了读取操作的隔离性。</li>
+</ul>
+</li>
+</ul>
+<h5 id="如何实现快照读？"><a href="#如何实现快照读？" class="headerlink" title="如何实现快照读？"></a>如何实现快照读？</h5><p>MVCC</p>
+<ul>
 <li><p>当一个事务执行读操作时，它会使用快照读取。快照读取是基于事务开始时数据库中的状态创建的，因此事务不会读取其他事务尚未提交的修改。具体工作情况如下：</p>
 <ul>
 <li><p>对于读取操作，事务会查找符合条件的数据行，并选择符合其事务开始时间的数据版本进行读取。</p>
