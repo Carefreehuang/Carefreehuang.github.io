@@ -30,9 +30,13 @@
 <meta property="og:image" content="http://example.com/img/%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81.png">
 <meta property="og:image" content="d:\Blog\source\img\jmm%E7%BB%93%E6%9E%84.png">
 <meta property="og:image" content="d:\Blog\source\img\threadlocalmap%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="d:\Blog\source\img\CLH%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="d:\Blog\source\img\clh%E9%98%9F%E5%88%97.png">
+<meta property="og:image" content="d:\Blog\source\img\conditionObject-await.png">
+<meta property="og:image" content="d:\Blog\source\img\conditionObject-await2.png">
+<meta property="og:image" content="d:\Blog\source\img\conditionObject-signal1.png">
+<meta property="og:image" content="d:\Blog\source\img\conditionObject-signal2.png">
 <meta property="article:published_time" content="2023-11-13T14:24:13.270Z">
-<meta property="article:modified_time" content="2023-11-26T12:54:30.710Z">
+<meta property="article:modified_time" content="2023-11-28T15:34:34.114Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="d:\Blog\source\img\java%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B.png">
@@ -228,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -239,7 +243,7 @@
         
         
         
-          152 分钟
+          156 分钟
         
       </span>
     
@@ -810,15 +814,62 @@
 </ul>
 </li>
 </ul>
-<h4 id="AQS核心思想"><a href="#AQS核心思想" class="headerlink" title="AQS核心思想"></a>AQS核心思想</h4><p>AQS的核心思想是：</p>
+<h4 id="AQS核心思想"><a href="#AQS核心思想" class="headerlink" title="AQS核心思想"></a>AQS核心思想</h4><p>全称是 AbstractQueuedSynchronizer，是阻塞式锁和相关的同步器工具的框架 </p>
+<p>特点： </p>
 <ul>
-<li><p>如果被请求的共享资源是空闲的，那么将当前请求资源的线程设置为其有效的工作现场，并将共享资源设置为锁定状态。</p>
+<li>用 state 属性来表示资源的状态（分独占模式和共享模式），子类需要定义如何维护这个状态，控制如何获取 锁和释放锁 <ul>
+<li>getState - 获取 state 状态 </li>
+<li>setState - 设置 state 状态</li>
+<li>compareAndSetState - cas 机制设置 state 状态</li>
+<li>独占模式是只有一个线程能够访问资源，而共享模式可以允许多个线程访问资源 提供了基于 FIFO 的等待队列，类似于 Monitor 的 EntryList 条件变量来实现等待、唤醒机制，支持多个条件变量，类似于 Monitor 的 WaitSet</li>
+</ul>
 </li>
-<li><p>如果被请求的资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制AQS是基于CLH锁</p>
+</ul>
+<p><strong>CLH队列</strong></p>
+<p><img src="D:\Blog\source\img\clh队列.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>state为0的时候表示锁未被占有，state为1的时候表示锁被占有，state大于1表示是重入锁，exclusiveOwnerThread 指向占有锁的线程</li>
+<li>其他想要占有锁的线程在队列中进行排序，并且每一个线程节点都有状态<ul>
+<li>-1代表可以用来唤醒后一个节点</li>
+<li>-2代表是条件节点</li>
+</ul>
 </li>
-<li><p>CLH 锁是对自旋锁的一种改进，因为自旋会浪费资源，使用CLH，可以进行快速的尝试和操作，CLH锁是一个<strong>虚拟的双向队列</strong>（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系），暂时获取不到锁的线程将被加入到该队列中。AQS 将每条请求共享资源的线程封装成一个 CLH 队列锁的一个结点（Node）来实现锁的分配。在 CLH 队列锁中，一个节点表示一个线程，它保存着线程的引用（thread）、 当前节点在队列中的状态（waitStatus）、前驱节点（prev）、后继节点（next）。</p>
-<p><img src="D:\Blog\source\img\CLH结构.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="可重入锁实现"><a href="#可重入锁实现" class="headerlink" title="可重入锁实现"></a>可重入锁实现</h4><h4 id="不可重入锁实现"><a href="#不可重入锁实现" class="headerlink" title="不可重入锁实现"></a>不可重入锁实现</h4><p>详见黑马笔记，阅读源码</p>
+</ul>
+<h4 id="ReentrantLock实现"><a href="#ReentrantLock实现" class="headerlink" title="ReentrantLock实现"></a>ReentrantLock实现</h4><p><strong>可重入锁实现原理</strong></p>
+<ul>
+<li>使用state进行计数，如果是同一个线程进行上锁，那么会state ++；</li>
+<li>进行解锁也同样道理，解锁一次state –，直到state &#x3D;&#x3D;0 才能真的释放锁，将exclusiveOwnerThread  设为 null；</li>
+</ul>
+<p><strong>公平非公平实现原理</strong></p>
+<ul>
+<li>公平锁：<ul>
+<li>如果state &#x3D;&#x3D; 0，并且此时有线程来抢占锁，那么不能立即抢占，还需要判断队列之中head后面还有无线程在等待，如果有，通过cas来入队；</li>
+</ul>
+</li>
+<li>非公平锁：<ul>
+<li>不会进行判断队列的判断，抢占线程直接获得锁，如果没有抢占线程，那么队列之中的线程还是按照排队进行获取锁；</li>
+</ul>
+</li>
+</ul>
+<p><strong>不可打断实现原理</strong></p>
+<p>​	线程会有interupted方法进行打断</p>
+<ul>
+<li>可打断：<ul>
+<li>加锁的时候会判断打断标记是否为true，如果为true，那么证明有人发起了打断，直接抛出打断异常</li>
+</ul>
+</li>
+<li>不可打断：<ul>
+<li>只有在加锁成功后才会告知是否打断，所以在加锁过程中不可打断。</li>
+</ul>
+</li>
+</ul>
+<p><strong>条件变量实现原理</strong></p>
+<ul>
+<li><p>使用ConditionObject维持一个等待队列，记录线程节点</p>
+<p><img src="D:\Blog\source\img\conditionObject-await.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="D:\Blog\source\img\conditionObject-await2.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="D:\Blog\source\img\conditionObject-signal1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="D:\Blog\source\img\conditionObject-signal2.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <h3 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h3><p><code>ReentrantReadWriteLock</code> 实现了 <code>ReadWriteLock</code> ，是一个可重入的读写锁，既可以保证多个线程同时读的效率，同时又可以保证有写入操作时的线程安全。</p>
