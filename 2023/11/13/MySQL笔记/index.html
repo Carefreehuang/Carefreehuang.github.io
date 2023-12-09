@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/mysql.png">
 <meta property="article:published_time" content="2023-11-13T14:24:13.276Z">
-<meta property="article:modified_time" content="2023-11-17T15:15:47.713Z">
+<meta property="article:modified_time" content="2023-11-30T02:54:12.752Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/mysql.png">
@@ -232,7 +232,7 @@
         
         
         
-          148 分钟
+          153 分钟
         
       </span>
     
@@ -847,7 +847,7 @@
 <li><p><strong><code>Doublewrite Buffer</code>（双写缓冲区）：</strong></p>
 <ul>
 <li><strong>问题：</strong> 主要处理的是在写入数据页到磁盘时，防止由于系统崩溃导致的部分数据页写入磁盘，部分未写入的情况。</li>
-<li><strong>解决方式：</strong> 在将数据页从内存写入磁盘之前，先将数据页的内容写入到双写缓冲区文件中。即使在系统崩溃时，部分数据页已经写入磁盘，部分写入双写缓冲区，仍然能够通过双写缓冲区进行恢复。</li>
+<li><strong>解决方式：</strong>当 InnoDB 存储引擎将脏页（被修改但尚未写回磁盘的数据页）刷新到磁盘时，它首先会将脏页的内容写入到双写缓冲区。这个过程是原子的，要么全部写入，要么一个字节都不写入。然后，InnoDB 将双写缓冲区的数据一次性写入到磁盘。这样做的目的是为了避免写入磁盘时的部分写入问题。</li>
 </ul>
 </li>
 <li><p><strong><code>Redo Log</code>（重做日志）：</strong></p>
@@ -872,6 +872,25 @@
 </ul>
 </li>
 </ol>
+<blockquote>
+<p>缓冲池的数据如何同步到磁盘：</p>
+<ol>
+<li><strong>脏页标记：</strong> 当缓冲池中的数据页被修改时，称为脏页。MySQL会在对数据页的修改操作后标记该页为脏页。</li>
+<li><strong>脏页刷新触发：</strong> 当脏页达到一定条件时，会触发脏页的刷新操作，将修改的数据同步到磁盘。触发条件包括：<ul>
+<li>Checkpoint：MySQL定期执行checkpoint操作，将缓冲池中的脏页刷新到磁盘，以确保数据的一致性。</li>
+<li>LRU（Least Recently Used）算法：当缓冲池需要空间来加载新的数据页时，可能会选择刷新一些脏页。</li>
+<li>主动刷新：某些情况下，可以通过<code>innodb_flush_method</code>等参数配置来主动触发脏页刷新。</li>
+</ul>
+</li>
+<li><strong>脏页刷新到磁盘：</strong> 刷新脏页到磁盘的过程涉及将缓冲池中的脏页内容写入对应的数据文件。这个操作主要通过以下步骤完成：<ul>
+<li><strong>Redo Log（重做日志）记录：</strong> MySQL会将脏页的修改操作记录到重做日志中。这是为了在数据库崩溃后，可以通过重做日志重新执行这些修改操作，确保数据的一致性。</li>
+<li><strong>刷新到磁盘：</strong> 将脏页的内容写入对应的数据文件。这通常是采用顺序写的方式，以提高性能。</li>
+<li><strong>刷新完成标志：</strong> 刷新完成后，将脏页的脏标记清除，表示该页已经被成功刷新到磁盘。</li>
+</ul>
+</li>
+<li><strong>异步写入和刷新策略：</strong> 数据的刷新通常是异步进行的，即数据库引擎不会立即等待脏页刷新完成而阻塞其他操作。这种异步写入可以通过操作系统的缓存等机制来提高性能。数据库引擎还可以采用一些策略，如脏页的刷新可以在低峰期进行，以降低对系统性能的影响。</li>
+</ol>
+</blockquote>
 </li>
 </ol>
 <p><strong>关系：</strong></p>
@@ -1176,6 +1195,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/12/06/Spring/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

@@ -35,8 +35,10 @@
 <meta property="og:image" content="d:\Blog\source\img\conditionObject-await2.png">
 <meta property="og:image" content="d:\Blog\source\img\conditionObject-signal1.png">
 <meta property="og:image" content="d:\Blog\source\img\conditionObject-signal2.png">
+<meta property="og:image" content="d:\Blog\source\img\concurrenthashmap1.7.png">
+<meta property="og:image" content="d:\Blog\source\img\concurrenthashmap1.8.png">
 <meta property="article:published_time" content="2023-11-13T14:24:13.270Z">
-<meta property="article:modified_time" content="2023-11-29T12:09:35.279Z">
+<meta property="article:modified_time" content="2023-12-05T03:15:59.220Z">
 <meta property="article:author" content="Carefreehuang">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="d:\Blog\source\img\java%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B.png">
@@ -232,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -243,7 +245,7 @@
         
         
         
-          153 分钟
+          157 分钟
         
       </span>
     
@@ -409,6 +411,10 @@
 <li>偏向锁和轻量级锁都是线程错开的，不会有线程竞争的情况，如果出现了竞争的情况，那么会膨胀为重量级锁</li>
 </ul>
 <h4 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁"></a>重量级锁</h4><p>就是monitor，使用底层的互斥，成本非常的高</p>
+<blockquote>
+<p>在多线程程序中，线程切换是一种开销较大的操作。当一个线程因为竞争锁而被挂起时，操作系统需要保存当前线程的上下文，切换到其他线程执行，然后再恢复原线程的上下文。这个过程<strong>涉及到内核态和用户态之间的切换</strong>，开销相对较大。</p>
+<p><strong>阻塞操作通常需要执行一些系统调用</strong>，例如等待锁时可能需要调用内核提供的原子操作或等待队列。这些系统调用在内核态执行，因为它们涉及到对系统资源的管理和底层硬件的访问。</p>
+</blockquote>
 <ul>
 <li>自旋<ul>
 <li>内核态与用户态的切换上不容易优化。但通过自旋锁，可以减少线程阻塞造成的线程切换（包括挂起线程和恢复线程）。</li>
@@ -438,7 +444,7 @@
 </ul>
 </li>
 <li>特点：<ul>
-<li>轻量级锁通过在对象头部的标志位和指针记录锁的状态和持有者线程的标识，尝试使用CAS（compare and swap）操作来获取锁。如果获取失败，线程会进行自旋等待，以避免阻塞和线程切换的开销。</li>
+<li><strong>轻量级锁通过在对象头部的标志位和指针记录锁的状态和持有者线程的标识，尝试使用CAS（compare and swap）操作来获取锁。如果获取失败，线程会进行自旋等待，以避免阻塞和线程切换的开销。</strong></li>
 <li>在对象 markword 中存储的是锁记录地址，锁记录里面存储了被锁的对象引用 。</li>
 <li>可重入：如果是同一个线程来获取同一个对象，那么会添加一个 LockRecord 作为重入计数。</li>
 <li>如果被竞争了，那么膨胀为重量级锁。</li>
@@ -522,33 +528,6 @@
 <li><code>sleep()</code>方法没有释放锁，<code>wait()</code>方法会释放锁，<code>park()</code>方法不释放锁（不依赖监视器）</li>
 <li><code>sleep()</code> 是让当前线程暂停执行，不涉及到对象类，也不需要获得对象锁。<code>park()</code>也不涉及到对象类，不需要获得锁。</li>
 <li><code>sleep()</code>调用后线程会自动苏醒，<code>park()</code> <code>wait()</code>不会自动苏醒，分别需要<code>unpark()</code>，<code>notify()/notifyAll()</code>才苏醒</li>
-</ul>
-<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><p>基本语法：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取锁</span><br>reentrantLock.lock();<br><span class="hljs-keyword">try</span> &#123;<br><span class="hljs-comment">// 临界区</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br><span class="hljs-comment">// 释放锁</span><br>reentrantLock.unlock();<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<ul>
-<li>特点：<ul>
-<li>可重入<ul>
-<li>指同一个线程如果首次获得了这把锁，那么因为它是这把锁的拥有者，因此有权利再次获取这把锁</li>
-<li>JDK 提供的所有现成的 <code>Lock</code> 实现类，包括 <code>synchronized</code> 关键字锁都是可重入的。</li>
-</ul>
-</li>
-<li>支持多个条件变量<ul>
-<li>在synchronized中，wait后都是统一加入到同一个等待队列之中，notify随机唤醒一个，notifyAll唤醒所有，可能导致虚假唤醒（即唤醒了根本不需要唤醒的线程）</li>
-<li>而在ReentrantLock中，可以设置条件变量，await之后将不同的线程加入到不同的阻塞队列之中，到时候再对相应的等待队列进行唤醒。</li>
-</ul>
-</li>
-<li>可中断<ul>
-<li><strong>可中断锁</strong>：获取锁的过程中就可以被中断</li>
-<li><strong>不可中断锁</strong>：一旦申请锁，必须等到拿到锁之后才能进行其他的逻辑处理，<code>synchronized</code> 就属于不可中断锁</li>
-</ul>
-</li>
-<li>可以设置超时时间</li>
-<li>可以设置为公平锁<ul>
-<li><strong>公平锁</strong>：锁被释放后，先申请的线程先得到锁，性能较差</li>
-<li><strong>非公平锁</strong>：锁被释放后，按照随机或者其他优先级排序获取锁，可能会导致某些线程永远无法获得锁</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 <h3 id="Java内存模型-JMM"><a href="#Java内存模型-JMM" class="headerlink" title="Java内存模型 JMM"></a>Java内存模型 JMM</h3><blockquote>
 <p>JMM 即java memory model，定义了主存，工作内存等抽象概念，底层对应着CPU寄存器，缓存，硬件内存，CPU指令优化等</p>
@@ -675,7 +654,7 @@
 <p>比如我们在同一个线程中声明了两个 <code>ThreadLocal</code> 对象的话， <code>Thread</code>内部都是使用仅有的那个<code>ThreadLocalMap</code> 存放数据的，<code>ThreadLocalMap</code>的 key 就是 <code>ThreadLocal</code>对象，value 就是 <code>ThreadLocal</code> 对象调用<code>set</code>方法设置的值。</p>
 <p><code>ThreadLocal</code> 数据结构如下图所示：</p>
 <p><img src="D:\Blog\source\img\threadlocalmap结构.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="ThreadLocal-内存泄露问题是怎么导致的？"><a href="#ThreadLocal-内存泄露问题是怎么导致的？" class="headerlink" title="ThreadLocal 内存泄露问题是怎么导致的？"></a>ThreadLocal 内存泄露问题是怎么导致的？</h4><p><code>ThreadLocalMap</code> 中使用的 key 为 <code>ThreadLocal</code> 的弱引用，而 value 是强引用。所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。</p>
+<h4 id="ThreadLocal-内存泄露问题是怎么导致的？"><a href="#ThreadLocal-内存泄露问题是怎么导致的？" class="headerlink" title="ThreadLocal 内存泄露问题是怎么导致的？"></a>ThreadLocal 内存泄露问题是怎么导致的？</h4><p><code>ThreadLocalMap</code> 中使用的 <strong>key 为 <code>ThreadLocal</code> 的弱引用，而 value 是强引用。</strong>所以，如果 <code>ThreadLocal</code> 没有被外部强引用的情况下，在垃圾回收的时候，key 会被清理掉，而 value 不会被清理掉。</p>
 <blockquote>
 <p>当一个<code>ThreadLocal</code>对象没有被外部强引用持有时，在垃圾回收的时候，<code>ThreadLocal</code>对象会被判定为不再被引用，从而可以被垃圾回收器回收。一旦<code>ThreadLocal</code>对象被回收，对应的弱引用也会被清理掉。</p>
 <p>然而，<code>ThreadLocalMap</code>中的值（线程局部变量）是使用强引用来持有的。强引用意味着被引用的对象不会被垃圾回收器主动回收，只有当没有任何强引用指向该对象时，才会被回收。</p>
@@ -825,6 +804,35 @@
 </ul>
 </li>
 </ul>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><p>基本语法：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 获取锁</span><br>reentrantLock.lock();<br><span class="hljs-keyword">try</span> &#123;<br><span class="hljs-comment">// 临界区</span><br>&#125; <span class="hljs-keyword">finally</span> &#123;<br><span class="hljs-comment">// 释放锁</span><br>reentrantLock.unlock();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>特点：<ul>
+<li>可重入<ul>
+<li>指同一个线程如果首次获得了这把锁，那么因为它是这把锁的拥有者，因此有权利再次获取这把锁</li>
+<li>JDK 提供的所有现成的 <code>Lock</code> 实现类，包括 <code>synchronized</code> 关键字锁都是可重入的。</li>
+</ul>
+</li>
+<li>支持多个条件变量<ul>
+<li>在synchronized中，wait后都是统一加入到同一个等待队列之中，notify随机唤醒一个，notifyAll唤醒所有，可能导致虚假唤醒（即唤醒了根本不需要唤醒的线程）</li>
+<li>而在ReentrantLock中，可以设置条件变量，await之后将不同的线程加入到不同的阻塞队列之中，到时候再对相应的等待队列进行唤醒。</li>
+</ul>
+</li>
+<li>可中断<ul>
+<li><strong>可中断锁</strong>：获取锁的过程中就可以被中断</li>
+<li><strong>不可中断锁</strong>：一旦申请锁，必须等到拿到锁之后才能进行其他的逻辑处理，<code>synchronized</code> 就属于不可中断锁</li>
+</ul>
+</li>
+<li>可以设置超时时间</li>
+<li>可以设置为公平锁<ul>
+<li><strong>公平锁</strong>：锁被释放后，先申请的线程先得到锁，性能较差</li>
+<li><strong>非公平锁</strong>：锁被释放后，按照随机或者其他优先级排序获取锁，可能会导致某些线程永远无法获得锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h4 id="ReentrantLock实现"><a href="#ReentrantLock实现" class="headerlink" title="ReentrantLock实现"></a>ReentrantLock实现</h4><p><strong>可重入锁实现原理</strong></p>
 <ul>
 <li>使用state进行计数，如果是同一个线程进行上锁，那么会state ++；</li>
@@ -903,7 +911,9 @@
 <li>当一个线程释放许可时，计数器会增加，并且会通知等待队列中的一个或多个等待线程，使它们能够竞争获取许可。</li>
 </ul>
 <h3 id="CountDownLatch-倒计时器"><a href="#CountDownLatch-倒计时器" class="headerlink" title="CountDownLatch(倒计时器)"></a>CountDownLatch(倒计时器)</h3><h4 id="什么是CountDownLatch？"><a href="#什么是CountDownLatch？" class="headerlink" title="什么是CountDownLatch？"></a>什么是CountDownLatch？</h4><p><code>CountDownLatch</code> 是Java并发编程中的一种同步工具，它可以让一个或多个线程<strong>等待其他线程完成一组操作后再继续执行</strong>。</p>
-<p>它基于计数的概念，线程在等待前先设置一个初始计数值，然后在需要等待的地方调用<code>await()</code>方法，直到计数值减到0时，等待的线程才会被释放，继续执行后续操作。</p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><code>CountDownLatch</code> 是共享锁的一种实现,它默认构造 AQS 的 <code>state</code> 值为 <code>count</code>。</p>
+<p>当线程使用 <code>countDown()</code> 方法时,其实使用了<code>tryReleaseShared</code>方法以 CAS 的操作来减少 <code>state</code>,直至 <code>state</code> 为 0 。</p>
+<p>当调用 <code>await()</code> 方法的时候，如果 <code>state</code> 不为 0，那就证明任务还没有执行完毕，<code>await()</code> 方法就会一直阻塞，也就是说 <code>await()</code> 方法之后的语句不会被执行。直到<code>count</code> 个线程调用了<code>countDown()</code>使 state 值被减为 0，或者调用<code>await()</code>的线程被中断，该线程才会从阻塞中被唤醒，<code>await()</code> 方法之后的语句得到执行。</p>
 <p><code>CountDownLatch</code> <strong>是一次性的</strong>，计数器的值只能在构造方法中初始化一次，之后没有任何机制再次对其设置值，当 <code>CountDownLatch</code> 使用完毕后，它不能再次被使用。</p>
 <h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
 <li>某个线程等待其他线程执行完毕才能执行<ul>
@@ -917,7 +927,7 @@
 </li>
 </ul>
 <h3 id="CyclicBarrier-循环栅栏"><a href="#CyclicBarrier-循环栅栏" class="headerlink" title="CyclicBarrier(循环栅栏)"></a>CyclicBarrier(循环栅栏)</h3><p><code>CyclicBarrier</code>（循环屏障）是Java并发编程中的一种同步工具，它可以让一组线程相互等待，直到所有线程都达到一个共同的屏障点，然后同时继续执行后续操作。与<code>CountDownLatch</code>类似，<code>CyclicBarrier</code>也是基于计数的概念，<strong>但它的计数器可以循环使用，即当计数器的值减到0时，会自动重置为初始值。</strong></p>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><code>CyclicBarrier</code> 内部通过一个 <code>count</code> 变量作为计数器，<code>count</code> 的初始值为 <code>parties</code> 属性的初始化值，每当一个线程到了栅栏这里了，那么就将计数器减 1。</p>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p><code>CyclicBarrier</code> 内部通过一个 <code>count</code> 变量作为计数器，<code>count</code> 的初始值为 <code>parties</code> 属性的初始化值，每当一个线程到了栅栏这里了，那么就将计数器减 1。</p>
 <p>如果 count 值为 0 了，表示这是这一代最后一个线程到达栅栏，就尝试执行我们构造方法中输入的任务。</p>
 <p>该栅栏处的屏障任务执行完成后，会重置count。</p>
 <h4 id="注意！"><a href="#注意！" class="headerlink" title="注意！"></a>注意！</h4><ul>
@@ -945,6 +955,7 @@
 </ol>
 <h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p><code>ConcurrentHashMap</code> 的源码比较庞大，这里简要概括一下其主要实现思路和关键部分，包括 JDK 1.7 和 JDK 1.8 两个版本。</p>
 <p><strong>JDK 1.7 版本：</strong></p>
+<p><img src="D:\Blog\source\img\concurrenthashmap1.7.png" srcset="/img/loading.gif" lazyload></p>
 <p>在 JDK 1.7 中，<code>ConcurrentHashMap</code> 使用了分段锁（Segment）的机制，每个段相当于一个小的 <code>HashTable</code>，具体实现在 <code>Segment</code> 内。以下是主要的实现细节：</p>
 <ol>
 <li><strong>结构：</strong><ul>
@@ -964,10 +975,12 @@
 </li>
 <li><strong>扩容：</strong><ul>
 <li><code>ConcurrentHashMap</code> 采用分段的扩容策略，每个 <code>Segment</code> 独立扩容，避免了整个表的扩容，减小了锁的粒度。</li>
+<li>扩容是变成原来的两倍</li>
 </ul>
 </li>
 </ol>
 <p><strong>JDK 1.8 版本：</strong></p>
+<p><img src="D:\Blog\source\img\concurrenthashmap1.8.png" srcset="/img/loading.gif" lazyload></p>
 <p>在 JDK 1.8 中，<code>ConcurrentHashMap</code> 的实现进行了较大改进，引入了更先进的数据结构，主要是数组 + 链表 + 红黑树，以及一些 CAS 操作。以下是主要的实现细节：</p>
 <ol>
 <li><strong>结构：</strong><ul>
